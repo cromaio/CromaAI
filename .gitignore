@@ -1,3 +1,6 @@
+.DS_Store
+CromaAI/ML_models.zip
+CromaAI/ML_models/
 data/
 __pycache__
 CromaAI/__pycache__
