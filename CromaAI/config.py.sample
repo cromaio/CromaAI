@@ -1,0 +1,24 @@
+database = {
+    'db_name': 'cromaAIdb',
+    'host': 'localhost',
+    'port': 27018
+    }
+
+active_publication = 'Redaccion'
+
+publications = [
+    {
+        "api_url": 'https://cnnespanol.cnn.com/wp-json/wp/v2/',
+        "name": 'CNN Esp',
+        "fetch_method": 'wordpress',
+        "location": 'USA', 
+        "url": 'https://cnnespanol.cnn.com'
+    },
+    {
+        "api_url": 'https://www.redaccion.com.ar/wp-json/wp/v2/',
+        "name": 'Redaccion',
+        "fetch_method": 'wordpress',
+        "location": 'Argentina', 
+        "url": 'https://www.redaccion.com.ar'
+    }
+]

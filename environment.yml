@@ -1,0 +1,10 @@
+name: cromaAI
+dependencies:
+  - pip
+  - python=3.6.9
+  - conda-forge::beautifulsoup4
+  - conda-forge::mongoengine
+  - mongodb
+  - requests
+  - pip:
+    - schema

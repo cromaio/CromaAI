@@ -1,0 +1,5 @@
+data/
+__pycache__
+CromaAI/__pycache__
+CromaAI/config.py
+.vscode/
