@@ -242,12 +242,18 @@ class Train:
     #     else:
     #         return v.astype('float32')
     
-    def add_faiss_vectors(self, tfidf=True):
+    def add_faiss_vectors(self, w2vect_model, tfidf=True):
         ### Si la carpeta no existe, la creo
         faiss_folder = f'{self.dst_folder}faiss/'
         if not os.path.exists(faiss_folder):
             os.makedirs(faiss_folder)
         ###
+        if w2vect_model is None:
+            w2v_dst_folder = f'{self.dst_folder}w2vect/'
+            w2vect_file = glob.glob(w2v_dst_folder+'*.wv')[0]
+        else:
+            w2vect_file = w2vect_model
+
         faiss_filename = f'{faiss_folder}indexes' # Indeces de faiss w2v
         faiss_tfidf_filename = f'{faiss_folder}indexes_tfidf' # Indeces de faiss  TFIDF
         faiss_ids_filename = f'{faiss_folder}ids.npy' # Ids de mongo
@@ -273,11 +279,7 @@ class Train:
             faiss_articles_ids = []
             faiss_index2 = None
             faiss_index2_tfidf = None
-            
-        # Get wordvectors
-        # if self.w2v_model is None:
-        w2v_dst_folder = f'{self.dst_folder}w2vect/'
-        w2vect_file = glob.glob(w2v_dst_folder+'*.wv')[0]
+        
         
         vect_folder = f'{self.dst_folder}vectorizers/'
         token2tfidf_file = glob.glob(vect_folder+'token2tfidf*.npy')[0]
@@ -288,7 +290,7 @@ class Train:
             gensim_model_path=w2vect_file, 
             token2tfidf_path=token2tfidf_file
         )
-
+        print(f'using: {w2vect_file}')
         xb = []
         xb_tfidf = []
         new_article_ids = []

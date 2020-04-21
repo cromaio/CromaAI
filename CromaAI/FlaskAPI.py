@@ -108,7 +108,7 @@ def get_related():
 
 @app.route('/api/v1/related')
 def get_related_api():
-    years = int(flask.request.args.get('years') or '0')
+    years = int(flask.request.args.get('years') or '1')
     months = int(flask.request.args.get('months') or '0')
     days = int(flask.request.args.get('days') or '0')
     chossen_id = flask.request.args.get('id')
@@ -116,7 +116,7 @@ def get_related_api():
     article = Article.objects(id=chossen_id).get()
     
     articles, similarities = related_articles.get_related_articles(article, years=years, months=months, days=days, radius=radius)
-        
+    
     return {'related_articles': [{'article_id': str(a['id']), 'similarity':float(s)} for a, s in zip(articles, similarities)]}
 
 

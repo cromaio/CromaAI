@@ -20,7 +20,7 @@ if __name__ == "__main__":
         train.train_vectorizers(min_df=config_train.vectorizeers_hyperparams['min_df'], 
                                 max_df=config_train.vectorizeers_hyperparams['max_df'])
 
-    if config_train.enabled_processes['w2v']:
+    if config_train.enabled_processes['w2v'] and config_train.word2vect_model is None:
         print('Training w2vect ...')
 
         train.Word2Vec(
@@ -32,4 +32,4 @@ if __name__ == "__main__":
 
     if config_train.enabled_processes['faiss']:
         print('Training faiss ...')
-        train.add_faiss_vectors()
+        train.add_faiss_vectors(config_train.word2vect_model)

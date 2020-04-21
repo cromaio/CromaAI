@@ -15,6 +15,7 @@ import os
 class RelatedArticles():    
     @staticmethod
     def get_filtered_by_date(articles, distances, days=0, months=0, years=1):
+        print(len(articles), len(distances))
         filter_date = (datetime.now() - relativedelta(days=days, months=months, years=years)).date()
         filtered_articles= []
         filtered_distances = []
@@ -234,7 +235,6 @@ class RelatedArticles():
             indexes = I[0][fr:]
 
         articles = []
-        distances = []
         for idx in indexes:
             art_ = Article.objects(id=self.faiss_article_ids[idx]).first()
             if art_ is not None:
