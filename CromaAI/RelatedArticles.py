@@ -147,6 +147,7 @@ class RelatedArticles():
             vector = self.article2vect(article) # np.array([article_to_faiss_vect(article, nlp_custom, w2v_model)])
         else:
             vector = np.array([self.faiss_indexes.index.reconstruct(int(id_form_article_id[0]))])
+        
         articles, distances = self.get_related_articles_from_vector(vector, years=years, months=months, days=days, radius=radius)
         
         if len(id_form_article_id) == 0:
@@ -215,6 +216,9 @@ class RelatedArticles():
         return self.text2vect(text)
     
     def get_related_articles_from_vector(self, vector, radius=0.89, k=None, fr = 0, filter_by_date=True, years=1, months=0, days=0):
+        if type(vector) == tuple:
+            # Hay que hacer un fix para tfidf aca
+            vector = vector[0]
         if len(vector.shape) == 1:
             vector = np.array([vector])
         if k is None:
@@ -230,10 +234,14 @@ class RelatedArticles():
             indexes = I[0][fr:]
 
         articles = []
+        distances = []
         for idx in indexes:
-            articles.append(Article.objects(id=self.faiss_article_ids[idx]).first())
+            art_ = Article.objects(id=self.faiss_article_ids[idx]).first()
+            if art_ is not None:
+                articles.append(art_)
+        
 
-        if filter_by_date:
+        if len(articles)>0 and filter_by_date:
             articles, distances = RelatedArticles.get_filtered_by_date(articles, distances, years=years, months=months, days=days)
 
         return articles, distances

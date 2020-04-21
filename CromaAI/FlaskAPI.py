@@ -14,7 +14,7 @@ sys.path.append('../')
 import flask
 from CromaDisplacy import return_HTML_from_db, return_HTML
 from models import Publication, NerAzure, NerGoogle, NerAws
-import CromaGNI
+from CromaGNI import CromaGNI
 from RelatedArticles import RelatedArticles #get_sentence_vect, article_to_faiss_vect, get_related_aticles
 # from CromaGNILib.models import Publication
 
@@ -32,7 +32,11 @@ app.jinja_env.globals['url_for_other_page'] = url_for_other_page
     
 
 app.config.from_object(__name__)
-app.config['MONGODB_SETTINGS'] = {'DB': 'GNIdb'}
+app.config['MONGODB_SETTINGS'] = {
+    'db': config.database['db_name'],
+    'host': config.database['host'],
+    'port': config.database['port']
+    }
 app.config['TESTING'] = True
 app.config['SECRET_KEY'] = 'flask+mongoengine=<3'
 app.config['JSON_AS_ASCII'] = False
@@ -117,15 +121,18 @@ def get_related_api():
 
 
 # Get highlighted article
-@app.route('/api/v1/highlighted_article')
+@app.route('/api/v1/article_entities')
 def get_highlighted_article_api():
     article_id = flask.request.args.get('id')
     cloud = (flask.request.args.get('cloud') or 'spacy')
+    detail = (flask.request.args.get('detail') or False)
     
     article = Article.objects(id=article_id).first()
     title = article.title
     html = None
     ner = None
+    json_data_doc = None
+    json_data_title = None
     # text = article['text']
     if cloud == 'aws':
         ner = article.ner_aws_id
@@ -135,20 +142,25 @@ def get_highlighted_article_api():
         ner = article.ner_google_id
     if ner is not None:
         html = return_HTML_from_db(ner)
+        json_data_doc = ner.to_json()
     
     if cloud == 'spacy':
         text = CromaGNI.preprocess_aws_data(article.text)
         doc = related_articles.text2doc(text) 
-        html = return_HTML(doc.to_json())
-        title = return_HTML(related_articles.text2doc(title).to_json())
+        json_data_doc = doc.to_json()
+        html = return_HTML(json_data_doc)
+        json_data_title = related_articles.text2doc(title).to_json()
+        title = return_HTML(json_data_title)
     
     if cloud == 'raw':
         html = CromaGNI.preprocess_aws_data(article.text)
         
     if html is None:
         return {'error': 'Cloud API results not in db'}
-    
-    return {"article": article, 'title': title, 'html': html}
+    if detail:
+        return {"article": article, 'title': title, 'html': html, 'json_data_doc': json_data_doc, 'json_data_title': json_data_title}
+    else:
+        return {'NER_content': json_data_doc, 'NER_title': json_data_title}
 
 @app.route('/highlighted_article')
 def get_highlighted_article():
@@ -197,7 +209,7 @@ def get_articles():
     google = int(flask.request.args.get('google') or 0)
     aws = int(flask.request.args.get('aws') or 0)
     azure = int(flask.request.args.get('azure') or 0)
-    selected_pub = (flask.request.args.get('pub') or Publication.objects(name='iProfesional').first().id)
+    selected_pub = (flask.request.args.get('pub') or Publication.objects(name=config.active_publication).first().id)
     page_num = int(flask.request.args.get('page') or 1)
     per_page = int(flask.request.args.get('count') or 10)
     from_date = flask.request.args.get('from') or '2000-01-01'
@@ -311,7 +323,12 @@ def post_text_api():
         vector = vector[1]
     articles, similarities = related_articles.get_related_articles_from_vector(vector, k=10, filter_by_date=False)
     
-    return {'html': html, 'related_articles': [{'article_id': str(a['id']), 'similarity':float(s)} for a, s in zip(articles, similarities)], 'doc': doc.to_json()}
+    if len(articles) == 0:
+        related_and_similarities = []
+    else:
+        related_and_similarities = [{'article_id': str(a['id']), 'similarity':float(s)} for a, s in zip(articles, similarities)]
+
+    return {'html': html, 'related_articles': related_and_similarities, 'doc': doc.to_json()}
 
 app.add_url_rule('/pagination', view_func=pagination)
 
