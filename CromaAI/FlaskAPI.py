@@ -335,4 +335,12 @@ app.add_url_rule('/pagination', view_func=pagination)
 
     
 if __name__ == "__main__":
-    app.run(host="0.0.0.0", port=5000)
+    port = 5000
+    host = "0.0.0.0"
+    for i, a in enumerate(sys.argv):
+        if a == '-p':
+            port = sys.argv[i+1]
+        if a == '-h':
+            host = sys.argv[i+1]
+
+    app.run(host=host, port=port)
