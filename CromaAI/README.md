@@ -30,7 +30,7 @@ https://anaconda.org/
 Bajarlo de la página e instalarlo siguiendo las instrucciones dependiendo de su sistema operativo
       
   Instalar CromaAI
-`$ git clone git@github.com:cromaio/CromaAI.git $ cd CromaAI`
+```$ git clone git@github.com:cromaio/CromaAI.git $ cd CromaAI```
          
 ## Creación de entorno
 Ejecutar los siguientes comandos:
