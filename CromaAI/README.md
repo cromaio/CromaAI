@@ -49,32 +49,60 @@ Si quiere instalar faiss con GPU debe modificar la linea de config del yml pytor
                     
 ## Archivo de configuración para la base de datos
 CromaAI utiliza mongodb como base de datos. Abriendo CromaAI/config.py puede editar la configuración
-`database = {`
-`'db_name': 'cromaAIdb', 'host': 'localhost',`
-`'port': 27018`
-`}`
-`]`
+```js
+database = {
+   'db_name': 'cromaAIdb',
+   'host': 'localhost',
+   'port': 27018
+   }
+```
  
 ## Correr mongo
 Seleccione el puerto y el path que se ajuste a sus necesidades Ejecutar:
-`$ mongod --port 27018 --dbpath ./data/db/`
+```
+$ mongod --port 27018 --dbpath ./data/db/
+```
 El primer parámetro (port) debe coincidir con el del archivo config
 El segundo parámetro es la carpeta donde se guardan los datos de la base de datos
    
 ## Archivo de configuración - Publicaciones default
 Aquí puede modificar y agregar su medio. Hay un ejemplo aca: CromaAI/config.py.sample
-    `publications = [ {`
-`"api_url": 'https://pubicacion1.com/wp-json/wp/v2/', "name": 'CNN Esp',`
-`"fetch_method": 'wordpress',`
-`"location": 'USA',`
-`"url": 'https://publicacion1.com' },`
-`{`
-`"api_url": 'https://www.publicacion2.com.ar/wp-json/wp/v2/', "name": 'Publicacion2',`
-`"fetch_method": 'wordpress',`
-`"location": 'Argentina',`
-`"url": 'https://www.publicacion2.com.ar'`
-`}]`
-`active_publication = 'Publicacion2' # Esto indica que publicación usará realmente`
+```python
+database = {
+    'db_name': 'cromaAIdb',
+    'host': 'localhost',
+    'port': 27018
+    }
+
+active_publication = 'Redaccion'
+
+publications = [
+    {
+        "api_url": 'https://cnnespanol.cnn.com/wp-json/wp/v2/',
+        "name": 'CNN Esp',
+        "fetch_method": 'wordpress',
+        "location": 'USA', 
+        "url": 'https://cnnespanol.cnn.com'
+    },
+    {
+        "api_url": 'https://www.redaccion.com.ar/wp-json/wp/v2/',
+        "name": 'Redaccion',
+        "fetch_method": 'wordpress',
+        "location": 'Argentina', 
+        "url": 'https://www.redaccion.com.ar'
+    }
+]
+
+
+models_folder = 'models/redaccion_2020/'
+class models:
+    gensim_w2v = f'{models_folder}w2vect/w2vect_2.wv' 
+    faiss_indexes = f'{models_folder}faiss/indexes'  
+    faiss_indexes_tfidf = f'{models_folder}faiss/indexes_tfidf'  
+    faiss_ids = f'{models_folder}faiss/ids.npy'      
+    spacy = f'{models_folder}ner/model-azure-aws-50k'
+    token2tfidf = f'{models_folder}vectorizers/token2tfidf-max_df_1.0-min_df_1.npy'
+```
 
 ## Buscar artículos y guardarlos en db
 Asegurarse de tener un archivo de configuración correcto: config.py Hay un ejemplo: config.py.sample
