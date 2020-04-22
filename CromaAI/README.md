@@ -95,7 +95,9 @@ En esta etapa los modelos no están entrenados con los datos de artículos bajad
  
 ## Correr API
 Dentro de la carpeta repo_folder/CromaAI
-$ python3 FlaskAPI.py -p 5000 -h localhost
+```bash
+python3 FlaskAPI.py -p 5000 -h localhost
+```
 Esto corre un servidor en el puerto 5000 por defecto. Puede cambiar el host y el port según sus necesidades
    
 ### Verficar API - /api/v1/articles
@@ -126,7 +128,7 @@ curl --location --request GET 'http://localhost:5000/api/v1/articles'
 
 El resultado debería ser algo parecido a lo siguiente:
 ```
-{ "articles_page": [ {"_id": {"$oid": "**5e9e1d65970a1cca9518671c**"}, 
+{ "articles_page": [ {"_id": {"$oid": "5e9e1d65970a1cca9518671c"}, 
       "author": ["18"], 
       "publication": {
         "$oid": "5e9e16903993318678a548ad"
@@ -153,7 +155,7 @@ http://localhost:5000/api/v1/article_entities?id=5e9e1d65970a1cca9518671c&cloud=
 ```
 o desde la linead de comando:
 
-```
+```bash
 curl --location --request GET 'http://localhost:5000/api/v1/article_entities?id=5e9e1d65970a1cca9518671c&cloud=spacy'
 ```
 
