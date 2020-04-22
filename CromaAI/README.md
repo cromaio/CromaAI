@@ -118,10 +118,15 @@ Escribir en el browser:
 ```
 http://localhost:5000/api/v1/articles
 ```
+o desde la linead de comando:
+
+```
+curl --location --request GET 'http://localhost:5000/api/v1/articles'
+```
 
 El resultado debería ser algo parecido a lo siguiente:
 ```
-{ "articles_page": [ {"_id": {"$oid": "5e9e1d65970a1cca9518671c"}, 
+{ "articles_page": [ {"_id": {"$oid": "**5e9e1d65970a1cca9518671c**"}, 
       "author": ["18"], 
       "publication": {
         "$oid": "5e9e16903993318678a548ad"
@@ -138,17 +143,19 @@ El resultado debería ser algo parecido a lo siguiente:
 ```
 
 ### Verficar API - /api/v1/article_entities
+
+Obtener el id del primer articulo, en nuestro ejemplo: 5e9e1d65970a1cca9518671c
+Y colocarlo en el pedido para verificar funcionamiento
+
 Escribir en el browser:
-`     http://localhost:5000/api/v1/article_entities?id=5e9e1d65970`
- `a1cca9518671c&cloud=spacy`
- `{`
-`"NER_content": {`
-`"ents": [ {`
-`"end": 100, "label": "LOC", "start": 91`
-`}, {`
-`"end": 429, "label": "PER", "start": 416`
-`}, {`
-`"end": 591, "label": "LOC", "start": 584`
+```
+http://localhost:5000/api/v1/article_entities?id=5e9e1d65970a1cca9518671c&cloud=spacy
+```
+o desde la linead de comando:
+
+```
+curl --location --request GET 'http://localhost:5000/api/v1/article_entities?id=5e9e1d65970a1cca9518671c&cloud=spacy'
+```
 
 ### Verificar API - /api/v1/analyzer/text
 Ejecutar y verificar que responda correctamente
