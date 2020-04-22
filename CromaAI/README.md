@@ -12,7 +12,7 @@ Croma AI fue desarrollado por completo por Croma Inc para facilitar el acceso de
 
 ## Beneficios 
 Estos son los beneficios que puede obtener su medio utilizando esta plataforma:
-- Realizar un entrenamiento de machine learning de todo su archivo histórico sin necesidad de programar una solo línea de código. Todo lo que necesitas está incluido en este paquete.
+- Realizar un entrenamiento de machine learning de todo su archivo histórico sin necesidad de programar una sola línea de código. Todo lo que necesitas está incluido en este paquete.
 - Incorporar noticias relacionadas en su artículos a través de una simple llamada a una API. Esta relaciones no se dan por simples keywords o categorías, sino que utiliza una comprensión de la totalidad del texto para recomendar noticias similares, por más que no compartan los mismos términos.
 - Identificar personas, lugares, organizaciones y keywords mencionadas en sus textos. Esto permite la automatización de la generación de tags que pueden ser fácilmente utilizados para potenciar sus esfuerzos de SEO y taggeo de artículos, nuevos e históricos.
 - Ofrecer un sistema de búsqueda de artículos basado en relevancia real de sus contenidos. Puede ofrecer búsquedas predictivas y relaciones por entidades en la página de resultados.
