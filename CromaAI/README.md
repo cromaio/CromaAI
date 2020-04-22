@@ -37,11 +37,11 @@ $ cd CromaAI
          
 ## Creación de entorno
 Ejecutar los siguientes comandos:
-```
+```bash
 $ conda env create -f environment.yml 
-
-Luego de la instalación acceder al entorno
-
+```
+Luego de la instalación acceder al entorno:
+```bash
 $ conda activate cromaAI
 ```
 Por defecto crea el entorno cromaAI. Si quiere modificarlo puede hacerlo editando el archivo environment.yml situado en la raiz y volviendo a correr el primer comando
@@ -59,7 +59,7 @@ database = {
  
 ## Correr mongo
 Seleccione el puerto y el path que se ajuste a sus necesidades Ejecutar:
-```
+```bash
 $ mongod --port 27018 --dbpath ./data/db/
 ```
 El primer parámetro (port) debe coincidir con el del archivo config
@@ -130,21 +130,6 @@ Esto corre un servidor en el puerto 5000 por defecto. Puede cambiar el host y el
    
 ### Verficar API - /api/v1/articles
 Escribir en el browser:
-`http://localhost:5000/api/v1/articles`
-`{ "articles_page": [ {"_id": {"$oid": "5e9e1d65970a1cca9518671c"}, "author": ["18"],`
-`"publication": {`
-`"$oid": "5e9e16903993318678a548ad" },`
-`"publish_date": {`
-`"$date": 1587340800000`
-`},`
-`"summary": "<p>La pandemia gatilla ...”`
-`"text": "Esta es la foto del COVID-19 esta ",`
-`"title": "Noticias del lunes 20 de abril del 2020",`
-`"url": "https://www.publicacion2.com.ar/noticias-del-lunes-20-de-abril-del-2020/"`
-`}] }`
-    
-### Verficar API - /api/v1/article
-Escribir en el browser:
 ```
 http://localhost:5000/api/v1/articles
 ```
@@ -155,7 +140,7 @@ curl --location --request GET 'http://localhost:5000/api/v1/articles'
 ```
 
 El resultado debería ser algo parecido a lo siguiente:
-```
+```js
 { "articles_page": [ {"_id": {"$oid": "5e9e1d65970a1cca9518671c"}, 
       "author": ["18"], 
       "publication": {
@@ -168,8 +153,42 @@ El resultado debería ser algo parecido a lo siguiente:
       "text": "Esta es la foto del COVID-19 esta ", 
       "title": "GPS PM del lunes 20 de abril del 2020", 
       "url": "https://www.redaccion.com.ar/gps-pm-del-lunes-20-de-abril-del-2020/"
-    }]
+    }, ...
+    ]
 }
+```
+
+### Verficar API - /api/v1/article
+Obtener el id del primer articulo, en nuestro ejemplo: 5e9e1d65970a1cca9518671c
+Y colocarlo en el pedido para verificar funcionamiento
+
+Escribir en el browser:
+```
+http://localhost:5000/api/v1/article?id=5e9e1d65970a1cca9518671c
+```
+o desde la linead de comando:
+
+```
+curl --location --request GET 'http://localhost:5000/api/v1/article?id=5e9e1d65970a1cca9518671c'
+```
+
+El resultado debería ser algo parecido a lo siguiente:
+```js
+{ "article: [{"_id": {"$oid": "5e9e1d65970a1cca9518671c"}, 
+      "author": ["18"], 
+      "publication": {
+        "$oid": "5e9e16903993318678a548ad"
+      }, 
+      "publish_date": {
+        "$date": 1587340800000
+      }, 
+      "summary": "<p>La pandemia gatilla …”
+      "text": "Esta es la foto del COVID-19 esta ", 
+      "title": "GPS PM del lunes 20 de abril del 2020", 
+      "url": "https://www.redaccion.com.ar/gps-pm-del-lunes-20-de-abril-del-2020/"
+    }
+}
+
 ```
 
 ### Verficar API - /api/v1/article_entities
@@ -188,12 +207,92 @@ curl --location --request GET 'http://localhost:5000/api/v1/article_entities?id=
 ```
 
 ### Verificar API - /api/v1/analyzer/text
-Ejecutar y verificar que responda correctamente
-`   curl --location --request POST`
- `'http://localhost:5000/api/v1/analyzer/text' \`
-      `--header 'Content-Type: application/json' \`
- `--data-raw '"Cristina Kirchner se reunio con Mauricio Macri`
- `en la Casa Rosada"'`
+Ejecutar desde la linead de comando:
+```bash
+curl --location --request POST 'http://localhost:5000/api/v1/analyzer/text' \
+--header 'Content-Type: application/json' \
+--data-raw '"Cristina Kirchner se reunio con Mauricio Macri en la Casa Rosada"'
+```
+El resultada debería ser algo similar a esto:
+```js
+{
+  "doc": {
+    "ents": [
+      {
+        "end": 17, 
+        "label": "PER", 
+        "start": 0
+      }, 
+      {
+        "end": 46, 
+        "label": "PER", 
+        "start": 32
+      }, 
+      {
+        "end": 64, 
+        "label": "ORG", 
+        "start": 53
+      }
+    ], 
+    "text": "Cristina Kirchner se reunio con Mauricio Macri en la Casa Rosada", 
+    "tokens": [
+      {
+        "end": 8, 
+        "id": 0, 
+        "start": 0
+      }, ... 
+      {
+        "end": 64, 
+        "id": 10, 
+        "start": 58
+      }
+    ]
+  }, 
+  "html": "<div class=\"entities\" style=\"line-height: 2.5; direction: ltr\"><mark class=\"entity\" style=\"background: #ddd; padding: 0.45em 0.6em; margin: 0 0.25em; line-height: 1; border-radius: 0.35em;\">Cristina Kirchner<span style=\"font-size: 0.8em; font-weight: bold; line-height: 1; border-radius: 0.35em; text-transform: uppercase; vertical-align: middle; margin-left: 0.5rem\">PER</span></mark> se reunio con <mark class=\"entity\" style=\"background: #ddd; padding: 0.45em 0.6em; margin: 0 0.25em; line-height: 1; border-radius: 0.35em;\">Mauricio Macri<span style=\"font-size: 0.8em; font-weight: bold; line-height: 1; border-radius: 0.35em; text-transform: uppercase; vertical-align: middle; margin-left: 0.5rem\">PER</span></mark> en la <mark class=\"entity\" style=\"background: #7aecec; padding: 0.45em 0.6em; margin: 0 0.25em; line-height: 1; border-radius: 0.35em;\">Casa Rosada<span style=\"font-size: 0.8em; font-weight: bold; line-height: 1; border-radius: 0.35em; text-transform: uppercase; vertical-align: middle; margin-left: 0.5rem\">ORG</span></mark></div>", 
+  "related_articles": [
+    {
+      "article_id": "5e9e1ce2970a1cca95185cde", 
+      "similarity": 0.36494454741477966
+    }, 
+    {
+      "article_id": "5e9e1cf5970a1cca95185e75", 
+      "similarity": 0.28325748443603516
+    }, 
+    {
+      "article_id": "5e9e1ce1970a1cca95185cc1", 
+      "similarity": 0.27909594774246216
+    }, 
+    {
+      "article_id": "5e9e1d31970a1cca9518632a", 
+      "similarity": 0.27315694093704224
+    }, 
+    {
+      "article_id": "5e9e1d17970a1cca9518613b", 
+      "similarity": 0.2396826148033142
+    }, 
+    {
+      "article_id": "5e9e1d22970a1cca95186201", 
+      "similarity": 0.2388421595096588
+    }, 
+    {
+      "article_id": "5e9e1cf7970a1cca95185e78", 
+      "similarity": 0.22673608362674713
+    }, 
+    {
+      "article_id": "5e9e1cee970a1cca95185dc9", 
+      "similarity": 0.225660040974617
+    }, 
+    {
+      "article_id": "5e9e1d27970a1cca95186267", 
+      "similarity": 0.22333045303821564
+    }, 
+    {
+      "article_id": "5e9e1d25970a1cca95186237", 
+      "similarity": 0.21402746438980103
+    }
+  ]
+}
+```
     
 ### Verificar API - /api/v1/w2v/autocompete
 `curl --location --request POST 'localhost:5000/api/v1/w2v/autocomplete' \`
