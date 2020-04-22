@@ -115,19 +115,27 @@ Escribir en el browser:
     
 ### Verficar API - /api/v1/article
 Escribir en el browser:
-`   http://localhost:5000/api/v1/article?id=5e9e1d65970a1cca9518`
- `671c`
-  `{ "article: [{"_id": {"$oid": "5e9e1d65970a1cca9518671c"}, "author": ["18"],`
-`"publication": {`
-`"$oid": "5e9e16903993318678a548ad" },`
-`"publish_date": {`
-`"$date": 1587340800000`
-`},`
-`"summary": "<p>La pandemia gatilla ...”`
-`"text": "Esta es la foto del COVID-19 esta ",`
-`"title": "Noticias del lunes 20 de abril del 2020",`
-`"url": "https://www.publicacion2.com.ar/noticias-del-lunes-20-de-abril-del-2020/"`
-`} }`
+```
+http://localhost:5000/api/v1/articles
+```
+
+El resultado debería ser algo parecido a lo siguiente:
+```
+{ "articles_page": [ {"_id": {"$oid": "5e9e1d65970a1cca9518671c"}, 
+      "author": ["18"], 
+      "publication": {
+        "$oid": "5e9e16903993318678a548ad"
+      }, 
+      "publish_date": {
+        "$date": 1587340800000
+      }, 
+      "summary": "<p>La pandemia gatilla …”
+      "text": "Esta es la foto del COVID-19 esta ", 
+      "title": "GPS PM del lunes 20 de abril del 2020", 
+      "url": "https://www.redaccion.com.ar/gps-pm-del-lunes-20-de-abril-del-2020/"
+    }]
+}
+```
 
 ### Verficar API - /api/v1/article_entities
 Escribir en el browser:
