@@ -107,10 +107,14 @@ class models:
 ## Buscar artículos y guardarlos en db
 Asegurarse de tener un archivo de configuración correcto: config.py Hay un ejemplo: config.py.sample
 Ejecutar:
-`$ cp ./CromaAI/config.py.sample ./CromaAI/config.py`
+```
+$ cp ./CromaAI/config.py.sample ./CromaAI/config.py
+```
 Luego, para traer los archivos ejecutar
-`$ python ./CromaAI/fetch_articles.py`
-       Esto traerá los archivos del medio definido en active_publication
+```
+$ python ./CromaAI/fetch_articles.py
+```
+Esto traerá los archivos del medio definido en active_publication
 
 ## Bajar modelos de ejemplo
 https://drive.google.com/a/croma.io/uc?id=1WqOmiHi4t-WejuiRlwt_6e2kAPaH3ixP&export=download
@@ -124,7 +128,7 @@ En esta etapa los modelos no están entrenados con los datos de artículos bajad
 ## Correr API
 Dentro de la carpeta repo_folder/CromaAI
 ```bash
-python3 FlaskAPI.py -p 5000 -h localhost
+$ python3 FlaskAPI.py -p 5000 -h localhost
 ```
 Esto corre un servidor en el puerto 5000 por defecto. Puede cambiar el host y el port según sus necesidades
    
@@ -136,7 +140,7 @@ http://localhost:5000/api/v1/articles
 o desde la linead de comando:
 
 ```
-curl --location --request GET 'http://localhost:5000/api/v1/articles'
+$ curl --location --request GET 'http://localhost:5000/api/v1/articles'
 ```
 
 El resultado debería ser algo parecido a lo siguiente:
@@ -169,7 +173,7 @@ http://localhost:5000/api/v1/article?id=5e9e1d65970a1cca9518671c
 o desde la linead de comando:
 
 ```
-curl --location --request GET 'http://localhost:5000/api/v1/article?id=5e9e1d65970a1cca9518671c'
+$ curl --location --request GET 'http://localhost:5000/api/v1/article?id=5e9e1d65970a1cca9518671c'
 ```
 
 El resultado debería ser algo parecido a lo siguiente:
@@ -203,13 +207,13 @@ http://localhost:5000/api/v1/article_entities?id=5e9e1d65970a1cca9518671c&cloud=
 o desde la linead de comando:
 
 ```bash
-curl --location --request GET 'http://localhost:5000/api/v1/article_entities?id=5e9e1d65970a1cca9518671c&cloud=spacy'
+$ curl --location --request GET 'http://localhost:5000/api/v1/article_entities?id=5e9e1d65970a1cca9518671c&cloud=spacy'
 ```
 
 ### Verificar API - /api/v1/analyzer/text
 Ejecutar desde la linead de comando:
 ```bash
-curl --location --request POST 'http://localhost:5000/api/v1/analyzer/text' \
+$ curl --location --request POST 'http://localhost:5000/api/v1/analyzer/text' \
 --header 'Content-Type: application/json' \
 --data-raw '"Cristina Kirchner se reunio con Mauricio Macri en la Casa Rosada"'
 ```
@@ -253,39 +257,7 @@ El resultada debería ser algo similar a esto:
     {
       "article_id": "5e9e1ce2970a1cca95185cde", 
       "similarity": 0.36494454741477966
-    }, 
-    {
-      "article_id": "5e9e1cf5970a1cca95185e75", 
-      "similarity": 0.28325748443603516
-    }, 
-    {
-      "article_id": "5e9e1ce1970a1cca95185cc1", 
-      "similarity": 0.27909594774246216
-    }, 
-    {
-      "article_id": "5e9e1d31970a1cca9518632a", 
-      "similarity": 0.27315694093704224
-    }, 
-    {
-      "article_id": "5e9e1d17970a1cca9518613b", 
-      "similarity": 0.2396826148033142
-    }, 
-    {
-      "article_id": "5e9e1d22970a1cca95186201", 
-      "similarity": 0.2388421595096588
-    }, 
-    {
-      "article_id": "5e9e1cf7970a1cca95185e78", 
-      "similarity": 0.22673608362674713
-    }, 
-    {
-      "article_id": "5e9e1cee970a1cca95185dc9", 
-      "similarity": 0.225660040974617
-    }, 
-    {
-      "article_id": "5e9e1d27970a1cca95186267", 
-      "similarity": 0.22333045303821564
-    }, 
+    }, ... ,
     {
       "article_id": "5e9e1d25970a1cca95186237", 
       "similarity": 0.21402746438980103
@@ -295,30 +267,76 @@ El resultada debería ser algo similar a esto:
 ```
     
 ### Verificar API - /api/v1/w2v/autocompete
-`curl --location --request POST 'localhost:5000/api/v1/w2v/autocomplete' \`
-`--header 'Content-Type: application/json; charset=UTF-8' \`
-`--data-raw '"Mau"'`
-`{`
-`"words": [`
-`"Mauricio Macri", "Mauricio macri", "Mauricio", "Mauricio ) Macri", "Mauricio Claver", "Mauro",`
-`"Mauricio !", "Maurice Closs", "Mauro Viale", "Mauro Icardi", "Maure Inmobiliaria"`
-`] }`
+```
+$ curl --location --request POST 'localhost:5000/api/v1/w2v/autocomplete' \
+--header 'Content-Type: application/json; charset=UTF-8' \
+--data-raw '"Mau"'
+```
+```js
+{
+  "words": [
+    "Mauricio Macri", 
+    "Mauricio macri", 
+    "Mauricio", 
+    "Mauricio ) Macri", 
+    "Mauricio Claver", 
+    "Mauro", 
+    "Mauricio !", 
+    "Maurice Closs", 
+    "Mauro Viale", 
+    "Mauro Icardi", 
+    "Maure Inmobiliaria"
+  ]
+}
+```
+
  
 ### Verificar API - /api/v1/w2v/similar
-`curl --location --request POST 'localhost:5000/api/v1/w2v/similar' \ --header 'Content-Type: application/json' \`
-`--data-raw '{`
-`"word": "kirchnerismo" }'`
-`{`
-`"similar_words": [`
-`{`
-`"similarity": 0.766370952129364, "word": "peronismo"`
-`}, {`
-`"similarity": 0.6919558644294739, "word": "oficialismo"`
- 
-`### Verificar API - /api/v1/related`
-    `http://localhost:5000/api/v1/related?id=5e9e1d65970a1cca9518`
- `671c`
- 
+```bash
+$ curl --location --request POST 'localhost:5000/api/v1/w2v/similar' \
+--header 'Content-Type: application/json' \
+--data-raw '{
+    "word": "kirchnerismo"
+}'
+```
+
+```js
+{
+  "similar_words": [
+    {
+      "similarity": 0.766370952129364, 
+      "word": "peronismo"
+    }, 
+    {
+      "similarity": 0.6919558644294739, 
+      "word": "oficialismo"
+    }, 
+    ...
+  ]
+}
+```
+
+### Verificar API - /api/v1/w2v/related
+
+```bash
+$ curl --location --request GET 'http://localhost:5000/api/v1/related?id=5e9e1d65970a1cca9518671c'
+```
+```js
+{
+  "related_articles": [
+    {
+      "article_id": "5e9e1d65970a1cca9518671c", 
+      "similarity": 1.0
+    }, 
+    ...,
+    {
+      "article_id": "5e9e1d5b970a1cca95186662", 
+      "similarity": 0.8513200283050537
+    }
+  ]
+}
+```
+
 # Entrenamiento de Modelos
  
 ## Modelos y técnicas
@@ -342,25 +360,45 @@ Esta librería se utiliza para realizar las búsquedas de artículos relacionado
 Se recomienda utilizar el modelo de spacy para la tokenización como el modelo pre-entrenado de w2v. Esto se puedo modificar en las siguientes variables del archivo de configuración: spacy_model, word2vect_model
  
 ##   Archivo de configuración de training - congif_train.py
-`  database = {`
-`'db_name': 'cromaAIdb', 'host': 'localhost',`
-`'port': 27018`
-`}`
-`w2v_hyperparams = { "size": 100, "epochs": 6, "min_count":2, "workers":4,`
-`}`
-`model_name = 'redaccion_2020'`
-`spacy_model = 'ML_models/model-azure-aws-50k'`
-`# Si word2vect_model es None, lo busca en la carpeta model_name/w2vect`
-`# Si es un path a archivo, directamente enabled_processes.w2v no lo compara`
-`word2vect_model = 'ML_models/w2vect_2.wv'`
-`publication_name = 'Redaccion'`
-`chunk_size = 1_000`
-`enabled_processes = { "tokenize_articles": False, "vectorizers": False, "w2v": False,`
-`"faiss": True`
+```python
+database = {
+    'db_name': 'cromaAIdb',
+    'host': 'localhost',
+    'port': 27018
+    }
 
+model_name = 'redaccion_2020'
+spacy_model = 'ML_models/model-azure-aws-50k'
+# Si word2vect_model es None, lo busca en la carpeta model_name/w2vect
+# Si es un path a archivo, directamente enabled_processes.w2v no lo compara
+word2vect_model = 'ML_models/w2vect_2.wv'
+publication_name = 'Redaccion'
+chunk_size = 1_000
+
+enabled_processes = {
+    "tokenize_articles": False,
+    "vectorizers": False,
+    "w2v": False,
+    "faiss": True
+}
+
+vectorizeers_hyperparams = {
+    "min_df": 1,
+    "max_df": 1.0
+}
+
+w2v_hyperparams = {
+    "size": 100,
+    "epochs": 6,
+    "min_count":2, 
+    "workers":4, 
+}
+```
 ##  Entrenar modelos:
 Para entrenar los modelos ejecutar:
-`$ python3 train_models.py`
+```bash
+$ python3 train_models.py
+```
 Recuerde antes revisar el archivo config_train.py
      
  
