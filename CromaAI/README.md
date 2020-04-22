@@ -37,8 +37,13 @@ $ cd CromaAI
          
 ## Creación de entorno
 Ejecutar los siguientes comandos:
-`$ conda env create -f environment.yml Luego de la instalación acceder al entorno`
-`$ conda activate cromaAI`
+```
+$ conda env create -f environment.yml 
+
+Luego de la instalación acceder al entorno
+
+$ conda activate cromaAI
+```
 Por defecto crea el entorno cromaAI. Si quiere modificarlo puede hacerlo editando el archivo environment.yml situado en la raiz y volviendo a correr el primer comando
 Si quiere instalar faiss con GPU debe modificar la linea de config del yml pytorch::faiss-cpu por pytorch::faiss-gpu
                     
