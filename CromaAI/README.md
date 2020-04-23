@@ -40,15 +40,48 @@ Ejecutar los siguientes comandos:
 ```bash
 $ conda env create -f environment.yml 
 ```
+La salida será algo asi:
+```bash
+Collecting package metadata (repodata.json): done
+Solving environment: done
+
+Downloading and Extracting Packages
+wrapt-1.10.11        | 41 KB     | ###################################################################### | 100% 
+msgpack-python-0.6.1 | 86 KB     | ###################################################################### | 100% 
+sqlite-3.31.1        | 2.4 MB    | ###################################################################### | 100% 
+libffi-3.2.1         | 43 KB     | ###################################################################### | 100% 
+murmurhash-1.0.2     | 24 KB     | ###################################################################### | 100% 
+cymem-2.0.2          | 30 KB     | ###################################################################### | 100% 
+preshed-2.0.1        | 63 KB     | ###################################################################### | 100% 
+regex-2020.4.4       | 357 KB    | ###################################################################### | 100% 
+msgpack-numpy-0.4.3. | 14 KB     | ###################################################################### | 100% 
+spacy-2.0.16         | 47.3 MB   | ###################################################################### | 100% 
+thinc-6.12.1         | 1.3 MB    | ###################################################################### | 100% 
+openssl-1.1.1g       | 3.4 MB    | ###################################################################### | 100% 
+Preparing transaction: done
+Verifying transaction: done
+Executing transaction: done
+
+#
+# To activate this environment, use
+#
+#     $ conda activate cromaAI
+#
+# To deactivate an active environment, use
+#
+#     $ conda deactivate
+
+```
+
 Luego de la instalación acceder al entorno:
 ```bash
 $ conda activate cromaAI
 ```
 Por defecto crea el entorno cromaAI. Si quiere modificarlo puede hacerlo editando el archivo environment.yml situado en la raiz y volviendo a correr el primer comando
-Si quiere instalar faiss con GPU debe modificar la linea de config del yml pytorch::faiss-cpu por pytorch::faiss-gpu
+Si quiere instalar faiss con GPU debe modificar la linea de config del yml `pytorch::faiss-cpu` por `pytorch::faiss-gpu`
                     
 ## Archivo de configuración para la base de datos
-CromaAI utiliza mongodb como base de datos. Abriendo CromaAI/config.py puede editar la configuración
+CromaAI utiliza mongodb como base de datos. Abriendo `CromaAI/config.py` puede editar la configuración
 ```js
 database = {
    'db_name': 'cromaAIdb',
@@ -60,19 +93,55 @@ database = {
 ## Correr mongo
 Seleccione el puerto y el path que se ajuste a sus necesidades Ejecutar:
 ```bash
+$ mkdir data
+$ cd data
+$ mkdir db
+$ cd ..
 $ mongod --port 27018 --dbpath ./data/db/
 ```
 El primer parámetro (port) debe coincidir con el del archivo config
 El segundo parámetro es la carpeta donde se guardan los datos de la base de datos
-   
+```bash
+La salida:
+2020-04-22T23:21:44.332-0300 I  CONTROL  [main] Automatically disabling TLS 1.0, to force-enable TLS 1.0 specify --sslDisabledProtocols 'none'
+2020-04-22T23:21:44.340-0300 I  CONTROL  [initandlisten] MongoDB starting : pid=53305 port=27018 dbpath=./data/db/ 64-bit host=Julians-MacBook-Pro-2.local
+2020-04-22T23:21:44.340-0300 I  CONTROL  [initandlisten] db version v4.2.2
+2020-04-22T23:21:44.340-0300 I  CONTROL  [initandlisten] git version: a0bbbff6ada159e19298d37946ac8dc4b497eadf
+2020-04-22T23:21:44.340-0300 I  CONTROL  [initandlisten] allocator: system
+2020-04-22T23:21:44.340-0300 I  CONTROL  [initandlisten] modules: none
+2020-04-22T23:21:44.340-0300 I  CONTROL  [initandlisten] build environment:
+2020-04-22T23:21:44.340-0300 I  CONTROL  [initandlisten]     distarch: x86_64
+2020-04-22T23:21:44.340-0300 I  CONTROL  [initandlisten]     target_arch: x86_64
+2020-04-22T23:21:44.341-0300 I  CONTROL  [initandlisten] options: { net: { port: 27018 }, storage: { dbPath: "./data/db/" } }
+2020-04-22T23:21:44.343-0300 I  STORAGE  [initandlisten] wiredtiger_open config: create,cache_size=3584M,cache_overflow=(file_max=0M),session_max=33000,eviction=(threads_min=4,threads_max=4),config_base=false,statistics=(fast),log=(enabled=true,archive=true,path=journal,compressor=snappy),file_manager=(close_idle_time=100000,close_scan_interval=10,close_handle_minimum=250),statistics_log=(wait=0),verbose=[recovery_progress,checkpoint_progress],
+2020-04-22T23:21:45.779-0300 I  STORAGE  [initandlisten] WiredTiger message [1587608505:779010][53305:0x10c3d05c0], txn-recover: Set global recovery timestamp: (0,0)
+2020-04-22T23:21:46.295-0300 I  RECOVERY [initandlisten] WiredTiger recoveryTimestamp. Ts: Timestamp(0, 0)
+2020-04-22T23:21:46.992-0300 I  STORAGE  [initandlisten] Timestamp monitor starting
+2020-04-22T23:21:46.993-0300 I  CONTROL  [initandlisten] 
+2020-04-22T23:21:46.993-0300 I  CONTROL  [initandlisten] ** WARNING: Access control is not enabled for the database.
+2020-04-22T23:21:46.993-0300 I  CONTROL  [initandlisten] **          Read and write access to data and configuration is unrestricted.
+2020-04-22T23:21:46.993-0300 I  CONTROL  [initandlisten] 
+2020-04-22T23:21:46.993-0300 I  CONTROL  [initandlisten] ** WARNING: This server is bound to localhost.
+2020-04-22T23:21:46.993-0300 I  CONTROL  [initandlisten] **          Remote systems will be unable to connect to this server. 
+2020-04-22T23:21:46.993-0300 I  CONTROL  [initandlisten] **          Start the server with --bind_ip <address> to specify which IP 
+2020-04-22T23:21:46.993-0300 I  CONTROL  [initandlisten] **          addresses it should serve responses from, or with --bind_ip_all to
+2020-04-22T23:21:46.993-0300 I  CONTROL  [initandlisten] **          bind to all interfaces. If this behavior is desired, start the
+2020-04-22T23:21:46.993-0300 I  CONTROL  [initandlisten] **          server with --bind_ip 127.0.0.1 to disable this warning.
+2020-04-22T23:21:46.995-0300 I  CONTROL  [initandlisten] 
+2020-04-22T23:21:46.996-0300 I  CONTROL  [initandlisten] 
+2020-04-22T23:21:46.996-0300 I  CONTROL  [initandlisten] ** WARNING: soft rlimits too low. Number of files is 256, should be at least 1000
+2020-04-22T23:21:47.020-0300 I  STORAGE  [initandlisten] createCollection: admin.system.version with provided UUID: b3c050c9-0c07-498a-99a3-44d6211d6b8a and options: { uuid: UUID("b3c050c9-0c07-498a-99a3-44d6211d6b8a") }
+```
+
 ## Archivo de configuración - Publicaciones default
 Aquí puede modificar y agregar su medio. Hay un ejemplo aca: CromaAI/config.py.sample
 ```python
-database = {
-    'db_name': 'cromaAIdb',
-    'host': 'localhost',
-    'port': 27018
-    }
+# Si date_after y date_before estan en None, trae todo - Esto puede tardar un tiempo -
+fetching_config = {
+    'publication': 'Redaccion',
+    'date_after':  '2020-01-01', #None, 
+    'date_before': '2020-04-22', #None
+}
 
 active_publication = 'Redaccion'
 
@@ -92,34 +161,76 @@ publications = [
         "url": 'https://www.redaccion.com.ar'
     }
 ]
-
-
-models_folder = 'models/redaccion_2020/'
-class models:
-    gensim_w2v = f'{models_folder}w2vect/w2vect_2.wv' 
-    faiss_indexes = f'{models_folder}faiss/indexes'  
-    faiss_indexes_tfidf = f'{models_folder}faiss/indexes_tfidf'  
-    faiss_ids = f'{models_folder}faiss/ids.npy'      
-    spacy = f'{models_folder}ner/model-azure-aws-50k'
-    token2tfidf = f'{models_folder}vectorizers/token2tfidf-max_df_1.0-min_df_1.npy'
 ```
 
 ## Buscar artículos y guardarlos en db
-Asegurarse de tener un archivo de configuración correcto: config.py Hay un ejemplo: config.py.sample
+Asegurarse de tener un archivo de configuración correcto: `config.py` Hay un ejemplo: config.py.sample
 Ejecutar:
 ```
 $ cp ./CromaAI/config.py.sample ./CromaAI/config.py
 ```
 Luego, para traer los archivos ejecutar
 ```
-$ python ./CromaAI/fetch_articles.py
+$ python3 ./CromaAI/fetch_articles.py
 ```
 Esto traerá los archivos del medio definido en active_publication
 
 ## Bajar modelos de ejemplo
-https://drive.google.com/a/croma.io/uc?id=1WqOmiHi4t-WejuiRlwt_6e2kAPaH3ixP&export=download
-Copiarlo en carpeta repo_folder/CromaAI Y descomprimirlo
-    
+https://drive.google.com/file/d/1z2iaQxX08-hyNzpcKgdihRnAy0mFPWVp/view?usp=sharing
+Copiarlo en carpeta `cromaAI/models` Y descomprimirlo
+
+## Entrenamiento faiss
+Dentro del archivo de `config_train.py` verificar que este seteado asi:
+```python
+model_name = 'redaccion_2020'
+spacy_model = 'models/redaccion_2020/model-azure-aws-50k'
+# Si word2vect_model es None, lo busca en la carpeta model_name/w2vect
+# Si es un path a archivo, directamente enabled_processes.w2v no lo compara
+word2vect_model = 'ML_models/w2vect_2.wv'
+publication_name = 'Redaccion'
+chunk_size = 100
+
+enabled_processes = {
+    "tokenize_articles": True,
+    "vectorizers": True,
+    "w2v": False,
+    "faiss": True
+}
+```
+Ejecutar:
+```bash
+$ cd CromaAI/
+$ python3 train_models.py
+```
+
+Esto generara los tokens de los articulos y armara los vectorizers junto con la base de faiss
+
+```bash
+tokenizing articles ...
+Found 0 already tokenized articles
+99/548 
+models/redaccion_2020/training_data/content_1.npy saved!
+199/548 
+models/redaccion_2020/training_data/content_2.npy saved!
+299/548 
+models/redaccion_2020/training_data/content_3.npy saved!
+399/548 
+models/redaccion_2020/training_data/content_4.npy saved!
+499/548 
+models/redaccion_2020/training_data/content_5.npy saved!
+547/548 Training vectorizers ...
+5 - 100 - models/redaccion_2020/training_data/all_1.npyd
+1 finished!
+Matrix size: (500, 39063)
+Saved to: models/redaccion_2020/vectorizers/count_vectorizer-max_df_1.0-min_df_1.pickle
+Training faiss ...
+models/redaccion_2020/faiss/indexes
+models/redaccion_2020/faiss/ids.npy
+models/redaccion_2020/faiss/indexes_tfidf
+using: models/redaccion_2020/w2vect/w2vect_2.wv
+Articulo: 499
+```
+
 # Testeo API
  
 ## Aclaración
