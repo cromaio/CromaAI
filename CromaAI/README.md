@@ -269,11 +269,12 @@ El resultado debería ser algo parecido a lo siguiente:
 { "articles_page": [ {"_id": {"$oid": "5e9e1d65970a1cca9518671c"}, 
       "author": ["18"], 
       "publication": {
-        "$oid": "5e9e16903993318678a548ad"
+        "$oid": "5ea0fceafc6ebaf443054ad4"
       }, 
       "publish_date": {
         "$date": 1587340800000
       }, 
+      "pub_art_id": "79884", 
       "summary": "<p>La pandemia gatilla …”
       "text": "Esta es la foto del COVID-19 esta ", 
       "title": "GPS PM del lunes 20 de abril del 2020", 
@@ -284,17 +285,24 @@ El resultado debería ser algo parecido a lo siguiente:
 ```
 
 ### Verficar API - /api/v1/article
-Obtener el id del primer articulo, en nuestro ejemplo: 5e9e1d65970a1cca9518671c
-Y colocarlo en el pedido para verificar funcionamiento
+Notar que en la respuesta del articulo anterior hay dos ids:  ```"$oid": "5ea0fceafc6ebaf443054ad4"``` y ```"pub_art_id": "79884"```. Cuando se pide un articulo se lo puede hacer por el primero como `id` o por el segundo como `cmdid`
 
 Escribir en el browser:
 ```
-http://localhost:5000/api/v1/article?id=5e9e1d65970a1cca9518671c
+http://localhost:5000/api/v1/article?id=5ea0fceafc6ebaf443054ad4
+```
+o
+```
+http://localhost:5000/api/v1/article?cmsid=79884
 ```
 o desde la linead de comando:
 
 ```
-$ curl --location --request GET 'http://localhost:5000/api/v1/article?id=5e9e1d65970a1cca9518671c'
+$ curl --location --request GET 'http://localhost:5000/api/v1/article?id=5ea0fceafc6ebaf443054ad4'
+```
+o
+```
+curl --location --request GET 'http://localhost:5000/api/v1/article?cmsid=79884'
 ```
 
 El resultado debería ser algo parecido a lo siguiente:
