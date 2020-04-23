@@ -137,8 +137,12 @@ def get_highlighted_article_api():
     article_id = flask.request.args.get('id')
     cloud = (flask.request.args.get('cloud') or 'spacy')
     detail = (flask.request.args.get('detail') or False)
+    cms_id = flask.request.args.get('cmsid')
+    if cms_id is not None:
+        article = Article.objects(pub_art_id=cms_id).get()
+    else:
+        article = Article.objects(id=chossen_id).get()
     
-    article = Article.objects(id=article_id).first()
     title = article.title
     html = None
     ner = None
@@ -177,8 +181,12 @@ def get_highlighted_article_api():
 def get_highlighted_article():
     article_id = flask.request.args.get('id')
     cloud = (flask.request.args.get('cloud') or 'spacy')
-    
-    article = Article.objects(id=article_id).first()
+    cms_id = flask.request.args.get('cmsid')
+    if cms_id is not None:
+        article = Article.objects(pub_art_id=cms_id).get()
+    else:
+        article = Article.objects(id=chossen_id).get()
+
     title = article.title
     html = None
     ner = None
