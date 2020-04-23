@@ -332,12 +332,16 @@ Y colocarlo en el pedido para verificar funcionamiento
 
 Escribir en el browser:
 ```
-http://localhost:5000/api/v1/article_entities?id=5e9e1d65970a1cca9518671c&cloud=spacy
+http://localhost:5000/api/v1/article_entities?id=5ea0fceafc6ebaf443054ad4&cloud=spacy
 ```
 o desde la linead de comando:
 
 ```bash
-$ curl --location --request GET 'http://localhost:5000/api/v1/article_entities?id=5e9e1d65970a1cca9518671c&cloud=spacy'
+$ curl --location --request GET 'http://localhost:5000/api/v1/article_entities?id=5ea0fceafc6ebaf443054ad4&cloud=spacy'
+```
+o
+```bash
+curl --location --request GET 'http://localhost:5000/api/v1/article_entities?cmsid=79884&cloud=spacy'
 ```
 
 ### Verificar API - /api/v1/w2v/related
