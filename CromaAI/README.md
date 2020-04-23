@@ -170,10 +170,23 @@ Ejecutar:
 $ cp ./CromaAI/config.py.sample ./CromaAI/config.py
 ```
 Luego, para traer los archivos ejecutar
-```
+```bash
 $ python3 ./CromaAI/fetch_articles.py
 ```
 Esto traerá los archivos del medio definido en active_publication
+```bash
+config.py found
+Verificando publicaciones
+Publication creada: CNN Esp
+Publication creada: Redaccion
+Total de publicaciones en la db: 2
+- CNN Esp
+- Redaccion
+#################################
+url ro fetch: https://www.redaccion.com.ar/wp-json/wp/v2/
+No articles
+Page: 1 - https://www.redaccion.com.ar/wp-json/wp/v2/posts?page=1&per_page=50&orderby=date&order=asc&after=2020-0Page: 2/11 - https://www.redaccion.com.ar/wp-json/wp/v2/posts?page=2&per_page=50&orderby=date&order=asc&after=202Page: 3/11 - https://www.redaccion.com.ar/wp-json/wp/v2/posts?page=3&per_page=50&orderby=date&order=asc&after=202Page: 4/11 - https://www.redaccion.com.ar/wp-json/wp/v2/posts?page=4&per_page=50&orderby=date&order=asc&after=202Page: 5/11 - https://www.redaccion.com.ar/wp-json/wp/v2/posts?page=5&per_page=50&orderby=date&order=asc&after=202Page: 6/11 - https://www.redaccion.com.ar/wp-json/wp/v2/posts?page=6&per_page=50&orderby=date&order=asc&after=202Page: 7/11 - https://www.redaccion.com.ar/wp-json/wp/v2/posts?page=7&per_page=50&orderby=date&order=asc&after=202Page: 8/11 - https://www.redaccion.com.ar/wp-json/wp/v2/posts?page=8&per_page=50&orderby=date&order=asc&after=202Page: 9/11 - https://www.redaccion.com.ar/wp-json/wp/v2/posts?page=9&per_page=50&orderby=date&order=asc&after=202Page: 10/11 - https://www.redaccion.com.ar/wp-json/wp/v2/posts?page=10&per_page=50&orderby=date&order=asc&after=2Page: 11/11 - https://www.redaccion.com.ar/wp-json/wp/v2/posts?page=11&per_page=50&orderby=date&order=asc&after=2020-01-01T00:00:00&before=2020-04-22T00:00:00
+```
 
 ## Bajar modelos de ejemplo
 https://drive.google.com/file/d/1z2iaQxX08-hyNzpcKgdihRnAy0mFPWVp/view?usp=sharing
@@ -232,9 +245,6 @@ Articulo: 499
 ```
 
 # Testeo API
- 
-## Aclaración
-En esta etapa los modelos no están entrenados con los datos de artículos bajados en la etapa anterior. Por eso, no se esperan resultados en muchas de las siguientes APIs
  
 ## Correr API
 Dentro de la carpeta repo_folder/CromaAI
@@ -319,6 +329,27 @@ o desde la linead de comando:
 
 ```bash
 $ curl --location --request GET 'http://localhost:5000/api/v1/article_entities?id=5e9e1d65970a1cca9518671c&cloud=spacy'
+```
+
+### Verificar API - /api/v1/w2v/related
+
+```bash
+$ curl --location --request GET 'http://localhost:5000/api/v1/related?id=5e9e1d65970a1cca9518671c'
+```
+```js
+{
+  "related_articles": [
+    {
+      "article_id": "5e9e1d65970a1cca9518671c", 
+      "similarity": 1.0
+    }, 
+    ...,
+    {
+      "article_id": "5e9e1d5b970a1cca95186662", 
+      "similarity": 0.8513200283050537
+    }
+  ]
+}
 ```
 
 ### Verificar API - /api/v1/analyzer/text
@@ -427,26 +458,7 @@ $ curl --location --request POST 'localhost:5000/api/v1/w2v/similar' \
 }
 ```
 
-### Verificar API - /api/v1/w2v/related
 
-```bash
-$ curl --location --request GET 'http://localhost:5000/api/v1/related?id=5e9e1d65970a1cca9518671c'
-```
-```js
-{
-  "related_articles": [
-    {
-      "article_id": "5e9e1d65970a1cca9518671c", 
-      "similarity": 1.0
-    }, 
-    ...,
-    {
-      "article_id": "5e9e1d5b970a1cca95186662", 
-      "similarity": 0.8513200283050537
-    }
-  ]
-}
-```
 
 # Entrenamiento de Modelos
  
@@ -459,7 +471,7 @@ $ curl --location --request GET 'http://localhost:5000/api/v1/related?id=5e9e1d6
 Croma provee un modelo pre-entrenado con 50k artículos de medios periodísticos. Los datos de entrenamiento se obtuvieron por comparación de las APIs de AZURE, AWS y GCP y la verificación de personas. El modelo es parte pública de CromaAI y se utiliza a través de Spacy
  
 ## w2v
-Con la tokenización utilizada con el modelo de NER se entrena un modelo de w2v en formato de la librería gensim. Este modelo se utiliza después para relacionar artículos, búsqueda de palabras similares y autocomplete. CromaAI proporciona un modelo pre-entrenado y también las herramientas para entrenar con sus propios artículos.
+Con la tokenización utilizada con el modelo de NER se entrena un modelo de w2v en formato de la librería gensim. Este modelo se utiliza después para relacionar artículos, búsqueda de palabras similares y autocomplete. CromaAI proporciona un modelo pre-entrenado. Si quiere reentrenar, tiene que poner en `True` la variable `w2v` en el `config_train.cfg`
  
 ##  TFIDF
 Se utiliza esta técnica para mejorar los resultados del modelo w2v en la búsqueda de artículos relacionados.
@@ -468,7 +480,7 @@ Se utiliza esta técnica para mejorar los resultados del modelo w2v en la búsqu
 Esta librería se utiliza para realizar las búsquedas de artículos relacionados de manera eficiente
  
 ##  Recomendaciones para el entrenamiento
-Se recomienda utilizar el modelo de spacy para la tokenización como el modelo pre-entrenado de w2v. Esto se puedo modificar en las siguientes variables del archivo de configuración: spacy_model, word2vect_model
+Se recomienda utilizar tanto el modelo de spacy para la tokenización como el modelo pre-entrenado de w2v. Esto se puede modificar en las siguientes variables del archivo de configuración: spacy_model, word2vect_model
  
 ##   Archivo de configuración de training - congif_train.py
 ```python
@@ -479,16 +491,16 @@ database = {
     }
 
 model_name = 'redaccion_2020'
-spacy_model = 'ML_models/model-azure-aws-50k'
+spacy_model = f'models/{model_name}/ner/model-azure-aws-50k'
 # Si word2vect_model es None, lo busca en la carpeta model_name/w2vect
 # Si es un path a archivo, directamente enabled_processes.w2v no lo compara
-word2vect_model = 'ML_models/w2vect_2.wv'
+word2vect_model = f'models/{model_name}/w2vect/w2vect_2.wv'
 publication_name = 'Redaccion'
-chunk_size = 1_000
+chunk_size = 100
 
 enabled_processes = {
-    "tokenize_articles": False,
-    "vectorizers": False,
+    "tokenize_articles": True,
+    "vectorizers": True,
     "w2v": False,
     "faiss": True
 }
