@@ -70,6 +70,7 @@ class Article(Document):
     meta = {
         'indexes': [
             {'fields': ['publication']},
+            {'fields': ['pub_art_id']},
             {'fields': ['publish_date']},
             {'fields': ['#text']}, #, 'sparse': True, 'unique': True
             {'fields': ['pub_art_id', 'publication'], 'unique': True}

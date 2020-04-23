@@ -91,6 +91,9 @@ class Article(db.Document):
 @app.route('/api/v1/article')
 def get_article_api():
     article_id = flask.request.args.get('id')
+    cms_id = flask.request.args.get('cmsid')
+    if cms_id is not None:
+        return {"article": Article.objects(pub_art_id=cms_id).first()}
     return {"article": Article.objects(id=article_id).first()}
 
 # Get related articles
@@ -101,7 +104,10 @@ def get_related():
     days = int(flask.request.args.get('days') or '0')
     chossen_id = flask.request.args.get('id')
     radius = float((flask.request.args.get('radius')) or 0.85)
-    article = Article.objects(id=chossen_id).get()
+    if cms_id is not None:
+        article = Article.objects(pub_art_id=cms_id).get()
+    else:
+        article = Article.objects(id=chossen_id).get()
     
     articles, similarities = related_articles.get_related_articles(article, years=years, months=months, days=days, radius=radius)
         
@@ -114,7 +120,11 @@ def get_related_api():
     days = int(flask.request.args.get('days') or '0')
     chossen_id = flask.request.args.get('id')
     radius = float((flask.request.args.get('radius')) or 0.85)
-    article = Article.objects(id=chossen_id).get()
+    cms_id = flask.request.args.get('cmsid')
+    if cms_id is not None:
+        article = Article.objects(pub_art_id=cms_id).get()
+    else:
+        article = Article.objects(id=chossen_id).get()
     
     articles, similarities = related_articles.get_related_articles(article, years=years, months=months, days=days, radius=radius)
     
