@@ -4,6 +4,13 @@ database = {
     'port': 27018
     }
 
+# Si date_after y date_before estan en None, trae todo - Esto puede tardar un tiempo -
+fetching_config = {
+    'publication': 'Redaccion',
+    'date_after':  '2020-01-01', #None, 
+    'date_before': '2020-04-22', #None
+}
+
 active_publication = 'Redaccion'
 
 publications = [
@@ -22,3 +29,13 @@ publications = [
         "url": 'https://www.redaccion.com.ar'
     }
 ]
+
+
+models_folder = 'models/redaccion_2020/'
+class models:
+    gensim_w2v = f'{models_folder}w2vect/w2vect_2.wv' 
+    faiss_indexes = f'{models_folder}faiss/indexes'  
+    faiss_indexes_tfidf = f'{models_folder}faiss/indexes_tfidf'  
+    faiss_ids = f'{models_folder}faiss/ids.npy'      
+    spacy = f'{models_folder}ner/model-azure-aws-50k'
+    token2tfidf = f'{models_folder}vectorizers/token2tfidf-max_df_1.0-min_df_1.npy'

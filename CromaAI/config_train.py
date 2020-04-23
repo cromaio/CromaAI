@@ -5,10 +5,10 @@ database = {
     }
 
 model_name = 'redaccion_2020'
-spacy_model = 'ML_models/model-azure-aws-50k'
+spacy_model = f'models/{model_name}/ner/model-azure-aws-50k'
 # Si word2vect_model es None, lo busca en la carpeta model_name/w2vect
 # Si es un path a archivo, directamente enabled_processes.w2v no lo compara
-word2vect_model = 'ML_models/w2vect_2.wv'
+word2vect_model = f'models/{model_name}/w2vect/w2vect_2.wv'
 publication_name = 'Redaccion'
 chunk_size = 100
 
