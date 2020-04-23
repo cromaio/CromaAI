@@ -10,7 +10,7 @@ spacy_model = 'ML_models/model-azure-aws-50k'
 # Si es un path a archivo, directamente enabled_processes.w2v no lo compara
 word2vect_model = 'ML_models/w2vect_2.wv'
 publication_name = 'Redaccion'
-chunk_size = 1_000
+chunk_size = 100
 
 enabled_processes = {
     "tokenize_articles": True,
