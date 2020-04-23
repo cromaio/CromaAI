@@ -13,8 +13,8 @@ publication_name = 'Redaccion'
 chunk_size = 1_000
 
 enabled_processes = {
-    "tokenize_articles": False,
-    "vectorizers": False,
+    "tokenize_articles": True,
+    "vectorizers": True,
     "w2v": False,
     "faiss": True
 }
