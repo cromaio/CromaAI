@@ -64,6 +64,7 @@ related_articles = RelatedArticles(
     config.models.spacy,
     config.models.gensim_w2v,
     config.models.faiss_indexes,
+    config.models.faiss_indexes_tfidf,
     config.models.faiss_ids,
     config.models.token2tfidf
 )

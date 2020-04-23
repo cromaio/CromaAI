@@ -60,14 +60,29 @@ def wordpress_to_db(art, publication_name):
     article.pub_art_id = publication_id
     return article
 
-def get_wp_url(url_endpoint, page, per_page, date):
-    date_str = date.strftime("%Y-%m-%dT%H:%M:%S%Z")
-    return f'{url_endpoint}posts?page={page}&per_page={per_page}&orderby=date&order=asc&after={date_str}'
+def get_wp_url(url_endpoint, page, per_page, date_after, date_before):
+    if type(date_after) == str:
+        date_after = datetime.datetime.strptime(date_after, '%Y-%m-%d')
+    if type(date_before) == str:
+        date_before = datetime.datetime.strptime(date_before, '%Y-%m-%d')
 
-def get_iProfesional_url(url_endpoint, page, per_page, date):
-    date_str = date.strftime("%Y-%m-%d")
-    today = datetime.datetime.now()
-    end_date_str = today.strftime("%Y-%m-%d")
+    date_str = date_after.strftime("%Y-%m-%dT%H:%M:%S%Z")
+    date_before = date_before.strftime("%Y-%m-%dT%H:%M:%S%Z")
+    return f'{url_endpoint}posts?page={page}&per_page={per_page}&orderby=date&order=asc&after={date_str}&before={date_before}'
+
+def get_iProfesional_url(url_endpoint, page, per_page, date_after, date_before):
+    if type(date_after) == str:
+        date_after = datetime.datetime.strptime(date_after, '%Y-%m-%d')
+    if type(date_before) == str:
+        date_before = datetime.datetime.strptime(date_before, '%Y-%m-%d')
+        
+    date_str = date_after.strftime("%Y-%m-%d")
+    if date_before is None:
+        today = datetime.datetime.now()
+        end_date_str = today.strftime("%Y-%m-%d")
+    else:
+        end_date_str = date_before
+    
     url = f'{url_endpoint}?start={date_str}&end={end_date_str}&limit={per_page}&page={page}'
     return url
 
@@ -80,7 +95,7 @@ def get_wp_articles(response):
     articles = response.json()
     return articles, int(response.headers['X-WP-TotalPages'])
 
-def fetch_articles(publication_name, art_to_db=wordpress_to_db, get_url=get_wp_url, get_articles=get_wp_articles, api_url=None, per_page = 50, starting_page=1):
+def fetch_articles(publication_name, art_to_db=wordpress_to_db, get_url=get_wp_url, get_articles=get_wp_articles, api_url=None, per_page = 50, starting_page=1, date_after=None, date_before=None):
     publication = Publication.objects(name=publication_name).get()
     if api_url is not None:
         publication.api_url = api_url
@@ -88,10 +103,16 @@ def fetch_articles(publication_name, art_to_db=wordpress_to_db, get_url=get_wp_u
     
     articles=Article.objects(publication=publication).order_by('-publish_date').limit(1).first()
     if articles is None or len(articles) == 0:
+        # No hay articulos
         print('No articles')
-        date = datetime.date.fromtimestamp(-10000000000)
+        if date_after is None:
+            date_after = datetime.date.fromtimestamp(-10000000000)
     else:
-        date = articles['publish_date']
+        if date_after is None:
+            date_after = articles['publish_date']
+    
+    if date_before is None:
+        date_before = datetime.datetime.now()
         
     url_endpoint = publication.api_url
     if url_endpoint is None:
@@ -100,7 +121,7 @@ def fetch_articles(publication_name, art_to_db=wordpress_to_db, get_url=get_wp_u
     page = starting_page
     total_pages = None
     while True:
-        url = get_url(url_endpoint, page, per_page, date)
+        url = get_url(url_endpoint, page, per_page, date_after, date_before)
         # url = f'{url_endpoint}posts?page={page}&per_page={per_page}&orderby=date&order=asc&after={date_str}'
         
         if total_pages:
@@ -119,7 +140,7 @@ def fetch_articles(publication_name, art_to_db=wordpress_to_db, get_url=get_wp_u
             else:
                 print('\rAlready in DB')
                     
-        if page == total_pages:
+        if page == total_pages or total_pages == 0:
             break
         page+=1
         if 'code' in articles:

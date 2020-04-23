@@ -68,7 +68,13 @@ class RelatedArticles():
                 tokens.append(ent_tex)
         return tokens
     
-    def __init__(self, spacy_model_path=None, gensim_model_path=None, faiss_indexes_path=None, faiss_article_ids_path=None, token2tfidf_path=None):
+    def __init__(self, 
+        spacy_model_path=None, 
+        gensim_model_path=None, 
+        faiss_indexes_path=None, 
+        faiss_indexes_tfidf_path=None, 
+        faiss_article_ids_path=None, 
+        token2tfidf_path=None):
         if spacy_model_path is not None:
             self.nlp = spacy.load(spacy_model_path)
         if gensim_model_path is not None:
