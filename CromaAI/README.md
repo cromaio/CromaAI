@@ -286,6 +286,7 @@ El resultado debería ser algo parecido a lo siguiente:
 
 ### Verficar API - /api/v1/article
 Notar que en la respuesta del articulo anterior hay dos ids:  ```"$oid": "5ea0fceafc6ebaf443054ad4"``` y ```"pub_art_id": "79884"```. Cuando se pide un articulo se lo puede hacer por el primero como `id` o por el segundo como `cmdid`
+El primero es el id en la base de CromaAI mongo, y el segundo es el id original de la base donde se obtuvo el articulo
 
 Escribir en el browser:
 ```
@@ -342,7 +343,11 @@ $ curl --location --request GET 'http://localhost:5000/api/v1/article_entities?i
 ### Verificar API - /api/v1/w2v/related
 
 ```bash
-$ curl --location --request GET 'http://localhost:5000/api/v1/related?id=5e9e1d65970a1cca9518671c'
+$ curl --location --request GET 'http://localhost:5000/api/v1/related?id=5ea0fceafc6ebaf443054ad4'
+```
+o
+```bash
+$ curl --location --request GET 'http://localhost:5000/api/v1/related?cmsid=79884'
 ```
 ```js
 {
