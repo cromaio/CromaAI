@@ -4,7 +4,7 @@ eval "$(conda shell.bash hook)"
 # Creación de entorno conda
 conda env create -f environment.yml 
 
-call conda activate cromaAI
+conda activate cromaAI
 
 # Base de datos
 mkdir data
