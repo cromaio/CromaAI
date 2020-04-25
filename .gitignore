@@ -6,4 +6,5 @@ data/
 __pycache__
 CromaAI/__pycache__
 CromaAI/config.py
+CromaAI/config_train.py
 .vscode/
