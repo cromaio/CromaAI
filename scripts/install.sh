@@ -1,11 +1,10 @@
-# Bajada de repositorio git
-git clone git@github.com:cromaio/CromaAI.git 
-cd CromaAI
+#!/bin/bash
+eval "$(conda shell.bash hook)"
 
 # Creación de entorno conda
 conda env create -f environment.yml 
 
-conda activate cromaAI
+call conda activate cromaAI
 
 # Base de datos
 mkdir data
