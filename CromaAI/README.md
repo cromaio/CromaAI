@@ -73,15 +73,16 @@ Executing transaction: done
 
 ```
 
-Luego de la instalación acceder al entorno:
+Luego de la instalación activar el entorno:
 ```bash
 $ conda activate cromaAI
 ```
 Por defecto crea el entorno cromaAI. Si quiere modificarlo puede hacerlo editando el archivo environment.yml situado en la raiz y volviendo a correr el primer comando
 Si quiere instalar faiss con GPU debe modificar la linea de config del yml `pytorch::faiss-cpu` por `pytorch::faiss-gpu`
                     
-## Archivo de configuración para la base de datos
-CromaAI utiliza mongodb como base de datos. Abriendo `CromaAI/config.py` puede editar la configuración
+## Archivo de configuración. Sección de la base de datos
+CromaAI utiliza mongodb como base de datos. En esta demo vamos a simplemente ejecutar un deamon de prueba. En caso de ponerla en producción [aca](https://www.mongodb.com/blog/post/12-tips-going-production-mongodb) hay algunas recomendaciones
+Abriendo `CromaAI/config.py` puede editar la configuración
 ```js
 database = {
    'db_name': 'cromaAIdb',
