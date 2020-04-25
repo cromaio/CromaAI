@@ -81,8 +81,10 @@ Por defecto crea el entorno cromaAI. Si quiere modificarlo puede hacerlo editand
 Si quiere instalar faiss con GPU debe modificar la linea de config del yml `pytorch::faiss-cpu` por `pytorch::faiss-gpu`
                     
 ## Archivo de configuración. Sección de la base de datos
-CromaAI utiliza mongodb como base de datos. En esta demo vamos a simplemente ejecutar un deamon de prueba. En caso de ponerla en producción [aca](https://www.mongodb.com/blog/post/12-tips-going-production-mongodb) hay algunas recomendaciones
+CromaAI utiliza mongodb como base de datos. En esta demo vamos a simplemente ejecutar un deamon de prueba. En caso de ponerla en producción [aca](https://www.mongodb.com/blog/post/12-tips-going-production-mongodb) hay algunas recomendaciones.
+
 Abriendo `CromaAI/config.py` puede editar la configuración
+
 ```js
 database = {
    'db_name': 'cromaAIdb',
