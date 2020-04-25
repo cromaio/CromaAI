@@ -80,10 +80,13 @@ $ conda activate cromaAI
 Por defecto crea el entorno cromaAI. Si quiere modificarlo puede hacerlo editando el archivo environment.yml situado en la raiz y volviendo a correr el primer comando
 Si quiere instalar faiss con GPU debe modificar la linea de config del yml `pytorch::faiss-cpu` por `pytorch::faiss-gpu`
                     
-## Archivo de configuración. Sección de la base de datos
+## BASE DE DATOS (mongodb) - Archivo de configuración
 CromaAI utiliza mongodb como base de datos. En esta demo vamos a simplemente ejecutar un deamon de prueba. En caso de ponerla en producción [aca](https://www.mongodb.com/blog/post/12-tips-going-production-mongodb) hay algunas recomendaciones.
 
-Abriendo `CromaAI/config.py` puede editar la configuración
+Abriendo `CromaAI/config.py` puede editar la configuración o ejecute lo siguiente para verlo
+```bash
+cat ./CromaAI/config.py.sample
+```
 
 ```js
 database = {
@@ -100,7 +103,8 @@ $ mkdir data
 $ cd data
 $ mkdir db
 $ cd ..
-$ mongod --port 27018 --dbpath ./data/db/
+$ nohup mongod --port 27018 --dbpath ./data/db/ &
+$ cat nohup
 ```
 El primer parámetro (port) debe coincidir con el del archivo config
 El segundo parámetro es la carpeta donde se guardan los datos de la base de datos
@@ -135,9 +139,13 @@ La salida:
 2020-04-22T23:21:46.996-0300 I  CONTROL  [initandlisten] ** WARNING: soft rlimits too low. Number of files is 256, should be at least 1000
 2020-04-22T23:21:47.020-0300 I  STORAGE  [initandlisten] createCollection: admin.system.version with provided UUID: b3c050c9-0c07-498a-99a3-44d6211d6b8a and options: { uuid: UUID("b3c050c9-0c07-498a-99a3-44d6211d6b8a") }
 ```
+Verifique que no existan errores
 
 ## Archivo de configuración - Publicaciones default
 Aquí puede modificar y agregar su medio. Hay un ejemplo aca: CromaAI/config.py.sample
+```bash
+cat ./CromaAI/config.py.sample
+```
 ```python
 # Si date_after y date_before estan en None, trae todo - Esto puede tardar un tiempo -
 fetching_config = {
@@ -174,7 +182,7 @@ $ cp ./CromaAI/config.py.sample ./CromaAI/config.py
 ```
 Luego, para traer los archivos ejecutar
 ```bash
-$ python3 ./CromaAI/fetch_articles.py
+$ python ./CromaAI/fetch_articles.py
 ```
 Esto traerá los archivos del medio definido en active_publication
 ```bash
@@ -188,12 +196,17 @@ Total de publicaciones en la db: 2
 #################################
 url ro fetch: https://www.redaccion.com.ar/wp-json/wp/v2/
 No articles
-Page: 1 - https://www.redaccion.com.ar/wp-json/wp/v2/posts?page=1&per_page=50&orderby=date&order=asc&after=2020-0Page: 2/11 - https://www.redaccion.com.ar/wp-json/wp/v2/posts?page=2&per_page=50&orderby=date&order=asc&after=202Page: 3/11 - https://www.redaccion.com.ar/wp-json/wp/v2/posts?page=3&per_page=50&orderby=date&order=asc&after=202Page: 4/11 - https://www.redaccion.com.ar/wp-json/wp/v2/posts?page=4&per_page=50&orderby=date&order=asc&after=202Page: 5/11 - https://www.redaccion.com.ar/wp-json/wp/v2/posts?page=5&per_page=50&orderby=date&order=asc&after=202Page: 6/11 - https://www.redaccion.com.ar/wp-json/wp/v2/posts?page=6&per_page=50&orderby=date&order=asc&after=202Page: 7/11 - https://www.redaccion.com.ar/wp-json/wp/v2/posts?page=7&per_page=50&orderby=date&order=asc&after=202Page: 8/11 - https://www.redaccion.com.ar/wp-json/wp/v2/posts?page=8&per_page=50&orderby=date&order=asc&after=202Page: 9/11 - https://www.redaccion.com.ar/wp-json/wp/v2/posts?page=9&per_page=50&orderby=date&order=asc&after=202Page: 10/11 - https://www.redaccion.com.ar/wp-json/wp/v2/posts?page=10&per_page=50&orderby=date&order=asc&after=2Page: 11/11 - https://www.redaccion.com.ar/wp-json/wp/v2/posts?page=11&per_page=50&orderby=date&order=asc&after=2020-01-01T00:00:00&before=2020-04-22T00:00:00
+Page: 6/6 - https://www.redaccion.com.ar/wp-json/wp/v2/posts?page=6&per_page=50&orderby=date&order=asc&after=2019-11-01T00:00:00&before=2019-12-30T00:00:00(cromaAI) 
 ```
 
 ## Bajar modelos de ejemplo
 https://drive.google.com/file/d/1z2iaQxX08-hyNzpcKgdihRnAy0mFPWVp/view?usp=sharing
-Copiarlo en carpeta `cromaAI/models` Y descomprimirlo
+Copiarlo en carpeta `CromaAI/models` Y descomprimirlo
+Si trabaja con linux puede hacerlo de la siguiente forma:
+```bash
+cd CromaAI/
+
+```
 
 ## Entrenamiento faiss
 Dentro del archivo de `config_train.py` verificar que este seteado asi:
