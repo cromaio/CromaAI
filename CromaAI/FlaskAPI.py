@@ -171,7 +171,10 @@ def get_related_api():
     
     articles, similarities = related_articles.get_related_articles(article, years=years, months=months, days=days, radius=radius)
     
-    return {'related_articles': [{'article_id': str(a['id']), 'similarity':float(s)} for a, s in zip(articles, similarities)]}
+    if cms_id is not None:
+        return {'related_articles': [{'cms_id': str(a['pub_art_id']), 'similarity':float(s)} for a, s in zip(articles, similarities)]}
+    else:
+        return {'related_articles': [{'article_id': str(a['id']), 'similarity':float(s)} for a, s in zip(articles, similarities)]}
 
 
 # Get highlighted article

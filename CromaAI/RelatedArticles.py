@@ -228,23 +228,32 @@ class RelatedArticles():
         return self.text2vect(text)
     
     def get_related_articles_from_vector(self, vector, radius=0.89, k=None, fr = 0, filter_by_date=True, years=1, months=0, days=0):
+        indexes = []
+        distances = []
         if type(vector) == tuple:
             # Hay que hacer un fix para tfidf aca
             vector = vector[0]
         if len(vector.shape) == 1:
             vector = np.array([vector])
-        if k is None:
-            lims, D, I = self.faiss_indexes.range_search(vector, radius)
-            j = 0
-            distances = D[lims[j]:lims[j+1]][fr:]
-            sorted_idx = np.argsort(distances)[::-1]
-            distances = distances[sorted_idx]
-            indexes = I[lims[j]:lims[j+1]][fr:][sorted_idx]
-        else:
-            D, I = self.faiss_indexes.search(vector, k)
-            distances = D[0][fr:]
-            indexes = I[0][fr:]
-
+        if self.faiss_indexes is not None:
+            if k is None:
+                """
+                    returns by radius
+                """
+                lims, D, I = self.faiss_indexes.range_search(vector, radius)
+                j = 0
+                distances = D[lims[j]:lims[j+1]][fr:]
+                sorted_idx = np.argsort(distances)[::-1]
+                distances = distances[sorted_idx]
+                indexes = I[lims[j]:lims[j+1]][fr:][sorted_idx]
+            else:
+                """
+                    returns k related
+                """
+                D, I = self.faiss_indexes.search(vector, k)
+                distances = D[0][fr:]
+                indexes = I[0][fr:]
+        
         articles = []
         for idx in indexes:
             art_ = Article.objects(faiss_index=idx).first()
@@ -359,13 +368,13 @@ class RelatedArticles():
                 vect, vect_tfidf = self.article2vect(article)
                 xb.append(vect)
                 xb_tfidf.append(vect_tfidf)
-                faiss_count = faiss_count + 1
-                faiss_count_tfidf = faiss_count_tfidf + 1
                 article['faiss_index'] = faiss_count
                 article['faiss_index_tfidf'] = faiss_count_tfidf
                 ids.append(faiss_count)
                 ids_tfidf.append(faiss_count_tfidf)
                 article.save()
+                faiss_count = faiss_count + 1
+                faiss_count_tfidf = faiss_count_tfidf + 1
 
         if len(ids) == 0:
             # No se agrego nada por que ya estaba

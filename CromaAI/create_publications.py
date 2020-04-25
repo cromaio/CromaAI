@@ -32,9 +32,9 @@ def create_models_folders():
     root_folder = config.models_folder
     if not os.path.exists(root_folder):
         os.makedirs(root_folder)
-        print('folder created')
+        print(f'{root_folder} created')
     else:
-        print('folder already created')
+        print(f'{root_folder} already created')
     
     mod_folders = [config.faiss_folder, config.w2vect_folder, config.vectorizers_folder, config.ner_folder] 
 
@@ -42,9 +42,9 @@ def create_models_folders():
         folder = f'{root_folder}{folder}'
         if not os.path.exists(folder):
             os.makedirs(folder)
-            print('folder created')
+            print(f'{folder} created')
         else:
-            print('folder already created')
+            print(f'{folder} already created')
     
 
 if __name__ == "__main__":

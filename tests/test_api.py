@@ -1,6 +1,7 @@
 import requests
 import datetime
 import json
+import time
 
 def eval_func(func, expected, params=[]):
     json_response = func(*params)
@@ -100,11 +101,13 @@ def get_wordpress_ids(cms_url='https://www.redaccion.com.ar/wp-json/wp/v2/posts'
     return ids
 
 def from_scratch():
-    ids = get_wordpress_ids()
+    # ids = get_wordpress_ids()
+    ids = [80659, 80634, 80109, 80162, 80604, 80416, 80193, 80453, 80493, 80451]
     print(ids)
-    print(test_add_article_from_wp_post(ids[0]))
-    print(test_add_article_from_wp_get(ids[1]))
-    json_resp = test_get_article_by_cms_id(ids[1])
+    for _id in ids:
+        print(test_add_article_from_wp_post(_id))
+    
+    json_resp = test_get_article_by_cms_id(ids[0])
     mongo_id = json_resp['article']['_id']['$oid']
     test_get_article_by_id(mongo_id)
     json_response = test_get_related_by_cmsid(ids[0])
@@ -112,18 +115,22 @@ def from_scratch():
     json_response = test_get_related_by_cmsid(ids[1])
     print(json_response)
 
-if __name__ == "__main__":
+def test_faiss():
     ids = [80659, 80634, 80109, 80162, 80604, 80416, 80193, 80453, 80493, 80451]
-    # print(test_add_article_from_wp_post(ids[0]))
-    # print(test_add_article_from_wp_get(ids[1]))
-    # json_response = test_get_related_by_cmsid(ids[0])
-    # print(json_response)
-    json_response = test_get_related_by_cmsid(ids[1])
-    print(json_response)
-    # json_response = test_get_add_faiss(ids[0])
-    # print(json_response)
-    # json_response = test_get_add_faiss(ids[1])
-    # print(json_response)
-    json_resp = test_get_article_by_cms_id(ids[1])
-    print(json_resp['article']['faiss_index'])
+    print(len(ids))
+    for _id in ids:
+        print(test_get_add_faiss(_id))
+
+if __name__ == "__main__":
+    # from_scratch()
+    # test_faiss()
+    
+    ids = [80659, 80634, 80109, 80162, 80604, 80416, 80193, 80453, 80493, 80451]
+
+    for _id in ids:
+        # json_response = test_get_article_by_cms_id(_id)
+        # print(json_response['article']['faiss_index'])
+
+        json_response = test_get_related_by_cmsid(_id)
+        print(_id, json_response)
     
