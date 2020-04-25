@@ -80,10 +80,13 @@ $ conda activate cromaAI
 Por defecto crea el entorno cromaAI. Si quiere modificarlo puede hacerlo editando el archivo environment.yml situado en la raiz y volviendo a correr el primer comando
 Si quiere instalar faiss con GPU debe modificar la linea de config del yml `pytorch::faiss-cpu` por `pytorch::faiss-gpu`
                     
-## Archivo de configuración. Sección de la base de datos
+## BASE DE DATOS (mongodb) - Archivo de configuración
 CromaAI utiliza mongodb como base de datos. En esta demo vamos a simplemente ejecutar un deamon de prueba. En caso de ponerla en producción [aca](https://www.mongodb.com/blog/post/12-tips-going-production-mongodb) hay algunas recomendaciones.
 
-Abriendo `CromaAI/config.py` puede editar la configuración
+Abriendo `CromaAI/config.py` puede editar la configuración o ejecute lo siguiente para verlo
+```bash
+cat ./CromaAI/config.py.sample
+```
 
 ```js
 database = {
@@ -100,7 +103,8 @@ $ mkdir data
 $ cd data
 $ mkdir db
 $ cd ..
-$ mongod --port 27018 --dbpath ./data/db/
+$ nohup mongod --port 27018 --dbpath ./data/db/ &
+$ cat nohup
 ```
 El primer parámetro (port) debe coincidir con el del archivo config
 El segundo parámetro es la carpeta donde se guardan los datos de la base de datos
@@ -135,9 +139,13 @@ La salida:
 2020-04-22T23:21:46.996-0300 I  CONTROL  [initandlisten] ** WARNING: soft rlimits too low. Number of files is 256, should be at least 1000
 2020-04-22T23:21:47.020-0300 I  STORAGE  [initandlisten] createCollection: admin.system.version with provided UUID: b3c050c9-0c07-498a-99a3-44d6211d6b8a and options: { uuid: UUID("b3c050c9-0c07-498a-99a3-44d6211d6b8a") }
 ```
+Verifique que no existan errores
 
 ## Archivo de configuración - Publicaciones default
 Aquí puede modificar y agregar su medio. Hay un ejemplo aca: CromaAI/config.py.sample
+```bash
+cat ./CromaAI/config.py.sample
+```
 ```python
 # Si date_after y date_before estan en None, trae todo - Esto puede tardar un tiempo -
 fetching_config = {
@@ -174,7 +182,7 @@ $ cp ./CromaAI/config.py.sample ./CromaAI/config.py
 ```
 Luego, para traer los archivos ejecutar
 ```bash
-$ python3 ./CromaAI/fetch_articles.py
+$ python ./CromaAI/fetch_articles.py
 ```
 Esto traerá los archivos del medio definido en active_publication
 ```bash
@@ -188,14 +196,28 @@ Total de publicaciones en la db: 2
 #################################
 url ro fetch: https://www.redaccion.com.ar/wp-json/wp/v2/
 No articles
-Page: 1 - https://www.redaccion.com.ar/wp-json/wp/v2/posts?page=1&per_page=50&orderby=date&order=asc&after=2020-0Page: 2/11 - https://www.redaccion.com.ar/wp-json/wp/v2/posts?page=2&per_page=50&orderby=date&order=asc&after=202Page: 3/11 - https://www.redaccion.com.ar/wp-json/wp/v2/posts?page=3&per_page=50&orderby=date&order=asc&after=202Page: 4/11 - https://www.redaccion.com.ar/wp-json/wp/v2/posts?page=4&per_page=50&orderby=date&order=asc&after=202Page: 5/11 - https://www.redaccion.com.ar/wp-json/wp/v2/posts?page=5&per_page=50&orderby=date&order=asc&after=202Page: 6/11 - https://www.redaccion.com.ar/wp-json/wp/v2/posts?page=6&per_page=50&orderby=date&order=asc&after=202Page: 7/11 - https://www.redaccion.com.ar/wp-json/wp/v2/posts?page=7&per_page=50&orderby=date&order=asc&after=202Page: 8/11 - https://www.redaccion.com.ar/wp-json/wp/v2/posts?page=8&per_page=50&orderby=date&order=asc&after=202Page: 9/11 - https://www.redaccion.com.ar/wp-json/wp/v2/posts?page=9&per_page=50&orderby=date&order=asc&after=202Page: 10/11 - https://www.redaccion.com.ar/wp-json/wp/v2/posts?page=10&per_page=50&orderby=date&order=asc&after=2Page: 11/11 - https://www.redaccion.com.ar/wp-json/wp/v2/posts?page=11&per_page=50&orderby=date&order=asc&after=2020-01-01T00:00:00&before=2020-04-22T00:00:00
+Page: 6/6 - https://www.redaccion.com.ar/wp-json/wp/v2/posts?page=6&per_page=50&orderby=date&order=asc&after=2019-11-01T00:00:00&before=2019-12-30T00:00:00(cromaAI) 
 ```
 
 ## Bajar modelos de ejemplo
 https://drive.google.com/file/d/1z2iaQxX08-hyNzpcKgdihRnAy0mFPWVp/view?usp=sharing
-Copiarlo en carpeta `cromaAI/models` Y descomprimirlo
+Copiarlo en carpeta `CromaAI/models` Y descomprimirlo
+Si trabaja con linux puede hacerlo de la siguiente forma:
+```bash
+$ cd CromaAI/
+$ mkdir models
+$ cd models
+$ wget https://croma.ai/models/models_demo.zip
+$ unzip models_demo.zip
+$ cd ..
+```
 
 ## Entrenamiento faiss
+Copiar el archivo de configuración de entrenamiento:
+```bash
+$ cp config_train.py.sample config_train.py
+$ cat config_train.py
+```
 Dentro del archivo de `config_train.py` verificar que este seteado asi:
 ```python
 model_name = 'redaccion_2020'
@@ -215,8 +237,7 @@ enabled_processes = {
 ```
 Ejecutar:
 ```bash
-$ cd CromaAI/
-$ python3 train_models.py
+$ python train_models.py
 ```
 
 Esto generara los tokens de los articulos y armara los vectorizers junto con la base de faiss
@@ -224,39 +245,39 @@ Esto generara los tokens de los articulos y armara los vectorizers junto con la 
 ```bash
 tokenizing articles ...
 Found 0 already tokenized articles
-99/548 
+Publication object
+Total number to tokenize: 289
+199/289 
 models/redaccion_2020/training_data/content_1.npy saved!
-199/548 
+288/289 
 models/redaccion_2020/training_data/content_2.npy saved!
-299/548 
-models/redaccion_2020/training_data/content_3.npy saved!
-399/548 
-models/redaccion_2020/training_data/content_4.npy saved!
-499/548 
-models/redaccion_2020/training_data/content_5.npy saved!
-547/548 Training vectorizers ...
-5 - 100 - models/redaccion_2020/training_data/all_1.npyd
+Training vectorizers ...
+2 - 89 - models/redaccion_2020/training_data/all_2.npyed
 1 finished!
-Matrix size: (500, 39063)
+Matrix size: (289, 27791)
 Saved to: models/redaccion_2020/vectorizers/count_vectorizer-max_df_1.0-min_df_1.pickle
 Training faiss ...
-models/redaccion_2020/faiss/indexes
-models/redaccion_2020/faiss/ids.npy
-models/redaccion_2020/faiss/indexes_tfidf
 using: models/redaccion_2020/w2vect/w2vect_2.wv
-Articulo: 499
+Articulo: 288ls/redaccion_2020/training_data/all_2.npyed
+1 finished!
+Faiss tenía 0 vectores, se agregaron 289 y se intentaron agregar 0 que ya estaban
 ```
 
 # Testeo API
  
 ## Correr API
-Dentro de la carpeta repo_folder/CromaAI
+Dentro de la carpeta CromaAI
 ```bash
 $ python3 FlaskAPI.py -p 5000 -h localhost
 ```
 Esto corre un servidor en el puerto 5000 por defecto. Puede cambiar el host y el port según sus necesidades
    
 ### Verficar API - /api/v1/articles
+Si esta trabajando con linux puede instalar curl
+```bash
+sudo apt install curl
+```
+
 Escribir en el browser:
 ```
 http://localhost:5000/api/v1/articles
