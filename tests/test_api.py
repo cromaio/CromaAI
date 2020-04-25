@@ -69,7 +69,7 @@ def test_get_article_by_cms_id(_id='29897'):
     response = requests.get(f'http://localhost:5000/api/v1/article?cmsid={_id}')
     return response.json()
 
-def test_get_articles(_id='29897'):
+def test_get_articles():
     response = requests.get('http://localhost:5000/api/v1/articles')
     return response.json()
 
@@ -125,12 +125,22 @@ if __name__ == "__main__":
     # from_scratch()
     # test_faiss()
     
-    ids = [80659, 80634, 80109, 80162, 80604, 80416, 80193, 80453, 80493, 80451]
+    # ids = [80659, 80634, 80109, 80162, 80604, 80416, 80193, 80453, 80493, 80451]
 
-    for _id in ids:
-        # json_response = test_get_article_by_cms_id(_id)
-        # print(json_response['article']['faiss_index'])
+    # for _id in ids:
+    #     # json_response = test_get_article_by_cms_id(_id)
+    #     # print(json_response['article']['faiss_index'])
 
-        json_response = test_get_related_by_cmsid(_id)
-        print(_id, json_response)
+    #     json_response = test_get_related_by_cmsid(_id)
+    #     print(_id, json_response)
+
+    json_response = test_get_articles()
+    for article in json_response['articles_page']:
+        cms_id = article['pub_art_id']
+        json_response = test_get_related_by_cmsid(cms_id)
+        print(cms_id, json_response['related_articles'][0])
+        print()
+
+
+
     
