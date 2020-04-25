@@ -204,11 +204,20 @@ https://drive.google.com/file/d/1z2iaQxX08-hyNzpcKgdihRnAy0mFPWVp/view?usp=shari
 Copiarlo en carpeta `CromaAI/models` Y descomprimirlo
 Si trabaja con linux puede hacerlo de la siguiente forma:
 ```bash
-cd CromaAI/
-
+$ cd CromaAI/
+$ mkdir models
+$ cd models
+$ wget https://croma.ai/models/models_demo.zip
+$ unzip models_demo.zip
+$ cd ..
 ```
 
 ## Entrenamiento faiss
+Copiar el archivo de configuración de entrenamiento:
+```bash
+$ cp config_train.py.sample config_train.py
+$ cat config_train.py
+```
 Dentro del archivo de `config_train.py` verificar que este seteado asi:
 ```python
 model_name = 'redaccion_2020'
@@ -228,8 +237,7 @@ enabled_processes = {
 ```
 Ejecutar:
 ```bash
-$ cd CromaAI/
-$ python3 train_models.py
+$ python train_models.py
 ```
 
 Esto generara los tokens de los articulos y armara los vectorizers junto con la base de faiss
@@ -237,39 +245,39 @@ Esto generara los tokens de los articulos y armara los vectorizers junto con la 
 ```bash
 tokenizing articles ...
 Found 0 already tokenized articles
-99/548 
+Publication object
+Total number to tokenize: 289
+199/289 
 models/redaccion_2020/training_data/content_1.npy saved!
-199/548 
+288/289 
 models/redaccion_2020/training_data/content_2.npy saved!
-299/548 
-models/redaccion_2020/training_data/content_3.npy saved!
-399/548 
-models/redaccion_2020/training_data/content_4.npy saved!
-499/548 
-models/redaccion_2020/training_data/content_5.npy saved!
-547/548 Training vectorizers ...
-5 - 100 - models/redaccion_2020/training_data/all_1.npyd
+Training vectorizers ...
+2 - 89 - models/redaccion_2020/training_data/all_2.npyed
 1 finished!
-Matrix size: (500, 39063)
+Matrix size: (289, 27791)
 Saved to: models/redaccion_2020/vectorizers/count_vectorizer-max_df_1.0-min_df_1.pickle
 Training faiss ...
-models/redaccion_2020/faiss/indexes
-models/redaccion_2020/faiss/ids.npy
-models/redaccion_2020/faiss/indexes_tfidf
 using: models/redaccion_2020/w2vect/w2vect_2.wv
-Articulo: 499
+Articulo: 288ls/redaccion_2020/training_data/all_2.npyed
+1 finished!
+Faiss tenía 0 vectores, se agregaron 289 y se intentaron agregar 0 que ya estaban
 ```
 
 # Testeo API
  
 ## Correr API
-Dentro de la carpeta repo_folder/CromaAI
+Dentro de la carpeta CromaAI
 ```bash
 $ python3 FlaskAPI.py -p 5000 -h localhost
 ```
 Esto corre un servidor en el puerto 5000 por defecto. Puede cambiar el host y el port según sus necesidades
    
 ### Verficar API - /api/v1/articles
+Si esta trabajando con linux puede instalar curl
+```bash
+sudo apt install curl
+```
+
 Escribir en el browser:
 ```
 http://localhost:5000/api/v1/articles
