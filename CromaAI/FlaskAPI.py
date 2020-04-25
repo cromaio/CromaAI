@@ -5,6 +5,7 @@ import faiss
 import numpy as np
 from gensim.models import Word2Vec
 
+
 from datetime import datetime
 import config
 
@@ -16,6 +17,7 @@ from CromaDisplacy import return_HTML_from_db, return_HTML
 from models import Publication, NerAzure, NerGoogle, NerAws
 from CromaGNI import CromaGNI
 from RelatedArticles import RelatedArticles #get_sentence_vect, article_to_faiss_vect, get_related_aticles
+from ArticlesFetch import wordpress_to_db, get_article_by_cms_id
 # from CromaGNILib.models import Publication
 
 from flask_mongoengine import MongoEngine
@@ -65,7 +67,7 @@ related_articles = RelatedArticles(
     config.models.gensim_w2v,
     config.models.faiss_indexes,
     config.models.faiss_indexes_tfidf,
-    config.models.faiss_ids,
+    # config.models.faiss_ids,
     config.models.token2tfidf
 )
 
@@ -85,8 +87,49 @@ class Article(db.Document):
     ner_azure_id = db.ReferenceField(NerAzure, required=False)
     ner_google_id = db.ReferenceField(NerGoogle, required=False)
     ner_aws_id = db.ReferenceField(NerAws, required=False)
+    faiss_index = db.IntField()
+    faiss_index_tfidf = db.IntField()
     meta = {'strict': False}
 
+@app.route('/api/v1/add', methods=['POST'])
+def add_article_api_post():
+    """
+        Agrega articulo a la base de datos
+    """
+    json_data = flask.request.json
+    article = wordpress_to_db(json_data, config.active_publication)
+    if article is not None:
+        article.save()
+        return {'status':'OK', 'text': 'Article saved to db'}
+    else:
+        return {'status':'warning', 'text': 'Article already in db'}
+
+# Add new article to db
+@app.route('/api/v1/add', methods=['GET'])
+def add_article_api():
+    """
+        Dado el id de wordpress, busca articulo y lo agrega a la base de datos
+    """
+    cms_id = flask.request.args.get('cmsid')
+    article_json = get_article_by_cms_id(config.active_publication, cms_id)
+    article = wordpress_to_db(article_json, config.active_publication)
+    if article is not None:
+        article.save()
+        return {'status':'OK', 'text': 'Article saved to db'}
+    else:
+        return {'status':'warning', 'text': 'Article already in db'}
+
+# Add new article to db
+@app.route('/api/v1/add_faiss', methods=['GET'])
+def add_article_to_faiss_api():
+    """
+        Dado el id de wordpress, busca articulo y lo agrega a la base de datos
+    """
+    cms_id = flask.request.args.get('cmsid')
+    articles = Article.objects(pub_art_id=cms_id)
+    faiss_count, added = related_articles.add_faiss_vectors(articles)
+    return {'faiss_count': faiss_count, 'added': added}
+    
 # Get article
 @app.route('/api/v1/article')
 def get_article_api():

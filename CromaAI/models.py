@@ -1,4 +1,4 @@
-from mongoengine import connect, Document, StringField, DateField, URLField, ListField, ReferenceField, disconnect, LongField
+from mongoengine import connect, IntField, Document, StringField, DateField, URLField, ListField, ReferenceField, disconnect, LongField
 import SchemaValidation
 import enum
 
@@ -67,8 +67,11 @@ class Article(Document):
     ner_azure_id = ReferenceField(NerAzure, required=False)
     ner_google_id = ReferenceField(NerGoogle, required=False)
     ner_aws_id = ReferenceField(NerAws, required=False)
+    faiss_index = IntField()
+    faiss_index_tfidf = IntField()
     meta = {
         'indexes': [
+            {'fields': ['faiss_index']},
             {'fields': ['publication']},
             {'fields': ['pub_art_id']},
             {'fields': ['publish_date']},

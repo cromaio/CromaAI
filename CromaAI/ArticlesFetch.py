@@ -3,6 +3,13 @@ from mongoengine.queryset.visitor import Q
 import datetime
 from models import Article, Publication
 
+def get_article_by_cms_id(publication_name, cms_id):
+    api_url = Publication.objects(name=publication_name).get()['api_url']
+    url_by_ids = get_wp_url_by_ids(api_url, [cms_id])
+    response = requests.get(url_by_ids)
+    print(response.json)
+    return response.json()[0]
+
 def iProfesional_to_db(art, publication_name='iProfesional'):
     publication=Publication.objects(name=publication_name).get()
     publication_id = str(art['id'])
@@ -59,16 +66,26 @@ def wordpress_to_db(art, publication_name):
     publication_id = str(art['id'])
     article.pub_art_id = publication_id
     return article
+    
+def get_wp_url_by_ids(url_endpoint, ids):
+    url = url_endpoint + 'posts?'
+    return url + '&'.join([f'include[]={_id}' for _id in ids])
 
-def get_wp_url(url_endpoint, page, per_page, date_after, date_before):
-    if type(date_after) == str:
+def get_wp_url(url_endpoint, page=1, per_page=10, date_after=None, date_before=None):
+    if date_after is None:
+            date_after = datetime.date.fromtimestamp(-10000000000)
+    elif type(date_after) == str:
         date_after = datetime.datetime.strptime(date_after, '%Y-%m-%d')
-    if type(date_before) == str:
+        
+    if date_before is None:
+        date_before = datetime.datetime.now()
+    elif type(date_before) == str:
         date_before = datetime.datetime.strptime(date_before, '%Y-%m-%d')
 
     date_str = date_after.strftime("%Y-%m-%dT%H:%M:%S%Z")
     date_before = date_before.strftime("%Y-%m-%dT%H:%M:%S%Z")
     return f'{url_endpoint}posts?page={page}&per_page={per_page}&orderby=date&order=asc&after={date_str}&before={date_before}'
+
 
 def get_iProfesional_url(url_endpoint, page, per_page, date_after, date_before):
     if type(date_after) == str:

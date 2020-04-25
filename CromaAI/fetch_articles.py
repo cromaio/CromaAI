@@ -9,31 +9,8 @@ except ModuleNotFoundError:
 from mongoengine import connect
 from ArticlesFetch import fetch_articles, iProfesional_to_db, wordpress_to_db, get_wp_url, get_iProfesional_url, get_iProfesional_articles, get_wp_articles
 from models import Publication
+from create_publications import create_publications
 
-def create_publications():
-    connect(config.database['db_name'], host=config.database['host'], port=config.database['port'])    
-    print('Verificando publicaciones')
-    for pub_dict in config.publications:
-        pub_list = Publication.objects(name=pub_dict.get('name'))
-        if len(pub_list) == 0:
-            new_pub = Publication(name=pub_dict.get('name'), url=pub_dict.get('url'), location=pub_dict.get('location'), 
-            fetch_method=pub_dict.get('fetch_method'), api_url=pub_dict.get('api_url'))
-            new_pub.save()
-            print(f'Publication creada: {pub_dict.get("name")}')
-        else:
-            exitent_pub = pub_list.get()
-            exitent_pub.name = pub_dict.get('name')
-            exitent_pub.url = pub_dict.get('url')
-            exitent_pub.location = pub_dict.get('location')
-            exitent_pub.fetch_method = pub_dict.get('fetch_method')
-            exitent_pub.api_url = pub_dict.get('api_url')
-            exitent_pub.save()
-            print(f'Publication Modificada: {pub_dict.get("name")}')
-    pubs = Publication.objects()
-    print(f'Total de publicaciones en la db: {len(pubs)}')
-    for p in pubs:
-        print(f'- {p.name}')
-    print('#################################')
 
 
 def main():

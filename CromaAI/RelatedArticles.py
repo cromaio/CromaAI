@@ -9,7 +9,8 @@ import faiss
 from models import Article, Publication
 from fast_autocomplete import AutoComplete
 import os
-
+from ArticlesFetch import get_wp_url_by_ids
+import requests
 
         
 class RelatedArticles():    
@@ -73,19 +74,24 @@ class RelatedArticles():
         gensim_model_path=None, 
         faiss_indexes_path=None, 
         faiss_indexes_tfidf_path=None, 
-        faiss_article_ids_path=None, 
         token2tfidf_path=None):
+        self.faiss_indexes_path = faiss_indexes_path
+        self.faiss_indexes_tfidf_path = faiss_indexes_tfidf_path
         if spacy_model_path is not None:
             self.nlp = spacy.load(spacy_model_path)
         if gensim_model_path is not None:
             self.w2v_model = KeyedVectors.load(gensim_model_path, mmap='r')
             model_words, self.model_synonyms = self.prepare_autocomplete()
             self.autocomplete_model = AutoComplete(words=model_words)
-        if faiss_indexes_path is not None:
+        if faiss_indexes_path is not None and os.path.exists(faiss_indexes_path):
             self.faiss_indexes = faiss.read_index(faiss_indexes_path)
-        if faiss_article_ids_path is not None:
-            # print(faiss_article_ids_path)
-            self.faiss_article_ids = np.load(faiss_article_ids_path)
+        else:
+            self.faiss_indexes = None
+        if faiss_indexes_tfidf_path is not None and os.path.exists(faiss_indexes_tfidf_path):
+            self.faiss_indexes_tfidf = faiss.read_index(faiss_indexes_tfidf_path)
+        else:
+            self.faiss_indexes_tfidf = None
+        
         if token2tfidf_path is not None:
             self.token2tfidf = np.load(token2tfidf_path, allow_pickle=True).item()
         else:
@@ -93,42 +99,42 @@ class RelatedArticles():
             
         
         
-    def save_training_tokens(self, publication_name, chunk_size = 50_000):
-        dst_folder = f'training_data_{publication_name}_{chunk_size}/'
-        if not os.path.exists(dst_folder):
-            os.makedirs(dst_folder)
-        articles = Article.objects(publication=Publication.objects(name=publication_name).get()).order_by('-publish_date')
-        N = articles.count()
-        N_chunks = np.ceil(N/chunk_size)
-        sentences = []
-        ids = []
-        chunk = 0
-        for i, article in enumerate(articles):
-            if i%chunk_size == 0 and i!=0:
-                chunk+=1
-                file_name = f'{dst_folder}tokens_{publication_name}_{chunk}.npy'
-                np.save(file_name, sentences)
-                sentences = []
-                print()
-                print(f'{file_name} saved!')
-                file_name_ids = f'{dst_folder}tokens_{publication_name}_{chunk}_ids.npy'
-                np.save(file_name_ids, ids)
-                ids = []
+    # def save_training_tokens(self, publication_name, chunk_size = 50_000):
+    #     dst_folder = f'training_data_{publication_name}_{chunk_size}/'
+    #     if not os.path.exists(dst_folder):
+    #         os.makedirs(dst_folder)
+    #     articles = Article.objects(publication=Publication.objects(name=publication_name).get()).order_by('-publish_date')
+    #     N = articles.count()
+    #     N_chunks = np.ceil(N/chunk_size)
+    #     sentences = []
+    #     ids = []
+    #     chunk = 0
+    #     for i, article in enumerate(articles):
+    #         if i%chunk_size == 0 and i!=0:
+    #             chunk+=1
+    #             file_name = f'{dst_folder}tokens_{publication_name}_{chunk}.npy'
+    #             np.save(file_name, sentences)
+    #             sentences = []
+    #             print()
+    #             print(f'{file_name} saved!')
+    #             file_name_ids = f'{dst_folder}tokens_{publication_name}_{chunk}_ids.npy'
+    #             np.save(file_name_ids, ids)
+    #             ids = []
 
-            text = RelatedArticles.article2text(article)
-            print(f'\r{i}/{N}', end=' ')
-            doc = self.nlp(text)
-            sentences.append(RelatedArticles.doc2tokens(doc))
-            ids.append(str(article['id']))
-        chunk+=1
-        file_name = f'{dst_folder}tokens_{publication_name}_{chunk}.npy'
-        np.save(file_name, sentences)
-        sentences = []
-        print()
-        print(f'{file_name} saved!')
-        file_name_ids = f'{dst_folder}tokens_{publication_name}_{chunk}_ids.npy'
-        np.save(file_name_ids, ids)
-        ids = []
+    #         text = RelatedArticles.article2text(article)
+    #         print(f'\r{i}/{N}', end=' ')
+    #         doc = self.nlp(text)
+    #         sentences.append(RelatedArticles.doc2tokens(doc))
+    #         ids.append(str(article['id']))
+    #     chunk+=1
+    #     file_name = f'{dst_folder}tokens_{publication_name}_{chunk}.npy'
+    #     np.save(file_name, sentences)
+    #     sentences = []
+    #     print()
+    #     print(f'{file_name} saved!')
+    #     file_name_ids = f'{dst_folder}tokens_{publication_name}_{chunk}_ids.npy'
+    #     np.save(file_name_ids, ids)
+    #     ids = []
 
     def get_autocomplete_words_list(self, text):
         autocomplets = self.autocomplete_model.search(text, size=10)
@@ -147,17 +153,16 @@ class RelatedArticles():
         return words, distances
             
     def get_related_articles(self, article, years=1, months=0, days=0, radius=0.89):
-        chossen_id = str(article.id)
-        id_form_article_id = np.where(self.faiss_article_ids==chossen_id)[0]
-        if len(id_form_article_id) == 0:
+        id_form_article_id = article['faiss_index']
+        if id_form_article_id is None:
             # Not in faiss db already
             vector = self.article2vect(article) # np.array([article_to_faiss_vect(article, nlp_custom, w2v_model)])
         else:
-            vector = np.array([self.faiss_indexes.index.reconstruct(int(id_form_article_id[0]))])
+            vector = np.array([self.faiss_indexes.index.reconstruct(id_form_article_id)])
         
         articles, distances = self.get_related_articles_from_vector(vector, years=years, months=months, days=days, radius=radius)
         
-        if len(id_form_article_id) == 0:
+        if id_form_article_id is None:
             articles = list(articles)
             articles.insert(0, article)
             distances = list(distances)
@@ -242,7 +247,7 @@ class RelatedArticles():
 
         articles = []
         for idx in indexes:
-            art_ = Article.objects(id=self.faiss_article_ids[idx]).first()
+            art_ = Article.objects(faiss_index=idx).first()
             if art_ is not None:
                 articles.append(art_)
         
@@ -252,63 +257,64 @@ class RelatedArticles():
 
         return articles, distances
     
-    def add_faiss_vectors(self, articles, old_faiss_ids_f, old_faiss_indexes_f, old_faiss_indexes_tfidf_f, new_faiss_ids_f, new_faiss_indexes_f, new_faiss_indexes_tfidf_f):
-        if new_faiss_indexes_tfidf_f is not None:
-            tfidf=True
-        else:
-            tfidf=False
-        # Read faiss indexes and mongoids
-        if old_faiss_ids_f is None or old_faiss_indexes_f is None:
-            faiss_articles_ids = []
-            faiss_index2 = None
-            faiss_index2_tfidf = None
-        else:
-            faiss_articles_ids = np.load(old_faiss_ids_f)
-            faiss_index2 = faiss.read_index(old_faiss_indexes_f)
-            faiss_index2_tfidf = faiss.read_index(old_faiss_indexes_tfidf_f)
+    
+    # def add_faiss_vectors(self, articles, old_faiss_ids_f, old_faiss_indexes_f, old_faiss_indexes_tfidf_f, new_faiss_ids_f, new_faiss_indexes_f, new_faiss_indexes_tfidf_f):
+    #     if new_faiss_indexes_tfidf_f is not None:
+    #         tfidf=True
+    #     else:
+    #         tfidf=False
+    #     # Read faiss indexes and mongoids
+    #     if old_faiss_ids_f is None or old_faiss_indexes_f is None:
+    #         faiss_articles_ids = []
+    #         faiss_index2 = None
+    #         faiss_index2_tfidf = None
+    #     else:
+    #         faiss_articles_ids = np.load(old_faiss_ids_f)
+    #         faiss_index2 = faiss.read_index(old_faiss_indexes_f)
+    #         faiss_index2_tfidf = faiss.read_index(old_faiss_indexes_tfidf_f)
 
-        N_vects = len(articles)
-        # Get wordvectors
-        word_vect_dim = self.w2v_model.wv.vector_size
-        xb = np.zeros((N_vects, word_vect_dim), dtype='float32')
-        if tfidf:
-            xb_tfidf = np.zeros((N_vects, word_vect_dim), dtype='float32')
-        new_article_ids = []
-        i=0
-        j=0
-        while j<N_vects:
-            article = articles[i]
-            if str(article.id) not in faiss_articles_ids:
-                new_article_ids.append(str(article.id))
-                if tfidf:
-                    xb[j, :], xb_tfidf[j, :] = self.article2vect(article)
-                else:
-                    xb[j, :] = self.article2vect(article)
-                j+=1
-            i+=1
-            print(f'\r{i}, {j} / {N_vects}', end='')
+    #     N_vects = len(articles)
+    #     # Get wordvectors
+    #     word_vect_dim = self.w2v_model.wv.vector_size
+    #     xb = np.zeros((N_vects, word_vect_dim), dtype='float32')
+    #     if tfidf:
+    #         xb_tfidf = np.zeros((N_vects, word_vect_dim), dtype='float32')
+    #     new_article_ids = []
+    #     i=0
+    #     j=0
+    #     while j<N_vects:
+    #         article = articles[i]
+    #         if str(article.id) not in faiss_articles_ids:
+    #             new_article_ids.append(str(article.id))
+    #             if tfidf:
+    #                 xb[j, :], xb_tfidf[j, :] = self.article2vect(article)
+    #             else:
+    #                 xb[j, :] = self.article2vect(article)
+    #             j+=1
+    #         i+=1
+    #         print(f'\r{i}, {j} / {N_vects}', end='')
 
-        # Update articles ids
-        all_articles_ids = list(faiss_articles_ids) + new_article_ids
-        np.save(new_faiss_ids_f, all_articles_ids)
-        if len(faiss_articles_ids) == 0:
-            ids = np.arange(N_vects).astype('int64')  # + faiss_index2.ntotal
-        else:
-            ids = np.arange(N_vects).astype('int64') + faiss_index2.ntotal
+    #     # Update articles ids
+    #     all_articles_ids = list(faiss_articles_ids) + new_article_ids
+    #     np.save(new_faiss_ids_f, all_articles_ids)
+    #     if len(faiss_articles_ids) == 0:
+    #         ids = np.arange(N_vects).astype('int64')  # + faiss_index2.ntotal
+    #     else:
+    #         ids = np.arange(N_vects).astype('int64') + faiss_index2.ntotal
 
-        if len(faiss_articles_ids) == 0:
-            index = faiss.IndexFlatIP(word_vect_dim) 
-            faiss_index2 = faiss.IndexIDMap(index)
-            if tfidf:
-                index_tfidf = faiss.IndexFlatIP(word_vect_dim) 
-                faiss_index2_tfidf = faiss.IndexIDMap(index_tfidf)
+    #     if len(faiss_articles_ids) == 0:
+    #         index = faiss.IndexFlatIP(word_vect_dim) 
+    #         faiss_index2 = faiss.IndexIDMap(index)
+    #         if tfidf:
+    #             index_tfidf = faiss.IndexFlatIP(word_vect_dim) 
+    #             faiss_index2_tfidf = faiss.IndexIDMap(index_tfidf)
                 
-        faiss_index2.add_with_ids(xb, ids)
-        faiss.write_index(faiss_index2, new_faiss_indexes_f)
+    #     faiss_index2.add_with_ids(xb, ids)
+    #     faiss.write_index(faiss_index2, new_faiss_indexes_f)
         
-        if tfidf:
-            faiss_index2_tfidf.add_with_ids(xb_tfidf, ids)
-            faiss.write_index(faiss_index2_tfidf, new_faiss_indexes_tfidf_f)
+    #     if tfidf:
+    #         faiss_index2_tfidf.add_with_ids(xb_tfidf, ids)
+    #         faiss.write_index(faiss_index2_tfidf, new_faiss_indexes_tfidf_f)
             
     def prepare_autocomplete(self):
         words = {}
@@ -327,6 +333,57 @@ class RelatedArticles():
                 synonyms[lower] = []
             synonyms[lower].append(word)
         return words, synonyms
+
+    def add_faiss_vectors(self, articles, tfidf=True):
+        total_vectors = 0
+        vector_size = self.w2v_model.wv.vector_size
+        if self.faiss_indexes is None:
+            index = faiss.IndexFlatIP(vector_size) 
+            self.faiss_indexes = faiss.IndexIDMap(index)
+            if tfidf:
+                index_tfidf = faiss.IndexFlatIP(vector_size) 
+                self.faiss_indexes_tfidf = faiss.IndexIDMap(index_tfidf)
+        
+        total_vectors = self.faiss_indexes.ntotal
+        total_vectors_tfidf = self.faiss_indexes_tfidf.ntotal
+
+        xb = []
+        xb_tfidf = []
+        faiss_count = total_vectors
+        faiss_count_tfidf = total_vectors_tfidf
+        ids = []
+        ids_tfidf = []
+
+        for article in articles:
+            if article['faiss_index'] is None:
+                vect, vect_tfidf = self.article2vect(article)
+                xb.append(vect)
+                xb_tfidf.append(vect_tfidf)
+                faiss_count = faiss_count + 1
+                faiss_count_tfidf = faiss_count_tfidf + 1
+                article['faiss_index'] = faiss_count
+                article['faiss_index_tfidf'] = faiss_count_tfidf
+                ids.append(faiss_count)
+                ids_tfidf.append(faiss_count_tfidf)
+                article.save()
+
+        if len(ids) == 0:
+            # No se agrego nada por que ya estaba
+            return total_vectors, len(ids)
+
+        xb = np.array(xb, dtype='float32')
+        xb_tfidf = np.array(xb_tfidf, dtype='float32')
+
+        ids = np.array(ids, dtype='int64')
+        ids_tfidf = np.array(ids_tfidf, dtype='int64')
+
+        self.faiss_indexes.add_with_ids(xb, ids)
+        faiss.write_index(self.faiss_indexes, self.faiss_indexes_path)
+        
+        self.faiss_indexes_tfidf.add_with_ids(xb_tfidf, ids_tfidf)
+        faiss.write_index(self.faiss_indexes_tfidf, self.faiss_indexes_tfidf_path)
+
+        return total_vectors, len(ids)
 
 # def article_to_faiss_vect(article, nlp, w2v_model):
 #     # article2vect
