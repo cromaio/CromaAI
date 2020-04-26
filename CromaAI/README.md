@@ -29,13 +29,24 @@ CromaAI utiliza conda como método de instalación por lo que sugerimos utilizar
 https://anaconda.org/
 Bajarlo de la página e instalarlo siguiendo las instrucciones dependiendo de su sistema operativo
       
-  Instalar CromaAI
+## Clonar repositorio CromaAI
 ```
 $ git clone git@github.com:cromaio/CromaAI.git 
 $ cd CromaAI
 ```
-         
-## Creación de entorno
+
+# Instalación
+
+## Instalación con Script
+Una opción es correr el siguiente script:
+```bash
+$ bash scripts/install.sh 
+```
+Para que esto funcione tiene que tener instalados en un linux los siguientes paquetes:
+unzip, mongod, curl
+
+## Instalación paso a paso         
+### 1 - Creación de entorno
 Ejecutar los siguientes comandos:
 ```bash
 $ conda env create -f environment.yml 
@@ -80,7 +91,7 @@ $ conda activate cromaAI
 Por defecto crea el entorno cromaAI. Si quiere modificarlo puede hacerlo editando el archivo environment.yml situado en la raiz y volviendo a correr el primer comando
 Si quiere instalar faiss con GPU debe modificar la linea de config del yml `pytorch::faiss-cpu` por `pytorch::faiss-gpu`
                     
-## BASE DE DATOS (mongodb) - Archivo de configuración
+### 2 - BASE DE DATOS (mongodb) - Archivo de configuración
 CromaAI utiliza mongodb como base de datos. En esta demo vamos a simplemente ejecutar un deamon de prueba. En caso de ponerla en producción [aca](https://www.mongodb.com/blog/post/12-tips-going-production-mongodb) hay algunas recomendaciones.
 
 Abriendo `CromaAI/config.py` puede editar la configuración o ejecute lo siguiente para verlo
@@ -96,7 +107,7 @@ database = {
    }
 ```
  
-## Correr mongo
+### Correr mongo
 Seleccione el puerto y el path que se ajuste a sus necesidades Ejecutar:
 ```bash
 $ mkdir data
@@ -141,7 +152,7 @@ La salida:
 ```
 Verifique que no existan errores
 
-## Archivo de configuración - Publicaciones default
+### 3 - Archivo de configuración - Publicaciones default
 Aquí puede modificar y agregar su medio. Hay un ejemplo aca: CromaAI/config.py.sample
 ```bash
 cat ./CromaAI/config.py.sample
@@ -174,7 +185,7 @@ publications = [
 ]
 ```
 
-## Buscar artículos y guardarlos en db
+### 4 - Buscar artículos y guardarlos en db
 Asegurarse de tener un archivo de configuración correcto: `config.py` Hay un ejemplo: config.py.sample
 Ejecutar:
 ```
@@ -199,7 +210,7 @@ No articles
 Page: 6/6 - https://www.redaccion.com.ar/wp-json/wp/v2/posts?page=6&per_page=50&orderby=date&order=asc&after=2019-11-01T00:00:00&before=2019-12-30T00:00:00(cromaAI) 
 ```
 
-## Bajar modelos de ejemplo
+### 5 - Bajar modelos de ejemplo
 https://drive.google.com/file/d/1z2iaQxX08-hyNzpcKgdihRnAy0mFPWVp/view?usp=sharing
 Copiarlo en carpeta `CromaAI/models` Y descomprimirlo
 Si trabaja con linux puede hacerlo de la siguiente forma:
@@ -212,7 +223,7 @@ $ unzip models_demo.zip
 $ cd ..
 ```
 
-## Entrenamiento faiss
+### 6 - Entrenamiento faiss
 Copiar el archivo de configuración de entrenamiento:
 ```bash
 $ cp config_train.py.sample config_train.py
@@ -262,15 +273,15 @@ Articulo: 288ls/redaccion_2020/training_data/all_2.npyed
 1 finished!
 Faiss tenía 0 vectores, se agregaron 289 y se intentaron agregar 0 que ya estaban
 ```
-
-# Testeo API
- 
-## Correr API
+### 7 - Correr API
 Dentro de la carpeta CromaAI
 ```bash
 $ python3 FlaskAPI.py -p 5000 -h localhost
 ```
 Esto corre un servidor en el puerto 5000 por defecto. Puede cambiar el host y el port según sus necesidades
+
+# Testeo API
+Se haya instalado mediante script o paso a paso, en lo siguientes pasas se puede verificar el correcto funcionamiento de la API
    
 ### Verficar API - /api/v1/articles
 Si esta trabajando con linux puede instalar curl
