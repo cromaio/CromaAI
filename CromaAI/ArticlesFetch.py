@@ -188,8 +188,8 @@ def get_iProfesional_articles(response):
     response (json): response from iProfesional API
     
     Returns: 
-    articles: articles as json
-    total_pages: number of pages 
+    json: articles as json
+    int: number of pages 
     """
     json_response = response.json()
     articles = json_response['data']['news']
@@ -205,8 +205,8 @@ def get_wp_articles(response):
     response (json): response from wp API
     
     Returns: 
-    articles: articles as json
-    total_pages: number of pages 
+    json: articles as json
+    int: number of pages 
     """
     articles = response.json()
     return articles, int(response.headers['X-WP-TotalPages'])

@@ -26,6 +26,23 @@ def eval_func(func, expected, params=[]):
     return json_response
 
 def convert_to_croma_api(_id, title, summary, content, date, link, author=None):
+    """
+    Convert Article
+  
+    Converts an article to CromaAI format to store in mongodb.
+  
+    Parameters: 
+    _id (str): article id
+    title (str): article title. Can be HTML
+    summary (str): article summary. Can be HTML
+    content (str): article content. Can be HTML
+    date (str): 
+    link (str): 
+    author: Article author (optional)
+  
+    Returns: 
+    json: Article in CromaAI db format
+    """
     art_simplified = {}
     art_simplified['id'] = _id
     art_simplified['title'] = {}
@@ -43,12 +60,34 @@ def convert_to_croma_api(_id, title, summary, content, date, link, author=None):
     return art_simplified
 
 def get_redaccion_article(_id):
+    """
+    Gets an article from a publication.
+  
+    This is an example with Redacción, but you can create your own with the corresponding api_url that may not be wordpress
+  
+    Parameters: 
+    _id (str): article id
+  
+    Returns: 
+    json: Article in publications format
+    """
     url = f'https://www.redaccion.com.ar/wp-json/wp/v2/posts?include[]={_id}'
     response = requests.get(url)
     art = response.json()[0]
     return art
 
 def test_add_article_from_wp_post(_id='29897'):
+    """
+    Adds article from any publication to cromaAI mongodb database
+  
+    You can add a publication with the http://localhost:5000/api/v1/add API. This is just an example of a post with an article from Redacción, but you might change the code and try with another publication
+  
+    Parameters: 
+    _id (str): article id
+  
+    Returns: 
+    json: {'status':'OK', 'text': 'Article saved to db'},  {'status':'warning', 'text': 'Article already in db'} if it is already in db or standard HTML errors in case it fails
+    """
     art = get_redaccion_article(_id)
     art_simplified = convert_to_croma_api(
         art['id'], 
