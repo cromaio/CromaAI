@@ -576,5 +576,90 @@ $ python3 train_models.py
 ```
 Recuerde antes revisar el archivo config_train.py
      
- 
-   
+# Adaptación para publicaciones cuyas API no estan en Wordpress
+CromaAI soporta el agregado de articulas a la base de datos con una API: `/api/v1/add`
+Mediante un POST del articulo en el formato espeficado en el codigo inferior se pueden agregar los articulos y luego de la forma realizada en los ejemplos enteriores entreran o re-entrenar.
+
+La siguiente funcion convierte la data de un articulo en el formato necesario para realizar el POST
+```python
+def convert_to_croma_api(_id, title, summary, content, date, link, author=None):
+    """
+    Convert Article
+  
+    Converts an article to CromaAI format to store in mongodb.
+  
+    Parameters: 
+    _id (str): article id
+    title (str): article title. Can be HTML
+    summary (str): article summary. Can be HTML
+    content (str): article content. Can be HTML
+    date (str): 
+    link (str): 
+    author: Article author (optional)
+  
+    Returns: 
+    json: Article in CromaAI db format
+    """
+    art_simplified = {}
+    art_simplified['id'] = _id
+    art_simplified['title'] = {}
+    art_simplified['title']['rendered'] = title
+
+    art_simplified['excerpt'] = {}
+    art_simplified['excerpt']['rendered'] = summary
+
+    art_simplified['content'] = {}
+    art_simplified['content']['rendered'] = content
+
+    art_simplified['date'] = date #"%Y-%m-%dT%H:%M:%S"
+    art_simplified['link'] = link
+    art_simplified['author'] = author
+    return art_simplified
+```
+La siguiente función es un ejemplo de código para obtener datos de una API cualquiera (en este caso es WP pero podría ser cualquiera)
+
+```python
+def get_redaccion_article(_id):
+    """
+    Gets an article from a publication.
+  
+    This is an example with Redacción, but you can create your own with the corresponding api_url that may not be wordpress
+  
+    Parameters: 
+    _id (str): article id
+  
+    Returns: 
+    json: Article in publications format
+    """
+    url = f'https://www.redaccion.com.ar/wp-json/wp/v2/posts?include[]={_id}'
+    response = requests.get(url)
+    art = response.json()[0]
+    return art
+```
+
+En esta función se muestra como debería ser todo el proceso de POST a la API de CromaAI
+```python
+def test_add_article_from_wp_post(_id='29897'):
+    """
+    Adds article from any publication to cromaAI mongodb database
+  
+    You can add a publication with the http://localhost:5000/api/v1/add API. This is just an example of a post with an article from Redacción, but you might change the code and try with another publication
+  
+    Parameters: 
+    _id (str): article id
+  
+    Returns: 
+    json: {'status':'OK', 'text': 'Article saved to db'},  {'status':'warning', 'text': 'Article already in db'} if it is already in db or standard HTML errors in case it fails
+    """
+    art = get_redaccion_article(_id)
+    art_simplified = convert_to_croma_api(
+        art['id'], 
+        art['title']['rendered'],
+        art['excerpt']['rendered'],
+        art['content']['rendered'],
+        art['date'],
+        art['link']
+    )
+    response = requests.post('http://localhost:5000/api/v1/add', json=art_simplified)
+    return response.json()
+```
