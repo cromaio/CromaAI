@@ -1,0 +1,401 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr" class="glue-flexbox spa glue-app-supported inline-video glue-flexbox" locale="root" user-region="north-america" path="/"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8"><style type="text/css">@charset "UTF-8";[ng\:cloak],[ng-cloak],[data-ng-cloak],[x-ng-cloak],.ng-cloak,.x-ng-cloak,.ng-hide:not(.ng-hide-animate){display:none !important;}ng\:form{display:block;}.ng-animate-shim{visibility:hidden;}.ng-anchor{position:absolute;}</style>
+
+
+        <meta name="viewport" content="initial-scale=1, minimum-scale=1, width=device-width">
+
+        <title>Croma Ai - Machine Learning para medios en español</title>
+
+        <meta name="description" content="Croma Ai: inteligencia artificial gratuita y en español para medios de Latino América..">
+<link rel="shortcut icon" type="image/x-icon" href="/files/favicon.ico" />
+
+        <link href="files/main.min.css" rel="stylesheet" >
+<link href="files/api.css" rel="stylesheet" >
+
+
+
+
+  </head>
+
+  <body data-ng-controller="MainCtrl as mainCtrl" style="padding-top: 0px;">
+
+
+
+
+<header class="header fixed-nav__visible" data-about-nav="" data-ng-class="{&#39;header--dark-bg&#39;: navCtrl.navIsDark, &#39;header--custom-color&#39;: navCtrl.navCustomColor, &#39;header--inactive&#39;: navCtrl.navIsFixed}" style="top: 0px; transition: top 0s ease 0s, background-color 400ms ease-in-out 0s;">
+  <div class="header-inner">
+    <h2 class="product-logo">
+      <a href="index.html" target="_self" aria-label="Croma Ai" data-g-category="header" data-g-action="navigation" data-g-label="Logo" data-g-module-type="Main Nav" data-g-href="/">
+        Croma Ai
+
+      </a>
+    </h2>
+
+
+    <nav class="top-nav">
+
+
+      <ul>
+          <li class="_-stories">
+              <a href="index.html" title="Inicio" target="_self" data-g-category="header" data-g-action="navigation" data-g-label="About" data-g-module-type="Main Nav" data-g-href="/">
+                Inicio
+              </a>
+            </li>
+
+            <li class="_-stories">
+                <a href="instalacion.html" title="Inicio" target="_self" data-g-category="header" data-g-action="navigation" data-g-label="About" data-g-module-type="Main Nav" data-g-href="/">
+                  Instalación
+                </a>
+              </li>
+
+            <li class="selected-page _-home">
+                <a href="documentacion.html" title="Inicio" target="_self" data-g-category="header" data-g-action="navigation" data-g-label="About" data-g-module-type="Main Nav" data-g-href="/">
+                  API
+                </a>
+              </li>
+
+      </ul>
+
+    </nav>
+
+  </div>
+</header>
+        <!----><main class="static-content-view" data-ui-view="main">
+  <div class="modular-page modular-page-homepage" data-track-page-load="">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<section>
+
+
+
+          <div class="h-c-page h-c-page__small h-u-text-center">
+
+            <img src="files/132.png" width="350"/>
+
+            <div class="h-c-eyebrow eyebrow-lines eyebrow-lines__long h-u-mb-std">
+              <hr class="left">
+              <span class="eyebrow-text">DOCUMENTACIÓN API</span>
+              <hr class="right">
+            </div>
+
+            <h2 class="h-c-headline h-c-headline--two h-has-top-bottom-margin">
+              Documentación de la API de Croma Ai
+            </h2>
+          </div>
+
+
+          <section class="module-anchor-statement center ">
+          <div class="h-u-mt-l">
+                  <a href="https://github.com/cromaio/CromaAI/tree/master/CromaAI" rel="nofollow noopener" class="h-c-button h-c-button--primary">
+              Acceder al repositorio en GitHub
+            </a>
+
+            <a href="https://documenter.getpostman.com/view/3807023/SzfB1724?version=latest" rel="nofollow noopener" class="h-c-button h-c-button--secondary">
+        Documentación de la API en Postman
+      </a>
+
+
+                </div>
+          </section>
+
+
+
+
+                    <div class="h-c-page h-c-page__medium">
+                        <div class="h-c-grid spacey-grid">
+
+
+
+                        <p class="h-c-copy h-c-copy--two h-has-top-bottom-margin">
+
+
+
+
+
+
+
+
+
+                          <div class="docs-item" id="666f5c1b-e3cb-4f5e-9079-843d2ad01646"><div class="docs-desc"><div class="docs-desc-body"><div class="docs-description"><div class="description-editor-loader-container" style="height: 200px; width: 500px; display: none;"><div class="description-editor-loader"><span class="pm-loader pm-loader-xl pm-loader-secondary"></span><div class="description-editor-loader--text"></div></div></div><div class="editable-rendered-markdown editable-rendered-markdown--non-editable"><div class="docs-desc-body pm-markdown docs-desc-body"><h2 id="introduccion">Introducción</h2>
+                          <p>¡Bienvenidos a la API de Croma AI!</p>
+                          <p>Croma es un servicio que analiza tus noticias utilizando modelos machine learning para recomendar noticias similares. También identifica entidades mencionadas en tus textos como personas, organizaciones, lugares y más. Todo el procedimiento de entrenamiento es independiente de tu CMS y puede ser integrado luego de manera muy simple a través de una API basada en JSON.</p>
+                          <p>Esta API y el entrenamiento de modelos pudieron realizarse gracias a un aporte de Google a través de su iniciativa Google News Initiative. </p>
+                          <h2 id="descripcion-general">Descripción general</h2>
+                          <p>Croma AI fue desarrollado por completo por Croma Inc para facilitar el acceso de los medios de comunicación de habla hispana a herramientas de machine learning en idioma español. Con años de experiencia en este entorno conocemos la limitaciones y la dificultad de implementar este tipo de tecnología en redacciones grandes, medianas y mucho más en las pequeñas. Por eso desarrollamos Croma AI como una manera de allanar la barrera de entrada a los desarrolladores y medios que quieran experimentar con estas herramientas dentro de sus redacciones.El uso de este software es exclusivamente gratuito y de libre uso para todo medio de comunicación de América Latina que quiera incorporar machine learnign de manera sencilla a su operación diaria.</p>
+                          <p>#Beneficios
+                          Estos son los beneficios que puede obtener su medio utilizando esta plataforma:</p>
+                          <ul>
+                          <li>Realizar un entrenamiento de machine learning de todo su archivo histórico sin necesidad de programar una solo línea de código. Todo lo que necesitas está incluido en este paquete.</li>
+                          <li>Incorporar noticias relacionadas en su artículos a través de una simple llamada a una API. Esta relaciones no se dan por simples keywords o categorías, sino que utiliza una comprensión de la totalidad del texto para recomendar noticias similares, por más que no compartan los mismos términos.</li>
+                          <li>Identificar personas, lugares, organizaciones y keywords mencionadas en sus textos. Esto permite la automatización de la generación de tags que pueden ser fácilmente utilizados para potenciar sus esfuerzos de SEO y taggeo de artículos, nuevos e históricos.</li>
+                          <li>Ofrecer un sistema de búsqueda de artículos basado en relevancia real de sus contenidos. Puede ofrecer búsquedas predictivas y relaciones por entidades en la página de resultados.</li>
+                          <li>Cualquier otra tarea que se pueda facilitar teniendo su archivo completo y actualizado indexado y accesible vía API.</li>
+                          </ul>
+                          <h2 id="requisitos">Requisitos</h2>
+                          <p>El software se debe instalar completamente en un servidor privado de su propiedad.</p>
+                          <h2 id="codigos-de-error">Códigos de error</h2>
+                          <p>
+                            400 Bad Request -- Your request is invalid.
+                          <br/>401 Unauthorized -- Your API key is wrong.
+                          <br/>403 Forbidden -- The call requested is hidden for administrators only.
+                          <br/>404 Not Found -- The specified obect could not be found.
+                          <br/>405 Method Not Allowed -- You tried to access a call with an invalid method.
+                          <br/>406 Not Acceptable -- You requested a format that isn't json.
+                          <br/>429 Too Many Requests -- You're requesting too many calls! Slow down!
+                          <br/>500 Internal Server Error -- We had a problem with our server. Try again later.
+                          <br/>503 Service Unavailable -- We're temporarily offline for maintenance. Please try again later.</p>
+                          </div></div></div></div></div>
+
+                          <div class="docs-item" id="507273f0-bf8f-4e2e-8d17-f14e645253db"><div class="docs-desc"><div class="docs-desc-body"><div class="docs-description"><div class="description-editor-loader-container" style="height: 200px; width: 500px; display: none;"><div class="description-editor-loader"><span class="pm-loader pm-loader-xl pm-loader-secondary"></span><div class="description-editor-loader--text"></div></div></div><div class="editable-rendered-markdown editable-rendered-markdown--non-editable"><div class="docs-desc-body pm-markdown docs-desc-body--placeholder"></div></div></div></div></div></div><div class="docs-item" id="c474f67f-4aab-4a10-a1c4-0a57fdde5f6c"><div class="docs-desc"><div class="request-title push--bottom"><span class="pm-h2 request-method pm-method-color-get">GET Get articles</span><h2 class="pm-h2 docs-desc-title docs-desc-title--request"><span class="docs-desc-title--request-name"><div class="pm-inline-editor shortform-editor pm-inline-editor-undefined"><div class="base-editor"></div></div></span></h2><div class="request-auth-comments"></div></div><div class="docs-desc-title__url">{{base_url}}/api/v1/articles?pub=5e1791005a1ba1ac6b2df0f5&amp;google=0&amp;azure=1&amp;aws=1&amp;to=2020-03-30&amp;from=2000-01-02&amp;page=2&amp;count=3</div><div class="docs-desc-body"><div class="docs-description"><div class="description-editor-loader-container" style="height: 200px; width: 500px; display: none;"><div class="description-editor-loader"><span class="pm-loader pm-loader-xl pm-loader-secondary"></span><div class="description-editor-loader--text"></div></div></div><div class="editable-rendered-markdown editable-rendered-markdown--non-editable"><div class="docs-desc-body pm-markdown docs-desc-body"><p>Esta llamada permite obtener los artículo existentes en tu base de datos. </p>
+                          <p>Las variables están subidivididas en los siguientes grupos de pertenencia lógica:</p>
+                          <p>Publicación:</p>
+                          <ul>
+                          <li>Pub: identificador de publicación</li>
+                          </ul>
+                          <p>Obtener según fecha de creación de noticia</p>
+                          <ul>
+                          <li>From: fecha de inicio</li>
+                          <li>To: fecha de fin</li>
+                          </ul>
+                          <p>Cantidades:</p>
+                          <ul>
+                          <li>Count: cantidad de noticias por página</li>
+                          <li>Page: página a obtener</li>
+                          </ul>
+                          <p>Servicios complementarios de análisis</p>
+                          <ul>
+                          <li>Google</li>
+                          <li>Azure</li>
+                          <li>AWS</li>
+                          </ul>
+                          </div></div></div><div class="docs-request-params"><h4 class="pm-h4">Params</h4><table class="pm-table docs-request-table"><tbody><tr class=""><td class="weight--medium">pub</td><td>5e1791005a1ba1ac6b2df0f5<div class="pm-markdown docs-request-table__desc"><p>ID de publicacion</p>
+                          </div></td></tr><tr class=""><td class="weight--medium">google</td><td>0<div class="pm-markdown docs-request-table__desc"></div></td></tr><tr class=""><td class="weight--medium">azure</td><td>1<div class="pm-markdown docs-request-table__desc"></div></td></tr><tr class=""><td class="weight--medium">aws</td><td>1<div class="pm-markdown docs-request-table__desc"></div></td></tr><tr class=""><td class="weight--medium">to</td><td>2020-03-30<div class="pm-markdown docs-request-table__desc"><p>Hasta que fecha</p>
+                          </div></td></tr><tr class=""><td class="weight--medium">from</td><td>2000-01-02<div class="pm-markdown docs-request-table__desc"><p>Desde que fecha</p>
+                          </div></td></tr><tr class=""><td class="weight--medium">page</td><td>2<div class="pm-markdown docs-request-table__desc"><p>Numero de pagina</p>
+                          </div></td></tr><tr class=""><td class="weight--medium">count</td><td>3<div class="pm-markdown docs-request-table__desc"><p>Cantidad de articulos por pagina</p>
+                          </div></td></tr></tbody></table></div></div></div>
+
+
+
+
+</div><div class="docs-item" id="ddae6739-968b-4c68-bd6d-4cb2fc8514b2"><div class="docs-desc"><div class="request-title push--bottom"><span class="pm-h2 request-method pm-method-color-get">GET Get Article</span><h2 class="pm-h2 docs-desc-title docs-desc-title--request"><span class="docs-desc-title--request-name"><div class="pm-inline-editor shortform-editor pm-inline-editor-undefined"><div class="base-editor"></div></div></span></h2><div class="request-auth-comments"><div class="description-editor-loader--text"></div></div></div><div class="editable-rendered-markdown editable-rendered-markdown--non-editable"><div class="docs-desc-body pm-markdown docs-desc-body"><p>Esta llamada permite obtener una noticia específica de la publicación con la que estamos trabajando y se solicita por medio del ID del artículo</p>
+</div></div><div class="docs-request-params"><h4 class="pm-h4">Params</h4><table class="pm-table docs-request-table"><tbody><tr class=""><td class="weight--medium">id</td><td>5e330edfad1149e254ef246c<div class="pm-markdown docs-request-table__desc"><p>ID del artículo</p>
+                          </div></td></tr></tbody></table></div></div></div>
+
+<div class="docs-item" id="3318d94a-f08a-46d9-af1d-77b6a234c379"><div class="docs-desc"><div class="request-title push--bottom"><span class="pm-h2 request-method pm-method-color-get">GET Related Articles</span><h2 class="pm-h2 docs-desc-title docs-desc-title--request"><span class="docs-desc-title--request-name"><div class="pm-inline-editor shortform-editor pm-inline-editor-undefined"><div class="base-editor"></div></div></span></h2><div class="request-auth-comments"></div></div><div class="docs-desc-title__url">{{base_url}}/api/v1/related?id=5e330edfad1149e254ef246c&amp;years=1&amp;months=7&amp;days=2&amp;=</div><div class="docs-desc-body"><div class="docs-description"><div class="description-editor-loader-container" style="height: 200px; width: 500px; display: none;"><div class="description-editor-loader"><span class="pm-loader pm-loader-xl pm-loader-secondary"></span><div class="description-editor-loader--text"></div></div></div><div class="editable-rendered-markdown editable-rendered-markdown--non-editable"><div class="docs-desc-body pm-markdown docs-desc-body"><p>Esta llamada permite obtener los artículos relacionados a la noticia target existentes en tu base de datos. </p>
+                          <ul>
+                          <li>ID: identificador del artículo target</li>
+                          </ul>
+                          <p>Obtener artículos relacionados desde la fecha de creación de la noticia hacia atrás.</p>
+                          <ul>
+                          <li>years: años hacia el pasado</li>
+                          <li>months: meses en el pasado</li>
+                          <li>days: días en el pasado</li>
+                          </ul>
+                          </div></div></div><div class="docs-request-params"><h4 class="pm-h4">Params</h4><table class="pm-table docs-request-table"><tbody><tr class=""><td class="weight--medium">id</td><td>5e330edfad1149e254ef246c<div class="pm-markdown docs-request-table__desc"><p>ID del artículo</p>
+                          </div></td></tr><tr class=""><td class="weight--medium">years</td><td>1<div class="pm-markdown docs-request-table__desc"><p>Años hacia atrás </p>
+                          </div></td></tr><tr class=""><td class="weight--medium">months</td><td>7<div class="pm-markdown docs-request-table__desc"><p>Meses hacia atrás</p>
+                          </div></td></tr><tr class=""><td class="weight--medium">days</td><td>2<div class="pm-markdown docs-request-table__desc"><p>Días hacia atrás</p>
+                          </div></td></tr></tbody></table></div></div></div>
+</div><div class="docs-item" id="376bee34-93dc-47cf-b9d1-6fa1660014dc"><div class="docs-desc"><div class="request-title push--bottom"><span class="pm-h2 request-method pm-method-color-get">GET Get highlighted Article</span><h2 class="pm-h2 docs-desc-title docs-desc-title--request"><span class="docs-desc-title--request-name"><div class="pm-inline-editor shortform-editor pm-inline-editor-undefined"><div class="base-editor"></div></div></span></h2><div class="request-auth-comments"></div></div><div class="docs-desc-title__url">{{base_url}}/api/v1/highlighted_article?id=5e330edfad1149e254ef246c&amp;cloud=spacy</div><div class="docs-desc-body"><div class="docs-description"><div class="description-editor-loader-container" style="height: 200px; width: 500px; display: none;"><div class="description-editor-loader"><span class="pm-loader pm-loader-xl pm-loader-secondary"></span><div class="description-editor-loader--text"></div></div></div><div class="editable-rendered-markdown editable-rendered-markdown--non-editable"><div class="docs-desc-body pm-markdown docs-desc-body"><p>Esta llamada te devolverá el texto completo del artículo con las entidades y keywords resaltados. No se recomienda su uso más que para experimentación.</p>
+                          </div></div></div><div class="docs-request-params"><h4 class="pm-h4">Params</h4><table class="pm-table docs-request-table"><tbody><tr class=""><td class="weight--medium">id</td><td>5e330edfad1149e254ef246c<div class="pm-markdown docs-request-table__desc"><p>ID de artículo</p>
+                          </div></td></tr><tr class=""><td class="weight--medium">cloud</td><td>spacy<div class="pm-markdown docs-request-table__desc"><p>Quien te hace la detección de entidadades {spacy, google, aws}</p>
+                          </div></td></tr></tbody></table></div></div></div>
+
+ </div><div class="docs-item" id="854663df-d52d-4095-91b1-5c43345174e5"><div class="docs-desc"><div class="request-title push--bottom"><span class="pm-h2 request-method pm-method-color-post">POST Get similar words</span><h2 class="pm-h2 docs-desc-title docs-desc-title--request"><span class="docs-desc-title--request-name"><div class="pm-inline-editor shortform-editor pm-inline-editor-undefined"><div class="base-editor"></div></div></span></h2><div class="request-auth-comments"></div></div><div class="docs-desc-title__url">{{base_url}}/api/v1/w2v/similar</div><div class="docs-desc-body"><div class="docs-description"><div class="description-editor-loader-container" style="height: 200px; width: 500px; display: none;"><div class="description-editor-loader"><span class="pm-loader pm-loader-xl pm-loader-secondary"></span><div class="description-editor-loader--text"></div></div></div><div class="editable-rendered-markdown editable-rendered-markdown--non-editable"><div class="docs-desc-body pm-markdown docs-desc-body"><p>A través de esta llamada obtendrás palabras similares a la ingresada en tu input o texto según el entrenamiento realizado con tus propios artículos (w2v similar words).</p>
+                          </div></div></div><div class="docs-request-headers"><h4 class="pm-h4">Headers</h4><table class="pm-table docs-request-table"><tbody><tr class=""><td class="weight--medium">Content-Type</td><td>application/json<div class="pm-markdown docs-request-table__desc"></div></td></tr><tr class="disabled"><td class="weight--medium">Accept</td><td>application/json<div class="pm-markdown docs-request-table__desc"></div></td></tr></tbody></table></div><div class="docs-request-params"><h4 class="pm-h4">Params</h4><table class="pm-table docs-request-table"><tbody></tbody></table></div><div class="docs-request-body"><h4 class="pm-h4 docs-request-body__title">Body</h4><span class="docs-request-body__mode push-half--left">raw (application/json)</span><pre class="docs-request-body__raw"><code>{
+                              "word": "kirchnerismo"
+                          }</code></pre></div></div></div>
+
+</div><div class="docs-item" id="4e85d9a1-6269-44cf-9da0-30dff7380dea"><div class="docs-desc"><div class="request-title push--bottom"><span class="pm-h2 request-method pm-method-color-post">POST Autocomplete</span><h2 class="pm-h2 docs-desc-title docs-desc-title--request"><span class="docs-desc-title--request-name"><div class="pm-inline-editor shortform-editor pm-inline-editor-undefined"><div class="base-editor"></div></div></span></h2><div class="request-auth-comments"></div></div><div class="docs-desc-title__url">{{base_url}}/api/v1/w2v/autocomplete</div><div class="docs-desc-body"><div class="docs-description"><div class="description-editor-loader-container" style="height: 200px; width: 500px; display: none;"><div class="description-editor-loader"><span class="pm-loader pm-loader-xl pm-loader-secondary"></span><div class="description-editor-loader--text"></div></div></div><div class="editable-rendered-markdown editable-rendered-markdown--non-editable"><div class="docs-desc-body pm-markdown docs-desc-body"><p>Esta llamada permite obtener los keywords o entidades existentes en tu base de datos para ser utilizados como texto predictivo dentro de un input o caja de búsqueda. </p>
+                          </div></div></div><div class="docs-request-headers"><h4 class="pm-h4">Headers</h4><table class="pm-table docs-request-table"><tbody><tr class=""><td class="weight--medium">Content-Type</td><td>application/json; charset=UTF-8<div class="pm-markdown docs-request-table__desc"></div></td></tr><tr class="disabled"><td class="weight--medium">Accept</td><td>*/*<div class="pm-markdown docs-request-table__desc"></div></td></tr></tbody></table></div><div class="docs-request-body"><h4 class="pm-h4 docs-request-body__title">Body</h4><span class="docs-request-body__mode push-half--left">raw (application/json; charset=UTF-8)</span><pre class="docs-request-body__raw"><code>"Mau"</code></pre></div></div></div>
+
+</div><div class="docs-item" id="63668718-d9bf-4baf-8db7-2dfe48cdc405"><div class="docs-desc"><div class="request-title push--bottom"><span class="pm-h2 request-method pm-method-color-post">POST Analyse text</span><h2 class="pm-h2 docs-desc-title docs-desc-title--request"><span class="docs-desc-title--request-name"><div class="pm-inline-editor shortform-editor pm-inline-editor-undefined"><div class="base-editor"></div></div></span></h2><div class="request-auth-comments"></div></div><div class="docs-desc-title__url">{{base_url}}/api/v1/analyzer/text</div><div class="docs-desc-body"><div class="docs-description"><div class="description-editor-loader-container" style="height: 200px; width: 500px; display: none;"><div class="description-editor-loader"><span class="pm-loader pm-loader-xl pm-loader-secondary"></span><div class="description-editor-loader--text"></div></div></div><div class="editable-rendered-markdown editable-rendered-markdown--non-editable"><div class="docs-desc-body pm-markdown docs-desc-body--placeholder"></div></div></div><div class="docs-request-headers"><h4 class="pm-h4">Headers</h4><table class="pm-table docs-request-table"><tbody><tr class=""><td class="weight--medium">Content-Type</td><td>application/json<div class="pm-markdown docs-request-table__desc"></div></td></tr></tbody></table></div><div class="docs-request-body"><h4 class="pm-h4 docs-request-body__title">Body</h4><span class="docs-request-body__mode push-half--left">raw (application/json)</span><pre class="docs-request-body__raw"><code>"Cristina Kirchner se reunio con Mauricio Macri en la Casa Rosada"</code></pre></div></div></div>
+
+</div></div><div class="docs-item" id="209e2d6c-fd12-4b71-8642-87825d8584f5"><div class="docs-desc"><div class="request-title push--bottom"><span class="pm-h2 request-method pm-method-color-get">GET Add Article</span><h2 class="pm-h2 docs-desc-title docs-desc-title--request"><span class="docs-desc-title--request-name"><div class="pm-inline-editor shortform-editor pm-inline-editor-undefined"><div class="base-editor"></div></div></span></h2><div class="request-auth-comments"></div></div><div class="docs-desc-title__url">{{base_url}}/api/v1/add?cmsid=1851</div><div class="docs-desc-body"><div class="docs-description"><div class="description-editor-loader-container" style="height: 200px; width: 500px; display: none;"><div class="description-editor-loader"><span class="pm-loader pm-loader-xl pm-loader-secondary"></span><div class="description-editor-loader--text"></div></div></div><div class="editable-rendered-markdown editable-rendered-markdown--non-editable"><div class="docs-desc-body pm-markdown docs-desc-body--placeholder"></div></div></div><div class="docs-request-params"><h4 class="pm-h4">Params</h4><table class="pm-table docs-request-table"><tbody><tr class=""><td class="weight--medium">cmsid</td><td>1851<div class="pm-markdown docs-request-table__desc"></div></td></tr></tbody></table></div></div></div>
+
+</div><div class="docs-item" id="64b53957-6c78-4dde-8ce8-c032955c2c5e"><div class="docs-desc"><div class="request-title push--bottom"><span class="pm-h2 request-method pm-method-color-post">POST Add Article</span><h2 class="pm-h2 docs-desc-title docs-desc-title--request"><span class="docs-desc-title--request-name"><div class="pm-inline-editor shortform-editor pm-inline-editor-undefined"><div class="base-editor"></div></div></span></h2><div class="request-auth-comments"></div></div><div class="docs-desc-title__url">{{base_url}}/api/v1/add</div><div class="docs-desc-body"><div class="docs-description"><div class="description-editor-loader-container" style="height: 200px; width: 500px; display: none;"><div class="description-editor-loader"><span class="pm-loader pm-loader-xl pm-loader-secondary"></span><div class="description-editor-loader--text"></div></div></div><div class="editable-rendered-markdown editable-rendered-markdown--non-editable"><div class="docs-desc-body pm-markdown docs-desc-body--placeholder"></div></div></div><div class="docs-request-headers"><h4 class="pm-h4">Headers</h4><table class="pm-table docs-request-table"><tbody><tr class=""><td class="weight--medium">Content-Type</td><td>application/json<div class="pm-markdown docs-request-table__desc"></div></td></tr></tbody></table></div><div class="docs-request-body"><h4 class="pm-h4 docs-request-body__title">Body</h4><span class="docs-request-body__mode push-half--left">raw (application/json)</span><pre class="docs-request-body__raw"><code>{'id': 29897, 'title': {'rendered': 'Belén Quellet / Editora de Comunidad y Participación'}, 'excerpt': {'rendered': '&lt;p&gt;En la secundaria, año 1983, armamos la primer revista del colegio al que iba. Desde allí y hasta ahora la comunicación atravesó todo lo que hice. Al terminar la carrera de Relaciones Internacionales viví tres años en India y Filipinas donde trabajé como voluntaria con las Misioneras de la Caridad. Desde allí contaba el proyecto [&amp;hellip;]&lt;/p&gt;\n&lt;div class="sharedaddy sd-sharing-enabled"&gt;&lt;div class="robots-nocontent sd-block sd-social sd-social-icon sd-sharing"&gt;&lt;div class="sd-content"&gt;&lt;ul&gt;&lt;li class="share-facebook"&gt;&lt;a rel="nofollow noopener noreferrer" data-shared="sharing-facebook-29897" class="share-facebook sd-button share-icon no-text" href="https://www.redaccion.com.ar/belen-quellet/?share=facebook" target="_blank" title="Haz clic para compartir en Facebook"&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="sharing-screen-reader-text"&gt;Haz clic para compartir en Facebook (Se abre en una ventana nueva)&lt;/span&gt;&lt;/a&gt;&lt;/li&gt;&lt;li class="share-twitter"&gt;&lt;a rel="nofollow noopener noreferrer" data-shared="sharing-twitter-29897" class="share-twitter sd-button share-icon no-text" href="https://www.redaccion.com.ar/belen-quellet/?share=twitter" target="_blank" title="Haz clic para compartir en Twitter"&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="sharing-screen-reader-text"&gt;Haz clic para compartir en Twitter (Se abre en una ventana nueva)&lt;/span&gt;&lt;/a&gt;&lt;/li&gt;&lt;li class="share-jetpack-whatsapp"&gt;&lt;a rel="nofollow noopener noreferrer" data-shared="" class="share-jetpack-whatsapp sd-button share-icon no-text" href="https://www.redaccion.com.ar/belen-quellet/?share=jetpack-whatsapp" target="_blank" title="Haz clic para compartir en WhatsApp"&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="sharing-screen-reader-text"&gt;Haz clic para compartir en WhatsApp (Se abre en una ventana nueva)&lt;/span&gt;&lt;/a&gt;&lt;/li&gt;&lt;li class="share-end"&gt;&lt;/li&gt;&lt;/ul&gt;&lt;/div&gt;&lt;/div&gt;&lt;/div&gt;'}, 'content': {'rendered': '\n&lt;p&gt;En la secundaria, año 1983, armamos la primer revista del colegio al que iba. Desde allí y hasta ahora la comunicación atravesó todo lo que hice. Al terminar la carrera de Relaciones Internacionales viví tres años en India y Filipinas donde trabajé como voluntaria con las Misioneras de la Caridad. Desde allí contaba el proyecto de la escuela para chicos en situación de calle a un grupo que desde España lo hacía posible. A mi regreso a la Argentina me sumé a Red Solidaria como voluntaria.&lt;/p&gt;\n\n\n\n&lt;p&gt;Trabajé en la Fundación del Diario La Nación, la Embajada de EEUU en Argentina en el Área de Prensa y en la organización HelpArgentina ya como Directora Ejecutiva.&amp;nbsp;&lt;/p&gt;\n\n\n\n&lt;p&gt;Formar parte de un proyecto periodístico que cree que desde aquí también se puede cambiar el mundo es sumamente esperanzador.&lt;/p&gt;\n&lt;div class="sharedaddy sd-sharing-enabled"&gt;&lt;div class="robots-nocontent sd-block sd-social sd-social-icon sd-sharing"&gt;&lt;div class="sd-content"&gt;&lt;ul&gt;&lt;li class="share-facebook"&gt;&lt;a rel="nofollow noopener noreferrer" data-shared="sharing-facebook-29897" class="share-facebook sd-button share-icon no-text" href="https://www.redaccion.com.ar/belen-quellet/?share=facebook" target="_blank" title="Haz clic para compartir en Facebook"&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="sharing-screen-reader-text"&gt;Haz clic para compartir en Facebook (Se abre en una ventana nueva)&lt;/span&gt;&lt;/a&gt;&lt;/li&gt;&lt;li class="share-twitter"&gt;&lt;a rel="nofollow noopener noreferrer" data-shared="sharing-twitter-29897" class="share-twitter sd-button share-icon no-text" href="https://www.redaccion.com.ar/belen-quellet/?share=twitter" target="_blank" title="Haz clic para compartir en Twitter"&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="sharing-screen-reader-text"&gt;Haz clic para compartir en Twitter (Se abre en una ventana nueva)&lt;/span&gt;&lt;/a&gt;&lt;/li&gt;&lt;li class="share-jetpack-whatsapp"&gt;&lt;a rel="nofollow noopener noreferrer" data-shared="" class="share-jetpack-whatsapp sd-button share-icon no-text" href="https://www.redaccion.com.ar/belen-quellet/?share=jetpack-whatsapp" target="_blank" title="Haz clic para compartir en WhatsApp"&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="sharing-screen-reader-text"&gt;Haz clic para compartir en WhatsApp (Se abre en una ventana nueva)&lt;/span&gt;&lt;/a&gt;&lt;/li&gt;&lt;li class="share-end"&gt;&lt;/li&gt;&lt;/ul&gt;&lt;/div&gt;&lt;/div&gt;&lt;/div&gt;'}, 'date': '2018-04-10T14:43:57', 'link': 'https://www.redaccion.com.ar/belen-quellet/'}
+                          </code></pre></div></div></div>
+
+
+</div><div class="docs-item" id="9ed4ba27-00cc-4eda-8a18-7821ef3ab03a"><div class="docs-desc"><div class="folder-title"><h2 class="pm-h2 docs-desc-title docs-desc-title--folder"><div class="pm-inline-editor shortform-editor pm-inline-editor-undefined"><div class="base-editor"><div class="blockview"><textarea readonly="" class="editor-blockview" rows="1">HTML test app</textarea></div></div></div></h2></div><div class="docs-desc-body"><div class="docs-description"><div class="description-editor-loader-container" style="height: 200px; width: 500px; display: none;"><div class="description-editor-loader"><span class="pm-loader pm-loader-xl pm-loader-secondary"></span><div class="description-editor-loader--text"></div></div></div><div class="editable-rendered-markdown editable-rendered-markdown--non-editable"><div class="docs-desc-body pm-markdown docs-desc-body"><p>El siguiente apartado contiene la aplicación creada en Flask para previsualizar los resultados obtenidos tras el entrenamiento de los diversos modelos de machine learning en tu servidor. Devolverá resultados de tus artículos, entidades y keywords y permitirá visualizar las relaciones entre ellos.</p>
+                          <p>No es necesaria su instalación para poder operar la API e integrarla a tu CMS pero puede servir de ayuda par comprender la manera de hacerlo.</p>
+                          </div></div></div></div></div></div><div class="docs-item" id="bd3f8896-a5f2-46b2-9f42-db8a7ab71215"><div class="docs-desc"><div class="request-title push--bottom"><span class="pm-h2 request-method pm-method-color-get">GET Get articles</span><h2 class="pm-h2 docs-desc-title docs-desc-title--request"><span class="docs-desc-title--request-name"><div class="pm-inline-editor shortform-editor pm-inline-editor-undefined"><div class="base-editor"></div></div></span></h2><div class="request-auth-comments"></div></div><div class="docs-desc-title__url">{{base_url}}/articles?pub=5e1791005a1ba1ac6b2df0f5&amp;google=1&amp;azure=1&amp;aws=1&amp;to=2020-03-30&amp;from=2000-01-02&amp;page=2&amp;count=3</div><div class="docs-desc-body"><div class="docs-description"><div class="description-editor-loader-container" style="height: 200px; width: 500px; display: none;"><div class="description-editor-loader"><span class="pm-loader pm-loader-xl pm-loader-secondary"></span><div class="description-editor-loader--text"></div></div></div><div class="editable-rendered-markdown editable-rendered-markdown--non-editable"><div class="docs-desc-body pm-markdown docs-desc-body"><p>Esta página permite obtener los artículo existentes en tu base de datos. </p>
+                          <p>Las variables están subidividas en los siguientes grupos de pertenencia lógica:</p>
+                          <p>Publicación:</p>
+                          <ul>
+                          <li>Pub: identificador de publicación</li>
+                          </ul>
+                          <p>Obtener según fecha de creación de noticia</p>
+                          <ul>
+                          <li>From: fecha de inicio</li>
+                          <li>To: fecha de fin</li>
+                          </ul>
+                          <p>Cantidades:</p>
+                          <ul>
+                          <li>Count: cantidad de noticias por página</li>
+                          <li>Page: página a obtener</li>
+                          </ul>
+                          <p>Servcios complementarios de análsis</p>
+                          <ul>
+                          <li>Google</li>
+                          <li>Azure</li>
+                          <li>AWS</li>
+                          </ul>
+                          </div></div></div><div class="docs-request-params"><h4 class="pm-h4">Params</h4><table class="pm-table docs-request-table"><tbody><tr class=""><td class="weight--medium">pub</td><td>5e1791005a1ba1ac6b2df0f5<div class="pm-markdown docs-request-table__desc"></div></td></tr><tr class=""><td class="weight--medium">google</td><td>1<div class="pm-markdown docs-request-table__desc"></div></td></tr><tr class=""><td class="weight--medium">azure</td><td>1<div class="pm-markdown docs-request-table__desc"></div></td></tr><tr class=""><td class="weight--medium">aws</td><td>1<div class="pm-markdown docs-request-table__desc"></div></td></tr><tr class=""><td class="weight--medium">to</td><td>2020-03-30<div class="pm-markdown docs-request-table__desc"></div></td></tr><tr class=""><td class="weight--medium">from</td><td>2000-01-02<div class="pm-markdown docs-request-table__desc"></div></td></tr><tr class=""><td class="weight--medium">page</td><td>2<div class="pm-markdown docs-request-table__desc"></div></td></tr><tr class=""><td class="weight--medium">count</td><td>3<div class="pm-markdown docs-request-table__desc"></div></td></tr></tbody></table></div></div></div>
+
+
+</div><div class="docs-item" id="2cb4f58a-69d9-4e87-b9f8-62ab0ac03751"><div class="docs-desc"><div class="request-title push--bottom"><span class="pm-h2 request-method pm-method-color-post">POST Get similar words</span><h2 class="pm-h2 docs-desc-title docs-desc-title--request"><span class="docs-desc-title--request-name"><div class="pm-inline-editor shortform-editor pm-inline-editor-undefined"><div class="base-editor"></div></div></span></h2><div class="request-auth-comments"></div></div><div class="docs-desc-title__url">{{base_url}}/w2v/similar</div><div class="docs-desc-body"><div class="docs-description"><div class="description-editor-loader-container" style="height: 200px; width: 500px; display: none;"><div class="description-editor-loader"><span class="pm-loader pm-loader-xl pm-loader-secondary"></span><div class="description-editor-loader--text"></div></div></div><div class="editable-rendered-markdown editable-rendered-markdown--non-editable"><div class="docs-desc-body pm-markdown docs-desc-body"><p>A través de esta página obtendrás palabras similares a la ingresada en tu input o texto según el entrenamiento realizado con tus propios artículos (w2v similar words).</p>
+                          </div></div></div><div class="docs-request-headers"><h4 class="pm-h4">Headers</h4><table class="pm-table docs-request-table"><tbody><tr class=""><td class="weight--medium">Content-Type</td><td>application/json<div class="pm-markdown docs-request-table__desc"></div></td></tr><tr class="disabled"><td class="weight--medium">Accept</td><td>application/json<div class="pm-markdown docs-request-table__desc"></div></td></tr></tbody></table></div><div class="docs-request-params"><h4 class="pm-h4">Params</h4><table class="pm-table docs-request-table"><tbody></tbody></table></div><div class="docs-request-body"><h4 class="pm-h4 docs-request-body__title">Body</h4><span class="docs-request-body__mode push-half--left">raw (application/json)</span><pre class="docs-request-body__raw"><code>{
+                          	"word": "Alberto Fernández"
+                          }</code></pre></div></div></div>
+
+
+</div><div class="docs-item" id="52751431-c4f8-48df-ad99-a648985b1dd9"><div class="docs-desc"><div class="request-title push--bottom"><span class="pm-h2 request-method pm-method-color-get">GET Get highlighted Article</span><h2 class="pm-h2 docs-desc-title docs-desc-title--request"><span class="docs-desc-title--request-name"><div class="pm-inline-editor shortform-editor pm-inline-editor-undefined"><div class="base-editor"></div></div></span></h2><div class="request-auth-comments"></div></div><div class="docs-desc-title__url">{{base_url}}/highlighted_article?id=5e330edfad1149e254ef246c&amp;cloud=spacy</div><div class="docs-desc-body"><div class="docs-description"><div class="description-editor-loader-container" style="height: 200px; width: 500px; display: none;"><div class="description-editor-loader"><span class="pm-loader pm-loader-xl pm-loader-secondary"></span><div class="description-editor-loader--text"></div></div></div><div class="editable-rendered-markdown editable-rendered-markdown--non-editable"><div class="docs-desc-body pm-markdown docs-desc-body"><p>Esta página te devolverá el texto completo del artículo seleccionado con las entidades y keywords resaltados. </p>
+                          </div></div></div><div class="docs-request-params"><h4 class="pm-h4">Params</h4><table class="pm-table docs-request-table"><tbody><tr class=""><td class="weight--medium">id</td><td>5e330edfad1149e254ef246c<div class="pm-markdown docs-request-table__desc"></div></td></tr><tr class=""><td class="weight--medium">cloud</td><td>spacy<div class="pm-markdown docs-request-table__desc"></div></td></tr></tbody></table></div></div></div>
+
+
+
+                    </div><div class="docs-item" id="737b3304-699a-4b5a-a71d-8d8ce0272b70"><div class="docs-desc"><div class="request-title push--bottom"><span class="pm-h2 request-method pm-method-color-get">GET Get Related Articles</span><h2 class="pm-h2 docs-desc-title docs-desc-title--request"><span class="docs-desc-title--request-name"><div class="pm-inline-editor shortform-editor pm-inline-editor-undefined"><div class="base-editor"></div></div></span></h2><div class="request-auth-comments"></div></div><div class="docs-desc-title__url">{{base_url}}/related?id=5e330edfad1149e254ef246c&amp;years=1&amp;radius=0.89</div><div class="docs-desc-body"><div class="docs-description"><div class="description-editor-loader-container" style="height: 200px; width: 500px; display: none;"><div class="description-editor-loader"><span class="pm-loader pm-loader-xl pm-loader-secondary"></span><div class="description-editor-loader--text"></div></div></div><div class="editable-rendered-markdown editable-rendered-markdown--non-editable"><div class="docs-desc-body pm-markdown docs-desc-body"><p>Esta página permite obtener los artículos relacionados a la noticia target existentes en tu base de datos. </p>
+                          <ul>
+                          <li>ID: identificador del artículo target</li>
+                          </ul>
+                          <p>Obtener artículos relacionados desde la fecha de creación de la noticia hacia atrás.</p>
+                          <ul>
+                          <li>years: años hacia el pasado</li>
+                          <li>months: meses en el pasado</li>
+                          <li>days: días en el pasado</li>
+                          </ul>
+                          </div></div></div><div class="docs-request-params"><h4 class="pm-h4">Params</h4><table class="pm-table docs-request-table"><tbody><tr class=""><td class="weight--medium">id</td><td>5e330edfad1149e254ef246c<div class="pm-markdown docs-request-table__desc"></div></td></tr><tr class=""><td class="weight--medium">years</td><td>1<div class="pm-markdown docs-request-table__desc"></div></td></tr><tr class=""><td class="weight--medium">radius</td><td>0.89<div class="pm-markdown docs-request-table__desc"></div></td></tr></tbody></table></div></div></div>
+
+ </div></div></div></div></main><div class="pm-toast-container"><div></div></div></div>
+
+
+
+
+
+
+                 </p>
+
+
+
+
+
+
+              </div>
+            </div>
+
+    </section>
+
+
+
+    <section class="module-anchor-statement center ">
+    <div class="h-u-mt-l">
+            <a href="https://github.com/cromaio/CromaAI/tree/master/CromaAI" rel="nofollow noopener" class="h-c-button h-c-button--primary">
+        Acceder al repositorio en GitHub
+      </a>
+
+
+          </div>
+    </section>
+
+
+
+<section class="module-spacer">
+<div class="module-spacer--extra-small module-spacer--color-white"></div>
+</section>
+
+
+<section>
+      <div class="h-c-page h-c-page__small h-u-text-center">
+        <img src="files/croma.png" width="200"/>
+        <div class="h-c-eyebrow eyebrow-lines eyebrow-lines__long h-u-mb-std">
+          <hr class="left">
+          <span class="eyebrow-text">ACERCA DE Croma Inc</span>
+          <hr class="right">
+      </div>
+
+      <div class="h-c-page h-c-page__medium">
+          <div class="h-c-grid spacey-grid">
+          <p class="h-c-copy h-c-copy--two h-has-top-bottom-margin" style="font-size: 1.2em; text-align: center;">          Croma is una empresa dedicada a la creación de soluciones de machine learning para medios de todo el mundo. Desde 2017 trabajamos con clientes como The Wall Street Journal, BBC News, Le Monde, Huffington Post, The Washington Post y La Nación entre otros ofreciéndoles soluciones para identificar patrones, tendencias y repercusiones de sus noticias diarias en diferentes plataformas. Hoy Croma Inc esta 100% dedicada al desarrollo y soporte de aplicaciones de machine learning. Si desea contactarnos puede enviar un correo a hello@croma.io</p>
+
+   </div>
+   </div>
+</section>
+
+<section>
+      <div class="h-c-page h-c-page__small h-u-text-center">
+        <img src="files/gni.png" />
+        <div class="h-c-eyebrow eyebrow-lines eyebrow-lines__long h-u-mb-std">
+          <hr class="left">
+          <span class="eyebrow-text">ACERCA DE GOOGLE NEWS INITIATIVE</span>
+          <hr class="right">
+      </div>
+
+      <div class="h-c-page h-c-page__medium">
+          <div class="h-c-grid spacey-grid">
+          <p class="h-c-copy h-c-copy--two h-has-top-bottom-margin" style="font-size: 1.2em; text-align: center;">
+            Google News Initiative es una iniciativa de colaboración con el sector del periodismo para que prospere en la era digital. Iniciado por Google, es un esfuerzo de trabajo en conjunto con la industria para construir un futuro más sólido para el periodismo. Desde su creación, Google ha tenido la oportunidad de trabajar con más de 350 organizaciones de noticias en 70 países para comprender y enfrentar mejor los desafíos más críticos que enfrentan las organizaciones de noticias en todo el mundo. <a href="https://newsinitiative.withgoogle.com/intl/es/" target="_blank">Aquí puede conocer más acerca de la GNI</a>.</p>
+
+   </div>
+   </div>
+</section>
+
+
+
+    </main>
+
+<div class="cap" data-about-footer="" data-ng-class="{&#39;footer--hidden&#39;: footerCtrl.footerHidden}">
+<a href="#" class="scroll-to-top" data-scroll="" data-track-event="" data-track-event-category="about us" data-track-event-action="back-to-top" data-track-event-label="/index.html">
+  Ir al inicio   <svg alt="" class="scroll-to-top-icon" xmlns="http://www.w3.org/2000/svg" width="16px" height="16px" viewBox="0 0 20 20">
+<g stroke="none" stroke-width="1" fill="inherit">
+  <circle fill="inherit" cx="9" cy="9" r="9"></circle>
+  <polygon fill="#fff" points="3 9 4.0575 10.0575 8.25 5.8725 8.25 15 9.75 15 9.75 5.8725 13.935 10.065 15 9 9 3"></polygon>
+</g>
+</svg>
+
+</a>
+</div>
+
+<footer class="footer" data-about-footer="" data-ng-class="{&#39;footer--hidden&#39;: footerCtrl.footerHidden}">
+<div class="main">
+<div class="main-inner">
+
+
+  <section class="foot">
+    <h2 class="product-logo">
+       Croma Ai
+    </h2>
+    <ul class="bottom-links">
+
+
+
+<li>
+<a>Copyright Croma Inc 2020</a>
+</li>
+
+
+
+    </ul>
+  </section>
+</div>
+</div>
+</footer>
+  <!----><div data-ui-view="modal" class="modal"></div>
+
+  <!---->
+
+
+</body></html>

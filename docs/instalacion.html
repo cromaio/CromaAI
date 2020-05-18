@@ -1,0 +1,692 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr" class="glue-flexbox spa glue-app-supported inline-video glue-flexbox" locale="root" user-region="north-america" path="/"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8"><style type="text/css">@charset "UTF-8";[ng\:cloak],[ng-cloak],[data-ng-cloak],[x-ng-cloak],.ng-cloak,.x-ng-cloak,.ng-hide:not(.ng-hide-animate){display:none !important;}ng\:form{display:block;}.ng-animate-shim{visibility:hidden;}.ng-anchor{position:absolute;}</style>
+
+
+        <meta name="viewport" content="initial-scale=1, minimum-scale=1, width=device-width">
+
+        <title>Croma Ai - Machine Learning para medios en español</title>
+
+        <meta name="description" content="Croma Ai: inteligencia artificial gratuita y en español para medios de Latino América..">
+<link rel="shortcut icon" type="image/x-icon" href="/files/favicon.ico" />
+
+        <link href="files/main.min.css" rel="stylesheet" >
+<link href="files/api.css" rel="stylesheet" >
+
+
+<style>
+
+.codigo h2 {
+  font-size: 24px;
+  font-weight: 800;
+  margin: 2em 0 6px 0;
+  padding: 0;
+  border: 0;
+}
+
+pre, .highlight  {
+  width: 100%;
+    display: block;
+    margin-block-start: 1em;
+    margin-block-end: 1em;
+    margin-inline-start: 0px;
+    margin-inline-end: 0px;
+}
+
+ul {
+  list-style: disc;
+}
+</style>
+  </head>
+
+  <body data-ng-controller="MainCtrl as mainCtrl" style="padding-top: 0px;">
+
+
+
+
+<header class="header fixed-nav__visible" data-about-nav="" data-ng-class="{&#39;header--dark-bg&#39;: navCtrl.navIsDark, &#39;header--custom-color&#39;: navCtrl.navCustomColor, &#39;header--inactive&#39;: navCtrl.navIsFixed}" style="top: 0px; transition: top 0s ease 0s, background-color 400ms ease-in-out 0s;">
+  <div class="header-inner">
+    <h2 class="product-logo">
+      <a href="index.html" target="_self" aria-label="Croma Ai" data-g-category="header" data-g-action="navigation" data-g-label="Logo" data-g-module-type="Main Nav" data-g-href="/">
+        Croma Ai
+
+      </a>
+    </h2>
+
+
+    <nav class="top-nav">
+
+
+      <ul>
+          <li class="_-stories">
+              <a href="index.html" title="Inicio" target="_self" data-g-category="header" data-g-action="navigation" data-g-label="About" data-g-module-type="Main Nav" data-g-href="/">
+                Inicio
+              </a>
+            </li>
+            <li class="selected-page _-home">
+                <a href="instalacion.html" title="Inicio" target="_self" data-g-category="header" data-g-action="navigation" data-g-label="About" data-g-module-type="Main Nav" data-g-href="/">
+                  Instalación
+                </a>
+              </li>
+
+            <li class="_-stories">
+                <a href="documentacion.html" title="Inicio" target="_self" data-g-category="header" data-g-action="navigation" data-g-label="About" data-g-module-type="Main Nav" data-g-href="/">
+                  API
+                </a>
+              </li>
+
+
+      </ul>
+
+    </nav>
+
+  </div>
+</header>
+        <!----><main class="static-content-view" data-ui-view="main">
+  <div class="modular-page modular-page-homepage" data-track-page-load="">
+
+
+
+
+<section>
+
+
+
+          <div class="h-c-page h-c-page__small h-u-text-center">
+
+
+
+            <img src="files/142.png" width="300"/>
+
+            <div class="h-c-eyebrow eyebrow-lines eyebrow-lines__long h-u-mb-std">
+              <hr class="left">
+              <span class="eyebrow-text">INSTALACIÓN</span>
+              <hr class="right">
+            </div>
+            <h2 class="h-c-headline h-c-headline--two h-has-top-bottom-margin">
+              Instalación y configuración de Croma Ai
+            </h2>
+          </div>
+
+
+          <section class="module-anchor-statement center ">
+          <div class="h-u-mt-l">
+                  <a href="https://github.com/cromaio/CromaAI/tree/master/CromaAI" rel="nofollow noopener" class="h-c-button h-c-button--primary">
+              Acceder al repositorio en GitHub
+            </a>
+
+
+
+                        <a href="https://croma.ai/models/models_demo.zip" rel="nofollow noopener" class="h-c-button h-c-button--secondary">
+                    Descargar modelos de ejemplo
+                  </a>
+
+
+
+
+                      </div>
+          </section>
+
+          <section class="module-anchor-statement center ">
+
+          </section>
+
+
+
+
+                    <div class="h-c-page h-c-page__medium">
+                        <div class="codigo">
+
+
+
+
+
+
+                          <h2>Introducción</h2>
+                          <p>Croma Ai es un servicio que analiza tus noticias utilizando modelos machine learning para recomendar noticias similares. También identifica entidades mencionadas en tus textos como personas, organizaciones, lugares y más. Todo el procedimiento de entrenamiento es independiente de tu CMS y puede ser integrado luego de manera muy simple a través de una API basada en JSON.</p>
+                          <p>Este software, su API y el entrenamiento de modelos pudieron realizarse gracias a un aporte de Google a través de su iniciativa Google News Initiative y el equipo de Croma Inc.</p>
+                          <h2>Descripción general</h2>
+                          <p>Croma AI fue desarrollado por completo por Croma Inc para facilitar el acceso de los medios de comunicación de habla hispana a herramientas de machine learning en idioma español. Con años de experiencia en este entorno conocemos la limitaciones y la dificultad de implementar este tipo de tecnología en redacciones grandes, medianas y mucho más en las pequeñas. Por eso desarrollamos Croma AI como una manera de allanar la barrera de entrada a los desarrolladores y medios que quieran experimentar con estas herramientas dentro de sus redacciones.El uso de este software es exclusivamente gratuito y de libre uso para todo medio de comunicación de América Latina que quiera incorporar machine learnign de manera sencilla a su operación diaria.</p>
+                          <h2>Beneficios</h2>
+                          <p>Estos son los beneficios que puede obtener su medio utilizando esta plataforma:</p>
+                          <ul>
+                          <li>Realizar un entrenamiento de machine learning de todo su archivo histórico sin necesidad de programar una sola línea de código. Todo lo que necesitas está incluido en este paquete.</li>
+                          <li>Incorporar noticias relacionadas en su artículos a través de una simple llamada a una API. Esta relaciones no se dan por simples keywords o categorías, sino que utiliza una comprensión de la totalidad del texto para recomendar noticias similares, por más que no compartan los mismos términos.</li>
+                          <li>Identificar personas, lugares, organizaciones y keywords mencionadas en sus textos. Esto permite la automatización de la generación de tags que pueden ser fácilmente utilizados para potenciar sus esfuerzos de SEO y taggeo de artículos, nuevos e históricos.</li>
+                          <li>Ofrecer un sistema de búsqueda de artículos basado en relevancia real de sus contenidos. Puede ofrecer búsquedas predictivas y relaciones por entidades en la página de resultados.</li>
+                          <li>Cualquier otra tarea que se pueda facilitar teniendo su archivo completo y actualizado indexado y accesible vía API.</li>
+                          </ul>
+                          <h2>Requisitos</h2>
+                          <p>El software se debe instalar completamente en un servidor privado de su propiedad.</p>
+                          <h2>Indicaciones para el proceso de instalación</h2>
+                          <h2>Instalación Anaconda</h2>
+                          <p>CromaAI utiliza conda como método de instalación por lo que sugerimos utilizar Anaconda para su instalación
+                          <a href="https://anaconda.org/" rel="nofollow">https://anaconda.org/</a>
+                          Bajarlo de la página e instalarlo siguiendo las instrucciones dependiendo de su sistema operativo</p>
+                          <p>Instalar CromaAI</p>
+                          <pre><code>$ git clone git@github.com:cromaio/CromaAI.git
+                          $ cd CromaAI
+                          </code></pre>
+                          <h2>Creación de entorno</h2>
+                          <p>Ejecutar los siguientes comandos:</p>
+                          <div class="highlight highlight-source-shell"><pre>$ conda env create -f environment.yml </pre></div>
+                          <p>La salida será algo asi:</p>
+                          <div class="highlight highlight-source-shell"><pre>Collecting package metadata (repodata.json): <span class="pl-k">done</span>
+                          Solving environment: <span class="pl-k">done</span>
+
+                          Downloading and Extracting Packages
+                          wrapt-1.10.11        <span class="pl-k">|</span> 41 KB     <span class="pl-k">|</span> <span class="pl-c"><span class="pl-c">#</span>##################################################################### | 100% </span>
+                          msgpack-python-0.6.1 <span class="pl-k">|</span> 86 KB     <span class="pl-k">|</span> <span class="pl-c"><span class="pl-c">#</span>##################################################################### | 100% </span>
+                          sqlite-3.31.1        <span class="pl-k">|</span> 2.4 MB    <span class="pl-k">|</span> <span class="pl-c"><span class="pl-c">#</span>##################################################################### | 100% </span>
+                          libffi-3.2.1         <span class="pl-k">|</span> 43 KB     <span class="pl-k">|</span> <span class="pl-c"><span class="pl-c">#</span>##################################################################### | 100% </span>
+                          murmurhash-1.0.2     <span class="pl-k">|</span> 24 KB     <span class="pl-k">|</span> <span class="pl-c"><span class="pl-c">#</span>##################################################################### | 100% </span>
+                          cymem-2.0.2          <span class="pl-k">|</span> 30 KB     <span class="pl-k">|</span> <span class="pl-c"><span class="pl-c">#</span>##################################################################### | 100% </span>
+                          preshed-2.0.1        <span class="pl-k">|</span> 63 KB     <span class="pl-k">|</span> <span class="pl-c"><span class="pl-c">#</span>##################################################################### | 100% </span>
+                          regex-2020.4.4       <span class="pl-k">|</span> 357 KB    <span class="pl-k">|</span> <span class="pl-c"><span class="pl-c">#</span>##################################################################### | 100% </span>
+                          msgpack-numpy-0.4.3. <span class="pl-k">|</span> 14 KB     <span class="pl-k">|</span> <span class="pl-c"><span class="pl-c">#</span>##################################################################### | 100% </span>
+                          spacy-2.0.16         <span class="pl-k">|</span> 47.3 MB   <span class="pl-k">|</span> <span class="pl-c"><span class="pl-c">#</span>##################################################################### | 100% </span>
+                          thinc-6.12.1         <span class="pl-k">|</span> 1.3 MB    <span class="pl-k">|</span> <span class="pl-c"><span class="pl-c">#</span>##################################################################### | 100% </span>
+                          openssl-1.1.1g       <span class="pl-k">|</span> 3.4 MB    <span class="pl-k">|</span> <span class="pl-c"><span class="pl-c">#</span>##################################################################### | 100% </span>
+                          Preparing transaction: <span class="pl-k">done</span>
+                          Verifying transaction: <span class="pl-k">done</span>
+                          Executing transaction: <span class="pl-k">done</span>
+
+                          <span class="pl-c"><span class="pl-c">#</span></span>
+                          <span class="pl-c"><span class="pl-c">#</span> To activate this environment, use</span>
+                          <span class="pl-c"><span class="pl-c">#</span></span>
+                          <span class="pl-c"><span class="pl-c">#</span>     $ conda activate cromaAI</span>
+                          <span class="pl-c"><span class="pl-c">#</span></span>
+                          <span class="pl-c"><span class="pl-c">#</span> To deactivate an active environment, use</span>
+                          <span class="pl-c"><span class="pl-c">#</span></span>
+                          <span class="pl-c"><span class="pl-c">#</span>     $ conda deactivate</span>
+                          </pre></div>
+                          <p>Luego de la instalación acceder al entorno:</p>
+                          <div class="highlight highlight-source-shell"><pre>$ conda activate cromaAI</pre></div>
+                          <p>Por defecto crea el entorno cromaAI. Si quiere modificarlo puede hacerlo editando el archivo environment.yml situado en la raiz y volviendo a correr el primer comando
+                          Si quiere instalar faiss con GPU debe modificar la linea de config del yml <code>pytorch::faiss-cpu</code> por <code>pytorch::faiss-gpu</code></p>
+                          <h2>Archivo de configuración para la base de datos</h2>
+                          <p>CromaAI utiliza mongodb como base de datos. Abriendo <code>CromaAI/config.py</code> puede editar la configuración</p>
+                          <div class="highlight highlight-source-js"><pre>database <span class="pl-k">=</span> {
+                             <span class="pl-s"><span class="pl-pds">'</span>db_name<span class="pl-pds">'</span></span><span class="pl-k">:</span> <span class="pl-s"><span class="pl-pds">'</span>cromaAIdb<span class="pl-pds">'</span></span>,
+                             <span class="pl-s"><span class="pl-pds">'</span>host<span class="pl-pds">'</span></span><span class="pl-k">:</span> <span class="pl-s"><span class="pl-pds">'</span>localhost<span class="pl-pds">'</span></span>,
+                             <span class="pl-s"><span class="pl-pds">'</span>port<span class="pl-pds">'</span></span><span class="pl-k">:</span> <span class="pl-c1">27018</span>
+                             }</pre></div>
+                          <h2>Correr mongo</h2>
+                          <p>Seleccione el puerto y el path que se ajuste a sus necesidades Ejecutar:</p>
+                          <div class="highlight highlight-source-shell"><pre>$ mkdir data
+                          $ <span class="pl-c1">cd</span> data
+                          $ mkdir db
+                          $ <span class="pl-c1">cd</span> ..
+                          $ mongod --port 27018 --dbpath ./data/db/</pre></div>
+                          <p>El primer parámetro (port) debe coincidir con el del archivo config
+                          El segundo parámetro es la carpeta donde se guardan los datos de la base de datos</p>
+                          <div class="highlight highlight-source-shell"><pre>La salida:
+                          2020-04-22T23:21:44.332-0300 I  CONTROL  [main] Automatically disabling TLS 1.0, to force-enable TLS 1.0 specify --sslDisabledProtocols <span class="pl-s"><span class="pl-pds">'</span>none<span class="pl-pds">'</span></span>
+                          2020-04-22T23:21:44.340-0300 I  CONTROL  [initandlisten] MongoDB starting <span class="pl-c1">:</span> pid=53305 port=27018 dbpath=./data/db/ 64-bit host=Julians-MacBook-Pro-2.local
+                          2020-04-22T23:21:44.340-0300 I  CONTROL  [initandlisten] db version v4.2.2
+                          2020-04-22T23:21:44.340-0300 I  CONTROL  [initandlisten] git version: a0bbbff6ada159e19298d37946ac8dc4b497eadf
+                          2020-04-22T23:21:44.340-0300 I  CONTROL  [initandlisten] allocator: system
+                          2020-04-22T23:21:44.340-0300 I  CONTROL  [initandlisten] modules: none
+                          2020-04-22T23:21:44.340-0300 I  CONTROL  [initandlisten] build environment:
+                          2020-04-22T23:21:44.340-0300 I  CONTROL  [initandlisten]     distarch: x86_64
+                          2020-04-22T23:21:44.340-0300 I  CONTROL  [initandlisten]     target_arch: x86_64
+                          2020-04-22T23:21:44.341-0300 I  CONTROL  [initandlisten] options: { net: { port: 27018 }, storage: { dbPath: <span class="pl-s"><span class="pl-pds">"</span>./data/db/<span class="pl-pds">"</span></span> } }
+                          2020-04-22T23:21:44.343-0300 I  STORAGE  [initandlisten] wiredtiger_open config: create,cache_size=3584M,cache_overflow=(file_max=0M),session_max=33000,eviction=(threads_min=4,threads_max=4),config_base=false,statistics=(fast),log=(enabled=true,archive=true,path=journal,compressor=snappy),file_manager=(close_idle_time=100000,close_scan_interval=10,close_handle_minimum=250),statistics_log=(wait=0),verbose=[recovery_progress,checkpoint_progress],
+                          2020-04-22T23:21:45.779-0300 I  STORAGE  [initandlisten] WiredTiger message [1587608505:779010][53305:0x10c3d05c0], txn-recover: Set global recovery timestamp: (0,0)
+                          2020-04-22T23:21:46.295-0300 I  RECOVERY [initandlisten] WiredTiger recoveryTimestamp. Ts: Timestamp(0, 0)
+                          2020-04-22T23:21:46.992-0300 I  STORAGE  [initandlisten] Timestamp monitor starting
+                          2020-04-22T23:21:46.993-0300 I  CONTROL  [initandlisten]
+                          2020-04-22T23:21:46.993-0300 I  CONTROL  [initandlisten] <span class="pl-k">**</span> WARNING: Access control is not enabled <span class="pl-k">for</span> the database.
+                          2020-04-22T23:21:46.993-0300 I  CONTROL  [initandlisten] <span class="pl-k">**</span>          Read and write access to data and configuration is unrestricted.
+                          2020-04-22T23:21:46.993-0300 I  CONTROL  [initandlisten]
+                          2020-04-22T23:21:46.993-0300 I  CONTROL  [initandlisten] <span class="pl-k">**</span> WARNING: This server is bound to localhost.
+                          2020-04-22T23:21:46.993-0300 I  CONTROL  [initandlisten] <span class="pl-k">**</span>          Remote systems will be unable to connect to this server.
+                          2020-04-22T23:21:46.993-0300 I  CONTROL  [initandlisten] <span class="pl-k">**</span>          Start the server with --bind_ip <span class="pl-k">&lt;</span>address<span class="pl-k">&gt;</span> to specify which IP
+                          2020-04-22T23:21:46.993-0300 I  CONTROL  [initandlisten] <span class="pl-k">**</span>          addresses it should serve responses from, or with --bind_ip_all to
+                          2020-04-22T23:21:46.993-0300 I  CONTROL  [initandlisten] <span class="pl-k">**</span>          <span class="pl-c1">bind</span> to all interfaces. If this behavior is desired, start the
+                          2020-04-22T23:21:46.993-0300 I  CONTROL  [initandlisten] <span class="pl-k">**</span>          server with --bind_ip 127.0.0.1 to disable this warning.
+                          2020-04-22T23:21:46.995-0300 I  CONTROL  [initandlisten]
+                          2020-04-22T23:21:46.996-0300 I  CONTROL  [initandlisten]
+                          2020-04-22T23:21:46.996-0300 I  CONTROL  [initandlisten] <span class="pl-k">**</span> WARNING: soft rlimits too low. Number of files is 256, should be at least 1000
+                          2020-04-22T23:21:47.020-0300 I  STORAGE  [initandlisten] createCollection: admin.system.version with provided UUID: b3c050c9-0c07-498a-99a3-44d6211d6b8a and options: { uuid: UUID(<span class="pl-s"><span class="pl-pds">"</span>b3c050c9-0c07-498a-99a3-44d6211d6b8a<span class="pl-pds">"</span></span>) }</pre></div>
+                          <h2>Archivo de configuración - Publicaciones default</h2>
+                          <p>Aquí puede modificar y agregar su medio. Hay un ejemplo aca: CromaAI/config.py.sample</p>
+                          <div class="highlight highlight-source-python"><pre><span class="pl-c"><span class="pl-c">#</span> Si date_after y date_before estan en None, trae todo - Esto puede tardar un tiempo -</span>
+                          fetching_config <span class="pl-k">=</span> {
+                              <span class="pl-s"><span class="pl-pds">'</span>publication<span class="pl-pds">'</span></span>: <span class="pl-s"><span class="pl-pds">'</span>Redaccion<span class="pl-pds">'</span></span>,
+                              <span class="pl-s"><span class="pl-pds">'</span>date_after<span class="pl-pds">'</span></span>:  <span class="pl-s"><span class="pl-pds">'</span>2020-01-01<span class="pl-pds">'</span></span>, <span class="pl-c"><span class="pl-c">#</span>None, </span>
+                              <span class="pl-s"><span class="pl-pds">'</span>date_before<span class="pl-pds">'</span></span>: <span class="pl-s"><span class="pl-pds">'</span>2020-04-22<span class="pl-pds">'</span></span>, <span class="pl-c"><span class="pl-c">#</span>None</span>
+                          }
+
+                          active_publication <span class="pl-k">=</span> <span class="pl-s"><span class="pl-pds">'</span>Redaccion<span class="pl-pds">'</span></span>
+
+                          publications <span class="pl-k">=</span> [
+                              {
+                                  <span class="pl-s"><span class="pl-pds">"</span>api_url<span class="pl-pds">"</span></span>: <span class="pl-s"><span class="pl-pds">'</span>https://cnnespanol.cnn.com/wp-json/wp/v2/<span class="pl-pds">'</span></span>,
+                                  <span class="pl-s"><span class="pl-pds">"</span>name<span class="pl-pds">"</span></span>: <span class="pl-s"><span class="pl-pds">'</span>CNN Esp<span class="pl-pds">'</span></span>,
+                                  <span class="pl-s"><span class="pl-pds">"</span>fetch_method<span class="pl-pds">"</span></span>: <span class="pl-s"><span class="pl-pds">'</span>wordpress<span class="pl-pds">'</span></span>,
+                                  <span class="pl-s"><span class="pl-pds">"</span>location<span class="pl-pds">"</span></span>: <span class="pl-s"><span class="pl-pds">'</span>USA<span class="pl-pds">'</span></span>,
+                                  <span class="pl-s"><span class="pl-pds">"</span>url<span class="pl-pds">"</span></span>: <span class="pl-s"><span class="pl-pds">'</span>https://cnnespanol.cnn.com<span class="pl-pds">'</span></span>
+                              },
+                              {
+                                  <span class="pl-s"><span class="pl-pds">"</span>api_url<span class="pl-pds">"</span></span>: <span class="pl-s"><span class="pl-pds">'</span>https://www.redaccion.com.ar/wp-json/wp/v2/<span class="pl-pds">'</span></span>,
+                                  <span class="pl-s"><span class="pl-pds">"</span>name<span class="pl-pds">"</span></span>: <span class="pl-s"><span class="pl-pds">'</span>Redaccion<span class="pl-pds">'</span></span>,
+                                  <span class="pl-s"><span class="pl-pds">"</span>fetch_method<span class="pl-pds">"</span></span>: <span class="pl-s"><span class="pl-pds">'</span>wordpress<span class="pl-pds">'</span></span>,
+                                  <span class="pl-s"><span class="pl-pds">"</span>location<span class="pl-pds">"</span></span>: <span class="pl-s"><span class="pl-pds">'</span>Argentina<span class="pl-pds">'</span></span>,
+                                  <span class="pl-s"><span class="pl-pds">"</span>url<span class="pl-pds">"</span></span>: <span class="pl-s"><span class="pl-pds">'</span>https://www.redaccion.com.ar<span class="pl-pds">'</span></span>
+                              }
+                          ]</pre></div>
+                          <h2>Buscar artículos y guardarlos en db</h2>
+                          <p>Asegurarse de tener un archivo de configuración correcto: <code>config.py</code> Hay un ejemplo: config.py.sample
+                          Ejecutar:</p>
+                          <pre><code>$ cp ./CromaAI/config.py.sample ./CromaAI/config.py
+                          </code></pre>
+                          <p>Luego, para traer los archivos ejecutar</p>
+                          <div class="highlight highlight-source-shell"><pre>$ python3 ./CromaAI/fetch_articles.py</pre></div>
+                          <p>Esto traerá los archivos del medio definido en active_publication</p>
+                          <div class="highlight highlight-source-shell"><pre>config.py found
+                          Verificando publicaciones
+                          Publication creada: CNN Esp
+                          Publication creada: Redaccion
+                          Total de publicaciones en la db: 2
+                          - CNN Esp
+                          - Redaccion
+                          <span class="pl-c"><span class="pl-c">#</span>################################</span>
+                          url ro fetch: https://www.redaccion.com.ar/wp-json/wp/v2/
+                          No articles
+                          Page: 1 - https://www.redaccion.com.ar/wp-json/wp/v2/posts?page=1&amp;per_page=50&amp;orderby=date&amp;order=asc&amp;after=2020-0Page: 2/11 - https://www.redaccion.com.ar/wp-json/wp/v2/posts?page=2&amp;per_page=50&amp;orderby=date&amp;order=asc&amp;after=202Page: 3/11 - https://www.redaccion.com.ar/wp-json/wp/v2/posts?page=3&amp;per_page=50&amp;orderby=date&amp;order=asc&amp;after=202Page: 4/11 - https://www.redaccion.com.ar/wp-json/wp/v2/posts?page=4&amp;per_page=50&amp;orderby=date&amp;order=asc&amp;after=202Page: 5/11 - https://www.redaccion.com.ar/wp-json/wp/v2/posts?page=5&amp;per_page=50&amp;orderby=date&amp;order=asc&amp;after=202Page: 6/11 - https://www.redaccion.com.ar/wp-json/wp/v2/posts?page=6&amp;per_page=50&amp;orderby=date&amp;order=asc&amp;after=202Page: 7/11 - https://www.redaccion.com.ar/wp-json/wp/v2/posts?page=7&amp;per_page=50&amp;orderby=date&amp;order=asc&amp;after=202Page: 8/11 - https://www.redaccion.com.ar/wp-json/wp/v2/posts?page=8&amp;per_page=50&amp;orderby=date&amp;order=asc&amp;after=202Page: 9/11 - https://www.redaccion.com.ar/wp-json/wp/v2/posts?page=9&amp;per_page=50&amp;orderby=date&amp;order=asc&amp;after=202Page: 10/11 - https://www.redaccion.com.ar/wp-json/wp/v2/posts?page=10&amp;per_page=50&amp;orderby=date&amp;order=asc&amp;after=2Page: 11/11 - https://www.redaccion.com.ar/wp-json/wp/v2/posts?page=11&amp;per_page=50&amp;orderby=date&amp;order=asc&amp;after=2020-01-01T00:00:00&amp;before=2020-04-22T00:00:00</pre></div>
+                          <h2>Descargar modelos de ejemplo</h2>
+                          <p>Descargar los modelos de <a href="https://croma.ai/models/models_demo.zip" rel="nofollow">https://croma.ai/models/models_demo.zip</a>
+                          y copiarlos en carpeta <code>cromaAI/models</code> Y descomprimirlo</p>
+                          <h2>Entrenamiento faiss</h2>
+                          <p>Dentro del archivo de <code>config_train.py</code> verificar que este seteado asi:</p>
+                          <div class="highlight highlight-source-python"><pre>model_name <span class="pl-k">=</span> <span class="pl-s"><span class="pl-pds">'</span>redaccion_2020<span class="pl-pds">'</span></span>
+                          spacy_model <span class="pl-k">=</span> <span class="pl-s"><span class="pl-pds">'</span>models/redaccion_2020/model-azure-aws-50k<span class="pl-pds">'</span></span>
+                          <span class="pl-c"><span class="pl-c">#</span> Si word2vect_model es None, lo busca en la carpeta model_name/w2vect</span>
+                          <span class="pl-c"><span class="pl-c">#</span> Si es un path a archivo, directamente enabled_processes.w2v no lo compara</span>
+                          word2vect_model <span class="pl-k">=</span> <span class="pl-s"><span class="pl-pds">'</span>ML_models/w2vect_2.wv<span class="pl-pds">'</span></span>
+                          publication_name <span class="pl-k">=</span> <span class="pl-s"><span class="pl-pds">'</span>Redaccion<span class="pl-pds">'</span></span>
+                          chunk_size <span class="pl-k">=</span> <span class="pl-c1">100</span>
+
+                          enabled_processes <span class="pl-k">=</span> {
+                              <span class="pl-s"><span class="pl-pds">"</span>tokenize_articles<span class="pl-pds">"</span></span>: <span class="pl-c1">True</span>,
+                              <span class="pl-s"><span class="pl-pds">"</span>vectorizers<span class="pl-pds">"</span></span>: <span class="pl-c1">True</span>,
+                              <span class="pl-s"><span class="pl-pds">"</span>w2v<span class="pl-pds">"</span></span>: <span class="pl-c1">False</span>,
+                              <span class="pl-s"><span class="pl-pds">"</span>faiss<span class="pl-pds">"</span></span>: <span class="pl-c1">True</span>
+                          }</pre></div>
+                          <p>Ejecutar:</p>
+                          <div class="highlight highlight-source-shell"><pre>$ <span class="pl-c1">cd</span> CromaAI/
+                          $ python3 train_models.py</pre></div>
+                          <p>Esto generara los tokens de los articulos y armara los vectorizers junto con la base de faiss</p>
+                          <div class="highlight highlight-source-shell"><pre>tokenizing articles ...
+                          Found 0 already tokenized articles
+                          99/548
+                          models/redaccion_2020/training_data/content_1.npy saved<span class="pl-k">!</span>
+                          199/548
+                          models/redaccion_2020/training_data/content_2.npy saved<span class="pl-k">!</span>
+                          299/548
+                          models/redaccion_2020/training_data/content_3.npy saved<span class="pl-k">!</span>
+                          399/548
+                          models/redaccion_2020/training_data/content_4.npy saved<span class="pl-k">!</span>
+                          499/548
+                          models/redaccion_2020/training_data/content_5.npy saved<span class="pl-k">!</span>
+                          547/548 Training vectorizers ...
+                          5 - 100 - models/redaccion_2020/training_data/all_1.npyd
+                          1 finished<span class="pl-k">!</span>
+                          Matrix size: (500, 39063)
+                          Saved to: models/redaccion_2020/vectorizers/count_vectorizer-max_df_1.0-min_df_1.pickle
+                          Training faiss ...
+                          models/redaccion_2020/faiss/indexes
+                          models/redaccion_2020/faiss/ids.npy
+                          models/redaccion_2020/faiss/indexes_tfidf
+                          using: models/redaccion_2020/w2vect/w2vect_2.wv
+                          Articulo: 499</pre></div>
+                          <h1>Testeo API</h1>
+                          <h2><a id="user-content-correr-api" class="anchor" aria-hidden="true" href="#correr-api"><svg class="octicon octicon-link" viewBox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Correr API</h2>
+                          <p>Dentro de la carpeta repo_folder/CromaAI</p>
+                          <div class="highlight highlight-source-shell"><pre>$ python3 FlaskAPI.py -p 5000 -h localhost</pre></div>
+                          <p>Esto corre un servidor en el puerto 5000 por defecto. Puede cambiar el host y el port según sus necesidades</p>
+                          <h3>Verficar API - /api/v1/articles</h3>
+                          <p>Escribir en el browser:</p>
+                          <pre><code>http://localhost:5000/api/v1/articles
+                          </code></pre>
+                          <p>o desde la linead de comando:</p>
+                          <pre><code>$ curl --location --request GET 'http://localhost:5000/api/v1/articles'
+                          </code></pre>
+                          <p>El resultado debería ser algo parecido a lo siguiente:</p>
+                          <div class="highlight highlight-source-js"><pre>{ <span class="pl-s"><span class="pl-pds">"</span>articles_page<span class="pl-pds">"</span></span><span class="pl-k">:</span> [ {<span class="pl-s"><span class="pl-pds">"</span>_id<span class="pl-pds">"</span></span><span class="pl-k">:</span> {<span class="pl-s"><span class="pl-pds">"</span>$oid<span class="pl-pds">"</span></span><span class="pl-k">:</span> <span class="pl-s"><span class="pl-pds">"</span>5e9e1d65970a1cca9518671c<span class="pl-pds">"</span></span>},
+                                <span class="pl-s"><span class="pl-pds">"</span>author<span class="pl-pds">"</span></span><span class="pl-k">:</span> [<span class="pl-s"><span class="pl-pds">"</span>18<span class="pl-pds">"</span></span>],
+                                <span class="pl-s"><span class="pl-pds">"</span>publication<span class="pl-pds">"</span></span><span class="pl-k">:</span> {
+                                  <span class="pl-s"><span class="pl-pds">"</span>$oid<span class="pl-pds">"</span></span><span class="pl-k">:</span> <span class="pl-s"><span class="pl-pds">"</span>5ea0fceafc6ebaf443054ad4<span class="pl-pds">"</span></span>
+                                },
+                                <span class="pl-s"><span class="pl-pds">"</span>publish_date<span class="pl-pds">"</span></span><span class="pl-k">:</span> {
+                                  <span class="pl-s"><span class="pl-pds">"</span>$date<span class="pl-pds">"</span></span><span class="pl-k">:</span> <span class="pl-c1">1587340800000</span>
+                                },
+                                <span class="pl-s"><span class="pl-pds">"</span>pub_art_id<span class="pl-pds">"</span></span><span class="pl-k">:</span> <span class="pl-s"><span class="pl-pds">"</span>79884<span class="pl-pds">"</span></span>,
+                                <span class="pl-s"><span class="pl-pds">"</span>summary<span class="pl-pds">"</span></span><span class="pl-k">:</span> <span class="pl-s"><span class="pl-pds">"</span>&lt;p&gt;La pandemia gatilla …”</span>
+                          <span class="pl-s">      <span class="pl-pds">"</span></span>text<span class="pl-s"><span class="pl-pds">"</span>: <span class="pl-pds">"</span></span>Esta es la foto del <span class="pl-c1">COVID</span><span class="pl-k">-</span><span class="pl-c1">19</span> esta <span class="pl-s"><span class="pl-pds">"</span>, </span>
+                          <span class="pl-s">      <span class="pl-pds">"</span></span>title<span class="pl-s"><span class="pl-pds">"</span>: <span class="pl-pds">"</span></span><span class="pl-c1">GPS</span> <span class="pl-c1">PM</span> del lunes <span class="pl-c1">20</span> de abril del <span class="pl-c1">2020</span><span class="pl-s"><span class="pl-pds">"</span>, </span>
+                          <span class="pl-s">      <span class="pl-pds">"</span></span>url<span class="pl-s"><span class="pl-pds">"</span>: <span class="pl-pds">"</span></span>https<span class="pl-k">:</span><span class="pl-c"><span class="pl-c">//</span>www.redaccion.com.ar/gps-pm-del-lunes-20-de-abril-del-2020/"</span>
+                              }, <span class="pl-k">...</span>
+                              ]
+                          }</pre></div>
+                          <h3>Verficar API - /api/v1/article</h3>
+                          <p>Notar que en la respuesta del articulo anterior hay dos ids:  <code>"$oid": "5ea0fceafc6ebaf443054ad4"</code> y <code>"pub_art_id": "79884"</code>. Cuando se pide un articulo se lo puede hacer por el primero como <code>id</code> o por el segundo como <code>cmdid</code>
+                          El primero es el id en la base de CromaAI mongo, y el segundo es el id original de la base donde se obtuvo el articulo</p>
+                          <p>Escribir en el browser:</p>
+                          <pre><code>http://localhost:5000/api/v1/article?id=5ea0fceafc6ebaf443054ad4
+                          </code></pre>
+                          <p>o</p>
+                          <pre><code>http://localhost:5000/api/v1/article?cmsid=79884
+                          </code></pre>
+                          <p>o desde la linead de comando:</p>
+                          <pre><code>$ curl --location --request GET 'http://localhost:5000/api/v1/article?id=5ea0fceafc6ebaf443054ad4'
+                          </code></pre>
+                          <p>o</p>
+                          <pre><code>curl --location --request GET 'http://localhost:5000/api/v1/article?cmsid=79884'
+                          </code></pre>
+                          <p>El resultado debería ser algo parecido a lo siguiente:</p>
+                          <div class="highlight highlight-source-js"><pre>{ <span class="pl-s"><span class="pl-pds">"</span>article: [{<span class="pl-pds">"</span></span>_id<span class="pl-s"><span class="pl-pds">"</span>: {<span class="pl-pds">"</span></span>$oid<span class="pl-s"><span class="pl-pds">"</span>: <span class="pl-pds">"</span></span><span class="pl-ii">5e9e1d65970a1cca9518671c</span><span class="pl-s"><span class="pl-pds">"</span>}, </span>
+                          <span class="pl-s">      <span class="pl-pds">"</span></span>author<span class="pl-s"><span class="pl-pds">"</span>: [<span class="pl-pds">"</span></span><span class="pl-c1">18</span><span class="pl-s"><span class="pl-pds">"</span>], </span>
+                          <span class="pl-s">      <span class="pl-pds">"</span></span>publication<span class="pl-s"><span class="pl-pds">"</span>: {</span>
+                          <span class="pl-s">        <span class="pl-pds">"</span></span>$oid<span class="pl-s"><span class="pl-pds">"</span>: <span class="pl-pds">"</span></span><span class="pl-ii">5e9e16903993318678a548ad</span><span class="pl-s"><span class="pl-pds">"</span></span>
+                          <span class="pl-s">      }, </span>
+                          <span class="pl-s">      <span class="pl-pds">"</span></span>publish_date<span class="pl-s"><span class="pl-pds">"</span>: {</span>
+                          <span class="pl-s">        <span class="pl-pds">"</span></span>$date<span class="pl-s"><span class="pl-pds">"</span>: 1587340800000</span>
+                          <span class="pl-s">      }, </span>
+                          <span class="pl-s">      <span class="pl-pds">"</span></span>summary<span class="pl-s"><span class="pl-pds">"</span>: <span class="pl-pds">"</span></span><span class="pl-k">&lt;</span>p<span class="pl-k">&gt;</span>La pandemia gatilla …”
+                                <span class="pl-s"><span class="pl-pds">"</span>text<span class="pl-pds">"</span></span><span class="pl-k">:</span> <span class="pl-s"><span class="pl-pds">"</span>Esta es la foto del COVID-19 esta <span class="pl-pds">"</span></span>,
+                                <span class="pl-s"><span class="pl-pds">"</span>title<span class="pl-pds">"</span></span><span class="pl-k">:</span> <span class="pl-s"><span class="pl-pds">"</span>GPS PM del lunes 20 de abril del 2020<span class="pl-pds">"</span></span>,
+                                <span class="pl-s"><span class="pl-pds">"</span>url<span class="pl-pds">"</span></span><span class="pl-k">:</span> <span class="pl-s"><span class="pl-pds">"</span>https://www.redaccion.com.ar/gps-pm-del-lunes-20-de-abril-del-2020/<span class="pl-pds">"</span></span>
+                              }
+                          }
+                          </pre></div>
+                          <h3>Verficar API - /api/v1/article_entities</h3>
+                          <p>Obtener el id del primer articulo, en nuestro ejemplo: 5e9e1d65970a1cca9518671c
+                          Y colocarlo en el pedido para verificar funcionamiento</p>
+                          <p>Escribir en el browser:</p>
+                          <pre><code>http://localhost:5000/api/v1/article_entities?id=5ea0fceafc6ebaf443054ad4&amp;cloud=spacy
+                          </code></pre>
+                          <p>o desde la linead de comando:</p>
+                          <div class="highlight highlight-source-shell"><pre>$ curl --location --request GET <span class="pl-s"><span class="pl-pds">'</span>http://localhost:5000/api/v1/article_entities?id=5ea0fceafc6ebaf443054ad4&amp;cloud=spacy<span class="pl-pds">'</span></span></pre></div>
+                          <p>o</p>
+                          <div class="highlight highlight-source-shell"><pre>curl --location --request GET <span class="pl-s"><span class="pl-pds">'</span>http://localhost:5000/api/v1/article_entities?cmsid=79884&amp;cloud=spacy<span class="pl-pds">'</span></span></pre></div>
+                          <h3>Verificar API - /api/v1/w2v/related</h3>
+                          <div class="highlight highlight-source-shell"><pre>$ curl --location --request GET <span class="pl-s"><span class="pl-pds">'</span>http://localhost:5000/api/v1/related?id=5ea0fceafc6ebaf443054ad4<span class="pl-pds">'</span></span></pre></div>
+                          <p>o</p>
+                          <div class="highlight highlight-source-shell"><pre>$ curl --location --request GET <span class="pl-s"><span class="pl-pds">'</span>http://localhost:5000/api/v1/related?cmsid=79884<span class="pl-pds">'</span></span></pre></div>
+                          <div class="highlight highlight-source-js"><pre>{
+                            <span class="pl-s"><span class="pl-pds">"</span>related_articles<span class="pl-pds">"</span></span><span class="pl-k">:</span> [
+                              {
+                                <span class="pl-s"><span class="pl-pds">"</span>article_id<span class="pl-pds">"</span></span><span class="pl-k">:</span> <span class="pl-s"><span class="pl-pds">"</span>5e9e1d65970a1cca9518671c<span class="pl-pds">"</span></span>,
+                                <span class="pl-s"><span class="pl-pds">"</span>similarity<span class="pl-pds">"</span></span><span class="pl-k">:</span> <span class="pl-c1">1.0</span>
+                              },
+                              <span class="pl-k">...</span>,
+                              {
+                                <span class="pl-s"><span class="pl-pds">"</span>article_id<span class="pl-pds">"</span></span><span class="pl-k">:</span> <span class="pl-s"><span class="pl-pds">"</span>5e9e1d5b970a1cca95186662<span class="pl-pds">"</span></span>,
+                                <span class="pl-s"><span class="pl-pds">"</span>similarity<span class="pl-pds">"</span></span><span class="pl-k">:</span> <span class="pl-c1">0.8513200283050537</span>
+                              }
+                            ]
+                          }</pre></div>
+                          <h3>Verificar API - /api/v1/analyzer/text</h3>
+                          <p>Ejecutar desde la linead de comando:</p>
+                          <div class="highlight highlight-source-shell"><pre>$ curl --location --request POST <span class="pl-s"><span class="pl-pds">'</span>http://localhost:5000/api/v1/analyzer/text<span class="pl-pds">'</span></span> \
+                          --header <span class="pl-s"><span class="pl-pds">'</span>Content-Type: application/json<span class="pl-pds">'</span></span> \
+                          --data-raw <span class="pl-s"><span class="pl-pds">'</span>"Cristina Kirchner se reunio con Mauricio Macri en la Casa Rosada"<span class="pl-pds">'</span></span></pre></div>
+                          <p>El resultada debería ser algo similar a esto:</p>
+                          <div class="highlight highlight-source-js"><pre>{
+                            <span class="pl-s"><span class="pl-pds">"</span>doc<span class="pl-pds">"</span></span><span class="pl-k">:</span> {
+                              <span class="pl-s"><span class="pl-pds">"</span>ents<span class="pl-pds">"</span></span><span class="pl-k">:</span> [
+                                {
+                                  <span class="pl-s"><span class="pl-pds">"</span>end<span class="pl-pds">"</span></span><span class="pl-k">:</span> <span class="pl-c1">17</span>,
+                                  <span class="pl-s"><span class="pl-pds">"</span>label<span class="pl-pds">"</span></span><span class="pl-k">:</span> <span class="pl-s"><span class="pl-pds">"</span>PER<span class="pl-pds">"</span></span>,
+                                  <span class="pl-s"><span class="pl-pds">"</span>start<span class="pl-pds">"</span></span><span class="pl-k">:</span> <span class="pl-c1">0</span>
+                                },
+                                {
+                                  <span class="pl-s"><span class="pl-pds">"</span>end<span class="pl-pds">"</span></span><span class="pl-k">:</span> <span class="pl-c1">46</span>,
+                                  <span class="pl-s"><span class="pl-pds">"</span>label<span class="pl-pds">"</span></span><span class="pl-k">:</span> <span class="pl-s"><span class="pl-pds">"</span>PER<span class="pl-pds">"</span></span>,
+                                  <span class="pl-s"><span class="pl-pds">"</span>start<span class="pl-pds">"</span></span><span class="pl-k">:</span> <span class="pl-c1">32</span>
+                                },
+                                {
+                                  <span class="pl-s"><span class="pl-pds">"</span>end<span class="pl-pds">"</span></span><span class="pl-k">:</span> <span class="pl-c1">64</span>,
+                                  <span class="pl-s"><span class="pl-pds">"</span>label<span class="pl-pds">"</span></span><span class="pl-k">:</span> <span class="pl-s"><span class="pl-pds">"</span>ORG<span class="pl-pds">"</span></span>,
+                                  <span class="pl-s"><span class="pl-pds">"</span>start<span class="pl-pds">"</span></span><span class="pl-k">:</span> <span class="pl-c1">53</span>
+                                }
+                              ],
+                              <span class="pl-s"><span class="pl-pds">"</span>text<span class="pl-pds">"</span></span><span class="pl-k">:</span> <span class="pl-s"><span class="pl-pds">"</span>Cristina Kirchner se reunio con Mauricio Macri en la Casa Rosada<span class="pl-pds">"</span></span>,
+                              <span class="pl-s"><span class="pl-pds">"</span>tokens<span class="pl-pds">"</span></span><span class="pl-k">:</span> [
+                                {
+                                  <span class="pl-s"><span class="pl-pds">"</span>end<span class="pl-pds">"</span></span><span class="pl-k">:</span> <span class="pl-c1">8</span>,
+                                  <span class="pl-s"><span class="pl-pds">"</span>id<span class="pl-pds">"</span></span><span class="pl-k">:</span> <span class="pl-c1">0</span>,
+                                  <span class="pl-s"><span class="pl-pds">"</span>start<span class="pl-pds">"</span></span><span class="pl-k">:</span> <span class="pl-c1">0</span>
+                                }, <span class="pl-k">...</span>
+                                {
+                                  <span class="pl-s"><span class="pl-pds">"</span>end<span class="pl-pds">"</span></span><span class="pl-k">:</span> <span class="pl-c1">64</span>,
+                                  <span class="pl-s"><span class="pl-pds">"</span>id<span class="pl-pds">"</span></span><span class="pl-k">:</span> <span class="pl-c1">10</span>,
+                                  <span class="pl-s"><span class="pl-pds">"</span>start<span class="pl-pds">"</span></span><span class="pl-k">:</span> <span class="pl-c1">58</span>
+                                }
+                              ]
+                            },
+                            "html": "&lt;div class=\"entities\" style=\"line-height: 2.5; direction: ltr\"&gt;&lt;mark class=\"entity\" style=\"background: #ddd; padding: 0.45em 0.6em; margin: 0 0.25em; line-height: 1; border-radius: 0.35em;\"&gt;Cristina Kirchner&lt;span style=\"font-size: 0.8em; font-weight: bold; line-height: 1; border-radius: 0.35em; text-transform: uppercase; vertical-align: middle; margin-left: 0.5rem\"&gt;PER&lt;/span&gt;&lt;/mark&gt; se reunio con &lt;mark class=\"entity\" style=\"background: #ddd; padding: 0.45em 0.6em; margin: 0 0.25em; line-height: 1; border-radius: 0.35em;\"&gt;Mauricio Macri&lt;span style=\"font-size: 0.8em; font-weight: bold; line-height: 1; border-radius: 0.35em; text-transform: uppercase; vertical-align: middle; margin-left: 0.5rem\"&gt;PER&lt;/span&gt;&lt;/mark&gt; en la &lt;mark class=\"entity\" style=\"background: #7aecec; padding: 0.45em 0.6em; margin: 0 0.25em; line-height: 1; border-radius: 0.35em;\"&gt;Casa Rosada&lt;span style=\"font-size: 0.8em; font-weight: bold; line-height: 1; border-radius: 0.35em; text-transform: uppercase; vertical-align: middle; margin-left: 0.5rem\"&gt;ORG&lt;/span&gt;&lt;/mark&gt;&lt;/div&gt;",
+                            <span class="pl-s"><span class="pl-pds">"</span>related_articles<span class="pl-pds">"</span></span><span class="pl-k">:</span> [
+                              {
+                                <span class="pl-s"><span class="pl-pds">"</span>article_id<span class="pl-pds">"</span></span><span class="pl-k">:</span> <span class="pl-s"><span class="pl-pds">"</span>5e9e1ce2970a1cca95185cde<span class="pl-pds">"</span></span>,
+                                <span class="pl-s"><span class="pl-pds">"</span>similarity<span class="pl-pds">"</span></span><span class="pl-k">:</span> <span class="pl-c1">0.36494454741477966</span>
+                              }, <span class="pl-k">...</span> ,
+                              {
+                                <span class="pl-s"><span class="pl-pds">"</span>article_id<span class="pl-pds">"</span></span><span class="pl-k">:</span> <span class="pl-s"><span class="pl-pds">"</span>5e9e1d25970a1cca95186237<span class="pl-pds">"</span></span>,
+                                <span class="pl-s"><span class="pl-pds">"</span>similarity<span class="pl-pds">"</span></span><span class="pl-k">:</span> <span class="pl-c1">0.21402746438980103</span>
+                              }
+                            ]
+                          }</pre></div>
+                          <h3>Verificar API - /api/v1/w2v/autocompete</h3>
+                          <pre><code>$ curl --location --request POST 'localhost:5000/api/v1/w2v/autocomplete' \
+                          --header 'Content-Type: application/json; charset=UTF-8' \
+                          --data-raw '"Mau"'
+                          </code></pre>
+                          <div class="highlight highlight-source-js"><pre>{
+                            <span class="pl-s"><span class="pl-pds">"</span>words<span class="pl-pds">"</span></span><span class="pl-k">:</span> [
+                              <span class="pl-s"><span class="pl-pds">"</span>Mauricio Macri<span class="pl-pds">"</span></span>,
+                              <span class="pl-s"><span class="pl-pds">"</span>Mauricio macri<span class="pl-pds">"</span></span>,
+                              <span class="pl-s"><span class="pl-pds">"</span>Mauricio<span class="pl-pds">"</span></span>,
+                              <span class="pl-s"><span class="pl-pds">"</span>Mauricio ) Macri<span class="pl-pds">"</span></span>,
+                              <span class="pl-s"><span class="pl-pds">"</span>Mauricio Claver<span class="pl-pds">"</span></span>,
+                              <span class="pl-s"><span class="pl-pds">"</span>Mauro<span class="pl-pds">"</span></span>,
+                              <span class="pl-s"><span class="pl-pds">"</span>Mauricio !<span class="pl-pds">"</span></span>,
+                              <span class="pl-s"><span class="pl-pds">"</span>Maurice Closs<span class="pl-pds">"</span></span>,
+                              <span class="pl-s"><span class="pl-pds">"</span>Mauro Viale<span class="pl-pds">"</span></span>,
+                              <span class="pl-s"><span class="pl-pds">"</span>Mauro Icardi<span class="pl-pds">"</span></span>,
+                              <span class="pl-s"><span class="pl-pds">"</span>Maure Inmobiliaria<span class="pl-pds">"</span></span>
+                            ]
+                          }</pre></div>
+                          <h3>Verificar API - /api/v1/w2v/similar</h3>
+                          <div class="highlight highlight-source-shell"><pre>$ curl --location --request POST <span class="pl-s"><span class="pl-pds">'</span>localhost:5000/api/v1/w2v/similar<span class="pl-pds">'</span></span> \
+                          --header <span class="pl-s"><span class="pl-pds">'</span>Content-Type: application/json<span class="pl-pds">'</span></span> \
+                          --data-raw <span class="pl-s"><span class="pl-pds">'</span>{</span>
+                          <span class="pl-s">    "word": "kirchnerismo"</span>
+                          <span class="pl-s">}<span class="pl-pds">'</span></span></pre></div>
+                          <div class="highlight highlight-source-js"><pre>{
+                            <span class="pl-s"><span class="pl-pds">"</span>similar_words<span class="pl-pds">"</span></span><span class="pl-k">:</span> [
+                              {
+                                <span class="pl-s"><span class="pl-pds">"</span>similarity<span class="pl-pds">"</span></span><span class="pl-k">:</span> <span class="pl-c1">0.766370952129364</span>,
+                                <span class="pl-s"><span class="pl-pds">"</span>word<span class="pl-pds">"</span></span><span class="pl-k">:</span> <span class="pl-s"><span class="pl-pds">"</span>peronismo<span class="pl-pds">"</span></span>
+                              },
+                              {
+                                <span class="pl-s"><span class="pl-pds">"</span>similarity<span class="pl-pds">"</span></span><span class="pl-k">:</span> <span class="pl-c1">0.6919558644294739</span>,
+                                <span class="pl-s"><span class="pl-pds">"</span>word<span class="pl-pds">"</span></span><span class="pl-k">:</span> <span class="pl-s"><span class="pl-pds">"</span>oficialismo<span class="pl-pds">"</span></span>
+                              },
+                              <span class="pl-k">...</span>
+                            ]
+                          }</pre></div>
+                          <h1>Entrenamiento de Modelos</h1>
+                          <h2>Modelos y técnicas</h2>
+                          <ul>
+                          <li>NER</li>
+                          <li>word2Vect - TFIDF</li>
+                          <li>faiss</li>
+                          </ul>
+                          <h2>NER</h2>
+                          <p>Croma provee un modelo pre-entrenado con 50k artículos de medios periodísticos. Los datos de entrenamiento se obtuvieron por comparación de las APIs de AZURE, AWS y GCP y la verificación de personas. El modelo es parte pública de CromaAI y se utiliza a través de Spacy</p>
+                          <h2>w2v</h2>
+                          <p>Con la tokenización utilizada con el modelo de NER se entrena un modelo de w2v en formato de la librería gensim. Este modelo se utiliza después para relacionar artículos, búsqueda de palabras similares y autocomplete. CromaAI proporciona un modelo pre-entrenado. Si quiere reentrenar, tiene que poner en <code>True</code> la variable <code>w2v</code> en el <code>config_train.cfg</code></p>
+                          <h2>TFIDF</h2>
+                          <p>Se utiliza esta técnica para mejorar los resultados del modelo w2v en la búsqueda de artículos relacionados.</p>
+                          <h2>FAISS</h2>
+                          <p>Esta librería se utiliza para realizar las búsquedas de artículos relacionados de manera eficiente</p>
+                          <h2>Recomendaciones para el entrenamiento</h2>
+                          <p>Se recomienda utilizar tanto el modelo de spacy para la tokenización como el modelo pre-entrenado de w2v. Esto se puede modificar en las siguientes variables del archivo de configuración: spacy_model, word2vect_model</p>
+                          <h2>Archivo de configuración de training - congif_train.py</h2>
+                          <div class="highlight highlight-source-python"><pre>database <span class="pl-k">=</span> {
+                              <span class="pl-s"><span class="pl-pds">'</span>db_name<span class="pl-pds">'</span></span>: <span class="pl-s"><span class="pl-pds">'</span>cromaAIdb<span class="pl-pds">'</span></span>,
+                              <span class="pl-s"><span class="pl-pds">'</span>host<span class="pl-pds">'</span></span>: <span class="pl-s"><span class="pl-pds">'</span>localhost<span class="pl-pds">'</span></span>,
+                              <span class="pl-s"><span class="pl-pds">'</span>port<span class="pl-pds">'</span></span>: <span class="pl-c1">27018</span>
+                              }
+
+                          model_name <span class="pl-k">=</span> <span class="pl-s"><span class="pl-pds">'</span>redaccion_2020<span class="pl-pds">'</span></span>
+                          spacy_model <span class="pl-k">=</span> <span class="pl-s">f</span><span class="pl-pds">'</span><span class="pl-s">models/</span><span class="pl-c1">{</span>model_name<span class="pl-c1">}</span><span class="pl-s">/ner/model-azure-aws-50k</span><span class="pl-pds">'</span>
+                          <span class="pl-c"><span class="pl-c">#</span> Si word2vect_model es None, lo busca en la carpeta model_name/w2vect</span>
+                          <span class="pl-c"><span class="pl-c">#</span> Si es un path a archivo, directamente enabled_processes.w2v no lo compara</span>
+                          word2vect_model <span class="pl-k">=</span> <span class="pl-s">f</span><span class="pl-pds">'</span><span class="pl-s">models/</span><span class="pl-c1">{</span>model_name<span class="pl-c1">}</span><span class="pl-s">/w2vect/w2vect_2.wv</span><span class="pl-pds">'</span>
+                          publication_name <span class="pl-k">=</span> <span class="pl-s"><span class="pl-pds">'</span>Redaccion<span class="pl-pds">'</span></span>
+                          chunk_size <span class="pl-k">=</span> <span class="pl-c1">100</span>
+
+                          enabled_processes <span class="pl-k">=</span> {
+                              <span class="pl-s"><span class="pl-pds">"</span>tokenize_articles<span class="pl-pds">"</span></span>: <span class="pl-c1">True</span>,
+                              <span class="pl-s"><span class="pl-pds">"</span>vectorizers<span class="pl-pds">"</span></span>: <span class="pl-c1">True</span>,
+                              <span class="pl-s"><span class="pl-pds">"</span>w2v<span class="pl-pds">"</span></span>: <span class="pl-c1">False</span>,
+                              <span class="pl-s"><span class="pl-pds">"</span>faiss<span class="pl-pds">"</span></span>: <span class="pl-c1">True</span>
+                          }
+
+                          vectorizeers_hyperparams <span class="pl-k">=</span> {
+                              <span class="pl-s"><span class="pl-pds">"</span>min_df<span class="pl-pds">"</span></span>: <span class="pl-c1">1</span>,
+                              <span class="pl-s"><span class="pl-pds">"</span>max_df<span class="pl-pds">"</span></span>: <span class="pl-c1">1.0</span>
+                          }
+
+                          w2v_hyperparams <span class="pl-k">=</span> {
+                              <span class="pl-s"><span class="pl-pds">"</span>size<span class="pl-pds">"</span></span>: <span class="pl-c1">100</span>,
+                              <span class="pl-s"><span class="pl-pds">"</span>epochs<span class="pl-pds">"</span></span>: <span class="pl-c1">6</span>,
+                              <span class="pl-s"><span class="pl-pds">"</span>min_count<span class="pl-pds">"</span></span>:<span class="pl-c1">2</span>,
+                              <span class="pl-s"><span class="pl-pds">"</span>workers<span class="pl-pds">"</span></span>:<span class="pl-c1">4</span>,
+                          }</pre></div>
+                          <h2>Entrenar modelos:</h2>
+                          <p>Para entrenar los modelos ejecutar:</p>
+                          <div class="highlight highlight-source-shell"><pre>$ python3 train_models.py</pre></div>
+                          <p>Recuerde antes revisar el archivo config_train.py</p>
+
+
+
+
+
+
+
+                 </p>
+
+
+
+
+
+
+              </div>
+            </div>
+
+    </section>
+
+
+
+    <section class="module-anchor-statement center ">
+    <div class="h-u-mt-l">
+            <a href="https://github.com/cromaio/CromaAI/tree/master/CromaAI" rel="nofollow noopener" class="h-c-button h-c-button--primary">
+        Acceder al repositorio en GitHub
+      </a>
+
+
+          </div>
+    </section>
+
+
+
+<section class="module-spacer">
+<div class="module-spacer--extra-small module-spacer--color-white"></div>
+</section>
+
+
+<section>
+      <div class="h-c-page h-c-page__small h-u-text-center">
+        <img src="files/croma.png" width="200"/>
+        <div class="h-c-eyebrow eyebrow-lines eyebrow-lines__long h-u-mb-std">
+          <hr class="left">
+          <span class="eyebrow-text">ACERCA DE Croma Inc</span>
+          <hr class="right">
+      </div>
+
+      <div class="h-c-page h-c-page__medium">
+          <div class="h-c-grid spacey-grid">
+          <p class="h-c-copy h-c-copy--two h-has-top-bottom-margin" style="font-size: 1.2em; text-align: center;">          Croma is una empresa dedicada a la creación de soluciones de machine learning para medios de todo el mundo. Desde 2017 trabajamos con clientes como The Wall Street Journal, BBC News, Le Monde, Huffington Post, The Washington Post y La Nación entre otros ofreciéndoles soluciones para identificar patrones, tendencias y repercusiones de sus noticias diarias en diferentes plataformas. Hoy Croma Inc esta 100% dedicada al desarrollo y soporte de aplicaciones de machine learning. Si desea contactarnos puede enviar un correo a hello@croma.io</p>
+
+   </div>
+   </div>
+</section>
+
+<section>
+      <div class="h-c-page h-c-page__small h-u-text-center">
+        <img src="files/gni.png" />
+        <div class="h-c-eyebrow eyebrow-lines eyebrow-lines__long h-u-mb-std">
+          <hr class="left">
+          <span class="eyebrow-text">ACERCA DE GOOGLE NEWS INITIATIVE</span>
+          <hr class="right">
+      </div>
+
+      <div class="h-c-page h-c-page__medium">
+          <div class="h-c-grid spacey-grid">
+          <p class="h-c-copy h-c-copy--two h-has-top-bottom-margin" style="font-size: 1.2em; text-align: center;">
+            Google News Initiative es una iniciativa de colaboración con el sector del periodismo para que prospere en la era digital. Iniciado por Google, es un esfuerzo de trabajo en conjunto con la industria para construir un futuro más sólido para el periodismo. Desde su creación, Google ha tenido la oportunidad de trabajar con más de 350 organizaciones de noticias en 70 países para comprender y enfrentar mejor los desafíos más críticos que enfrentan las organizaciones de noticias en todo el mundo. <a href="https://newsinitiative.withgoogle.com/intl/es/" target="_blank">Aquí puede conocer más acerca de la GNI</a>.</p>
+
+   </div>
+   </div>
+</section>
+
+
+
+    </main>
+
+<div class="cap" data-about-footer="" data-ng-class="{&#39;footer--hidden&#39;: footerCtrl.footerHidden}">
+<a href="#" class="scroll-to-top" data-scroll="" data-track-event="" data-track-event-category="about us" data-track-event-action="back-to-top" data-track-event-label="/index.html">
+  Ir al inicio   <svg alt="" class="scroll-to-top-icon" xmlns="http://www.w3.org/2000/svg" width="16px" height="16px" viewBox="0 0 20 20">
+<g stroke="none" stroke-width="1" fill="inherit">
+  <circle fill="inherit" cx="9" cy="9" r="9"></circle>
+  <polygon fill="#fff" points="3 9 4.0575 10.0575 8.25 5.8725 8.25 15 9.75 15 9.75 5.8725 13.935 10.065 15 9 9 3"></polygon>
+</g>
+</svg>
+
+</a>
+</div>
+
+<footer class="footer" data-about-footer="" data-ng-class="{&#39;footer--hidden&#39;: footerCtrl.footerHidden}">
+<div class="main">
+<div class="main-inner">
+
+
+  <section class="foot">
+    <h2 class="product-logo">
+       Croma Ai
+    </h2>
+    <ul class="bottom-links">
+
+
+
+<li>
+<a>Copyright Croma Inc 2020</a>
+</li>
+
+
+
+    </ul>
+  </section>
+</div>
+</div>
+</footer>
+  <!----><div data-ui-view="modal" class="modal"></div>
+
+  <!---->
+
+
+</body></html>
