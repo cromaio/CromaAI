@@ -21,7 +21,7 @@ python ./CromaAI/fetch_articles.py
 cd CromaAI/
 mkdir models
 cd models
-wget https://croma.ai/models/models_demo.zip
+wget https://drive.google.com/file/d/1z2iaQxX08-hyNzpcKgdihRnAy0mFPWVp/view?usp=sharing
 unzip models_demo.zip
 cd ..
 cp config_train.py.sample config_train.py
