@@ -28,10 +28,14 @@ El software se debe instalar completamente en un servidor privado de su propieda
 CromaAI utiliza conda como método de instalación por lo que sugerimos utilizar Anaconda para su instalación
 https://anaconda.org/
 Bajarlo de la página e instalarlo siguiendo las instrucciones dependiendo de su sistema operativo
+
+Ejemplo:
+~$ wget -c https://repo.anaconda.com/archive/Anaconda3-2020.07-Linux-x86_64.sh
+~$ bash Anaconda3-2020.07-Linux-x86_64.sh
       
 ## Clonar repositorio CromaAI
 ```
-$ git clone git@github.com:cromaio/CromaAI.git 
+$ git clone https://github.com/cromaio/CromaAI.git 
 $ cd CromaAI
 ```
 
