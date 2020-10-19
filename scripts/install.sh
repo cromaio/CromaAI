@@ -21,7 +21,7 @@ python ./CromaAI/fetch_articles.py
 cd CromaAI/
 mkdir models
 cd models
-wget https://drive.google.com/file/d/1z2iaQxX08-hyNzpcKgdihRnAy0mFPWVp/view?usp=sharing
+wget https://redaccion.com.ar/wp-content/uploads/models_demo.zip
 unzip models_demo.zip
 cd ..
 cp config_train.py.sample config_train.py
