@@ -1,19 +1,19 @@
 name: cromaAI
 dependencies:
-  - pip
+  - pip=19.3.1
   - python=3.6.9
-  - conda-forge::beautifulsoup4
-  - conda-forge::mongoengine
-  - mongodb
-  - requests
-  - ipython
-  - gensim
-  - spacy
-  - numpy
-  - pytorch::faiss-cpu
+  - conda-forge::beautifulsoup4=4.8.2
+  - conda-forge::mongoengine=0.19.1
+  - mongodb=3.4.5
+  - requests=2.22.0
+  - ipython=7.11.1
+  - gensim=3.8.1
+  - spacy=2.2.3
+  - numpy=1.17.5
+  - pytorch::faiss-cpu=1.6.1
   - pip:
-    - schema
-    - flask
-    - flask-mongoengine
-    - textacy
-    - fast-autocomplete
+    - schema=0.7.1
+    - flask=1.1.1
+    - flask-mongoengine=0.9.5
+    - textacy=0.8.0
+    - fast-autocomplete=0.6.0
